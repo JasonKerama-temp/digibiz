@@ -1,0 +1,35 @@
+<script id="employee-create-modal-template" type="text/x-handlebars-template">
+    <div class="employee-create-main-container">        
+        <div class="employee-create-main-wrapper">
+            <div class="employee-create-content-box">
+                <div class="employee-name-container">
+                    <span class="employee-name-heading">Employee Name</span>
+                    <div class="employee-name-box">
+                        <div class="employee-first-name-create-content-box employee_name_sub_element">
+                            <label for="employee_first_name">First Name</label>                        
+                            <div id="employee_first_name" type="text" contenteditable="true" class="employee_first_name" autocomplete="off"></div>
+                        </div>
+                        <div class="employee-middle-name-create-content-box employee_name_sub_element">
+                            <label for="employee_middle_name">Middle Name</label>                        
+                            <div id="employee_middle_name" type="text" contenteditable="true" class="employee_middle_name" autocomplete="off"></div>
+                        </div>
+                        <div class="employee-last-name-create-content-box employee_name_sub_element">
+                            <label for="employee_last_name">Last Name</label>                        
+                            <div id="employee_last_name" type="text" contenteditable="true" class="employee_last_name" autocomplete="off"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="employee-mobile-number-container">
+                    <span class="employee-mobile_number-heading">Mobile Number</span>
+                    <div class="contact-input-wrap">
+                        <div class="form-componenents form-validation">
+                            <input class="form-control contact_mobile mobile-flag" id="add-employee-mobile-number" name="contacts[mobile_number]" type="tel" autocomplete="off">
+                            <i class="material-icons icon-validation-warning" aria-hidden="true">warning</i>
+                            <span class="left-warning-message"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

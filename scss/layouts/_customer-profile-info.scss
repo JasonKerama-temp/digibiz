@@ -1,0 +1,165 @@
+@use "../abstracts" as customerProfile;
+
+.customer-profile-data-section.customer-profile-section-two {
+    // display: flex;
+    // flex-wrap: wrap;
+
+    .customer-profile-data-container {
+        width: fit-content;
+        padding: 10px;
+        @include customerProfile.bd-radius(10px);
+        margin: 5px;
+        @include customerProfile.var(background-color, hubappbtn, 1);
+        border: 1px solid rgba(var(--b6a, 219, 219, 219), .3);
+
+        .customer-profile-data-label {
+            @include customerProfile.var(color, whiteTextColor, .8);
+            font-size: x-small;
+            opacity: 0.7;
+        }
+
+        .customer-profile-data-value {
+            @include customerProfile.var(color, whiteTextColor, 1);
+            /* margin-left: 15px; */
+        }
+    }
+}
+
+.contact-recommend-to-members-selection-list {
+    .contact-selection-list-container {
+        display: flex;
+        align-items: center;
+        min-height: 60px;
+        margin-bottom: 1px;
+        padding: 0 10px;
+        @include customerProfile.var(background-color, card-list-bg, 1);
+        @include customerProfile.var(color, whiteTextColor, 1);
+        .contact-selection-wrapper {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            .contact-details-wrapper {
+                padding-left: 10px;
+            }
+        }
+    }
+}
+
+.security-setting-wrapper {
+    margin: 10px;
+    padding: 20px;
+    @include customerProfile.bd-radius(10px);
+    @include customerProfile.var(background-color, hubsliderbg, 1);
+    .security-setting-bg {
+        .setting-heading {
+            margin-bottom: 20px;
+        }
+        p {
+            label {
+                @include customerProfile.var(color, whiteTextColor, 1);
+            }
+        }
+    }
+    .contact-control-activity-logs {
+        display: flex;
+        align-items: center;
+    }
+}
+.bizchat-group-bizchat-edit-icon-parent {
+    #contact-control-activity-logs,
+    #customer-control-activity-logs,
+    #trusted-control-activity-logs {
+        display: flex;
+        flex-wrap: wrap;
+        span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 0 0 100%;
+            // &.material-icons {
+
+            // }
+            &:not([class]) {
+                font-size: .7rem;
+            }
+        }
+    }
+}
+.content-wrapper {
+    + .floating-tab-btn {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 80px;
+        z-index: 1;
+        pointer-events: none;
+        height: unset;
+        .tabs-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            position: absolute;
+            overflow: hidden;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 2px 30px -10px rgba(var(--cardBoxshadow), 0.8), 0 0px 1px 2px rgba(var(--cardBoxshadow), 0.9);
+            > div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                white-space: nowrap;
+                font-size: 0.9rem;
+                transition: background-color, color 200ms ease-in-out;
+                padding: 4px 10px;
+                pointer-events: auto;
+                cursor: pointer;
+                backdrop-filter: blur(6px);
+                min-width: 60px;
+                @include customerProfile.var(background-color, hubsliderbg, .6);
+                span {
+                    display: flex;
+                    justify-content: center;
+                    &:not(.material-icons) {
+                        font-size: .65rem;
+                    }
+                }
+                &.active {
+                    color: #28ea9a;
+                }
+                &:not(.active) {
+                    @include customerProfile.var(color, whiteTextColor, .7);
+                }
+                &:nth-of-type(1) {
+                    @include customerProfile.bd-radius(20px 0 0 20px);
+                }
+                &:nth-of-type(2) {
+                    @include customerProfile.bd-radius(0 20px 20px 0);
+                }
+            }
+        }
+    }
+}
+.collaborator-group-moderator-container {
+    max-height: 200px;
+    height: 100%;
+}
+.active-customer-identifiers-list-contentbox {
+    width: 100%;
+}
+.customer-identifier-name {
+    display: flex;
+    flex-wrap: wrap;
+    span {
+        flex: 0 0 100%;
+        &.truncate {            
+        }
+        &.active-pending-count {
+            font-size: .8rem;
+            @include customerProfile.var(color, whiteTextColor, .6);
+        }
+    }
+}

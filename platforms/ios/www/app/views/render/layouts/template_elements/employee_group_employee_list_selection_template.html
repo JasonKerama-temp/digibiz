@@ -1,0 +1,13 @@
+<script id="employee-group-employee-list-selection-template" type="text/x-handlebars-template">
+    <div class="employee-selection-list-container">
+        <div class="contact-profile-container profile-pic-container p-{{employeeData.imageLetter}}" data-dj-unique-employee-id="{{employeeData.dj_unique_employee_id}}">
+                <img src="{{employeeData.identity_picture.avtarUrl}}" class="chat-avatar-image">
+                <span class="persona">{{employeeData.imageLetter}}</span>
+        </div>
+        <div class="contact-name-wrapper ellipsify">{{#if employeeData.display_name}}{{employeeData.display_name}}{{else}}{{employeeData.name.first}}&nbsp;{{employeeData.name.last}}{{/if}}</div>
+         <p>
+            <input type="checkbox" class="filled-in employee-select-btn" id="{{employeeData.dj_unique_employee_id}}" data-dj-unique-employee-id="{{employeeData.dj_unique_employee_id}}" />
+            <label for="{{employeeData.dj_unique_employee_id}}"></label>
+        </p>
+    </div>
+</script>

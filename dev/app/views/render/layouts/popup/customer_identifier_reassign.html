@@ -1,0 +1,19 @@
+<script id="customer-identifier-reassign-choose-template" type="text/x-handlebars-template">
+    {{#if customerIdentifier}}
+    <div class="customer-identifier-reassign-choose-wrapper">        
+         <span class="custom-dropdown-heading">Customer Identifier</span>
+         <div id="customer-identifier-reassign-choose-select-dropdown" class="wrapper-dropdown cursor-pointer" tabindex="1">
+            {{#if alreadySelectedIdentifierValue}}
+            <span class="selected-dropdown selected-value-customer-identifier-reassign" name="customer_identifier_reassign" data-value="{{alreadySelectedIdentifierValue}}" data-id="{{alreadySelectedIdentifierId}}">{{alreadySelectedIdentifierValue}}</span>
+            {{else}}
+            <span class="selected-dropdown selected-value-customer-identifier-reassign" name="customer_identifier_reassign" data-value="" data-id="">--Select--</span>
+            {{/if}}
+            <ul class="custom-dropdown">             
+                {{#each customerIdentifier}}
+                <li class="customer_identifier_reassign" data-value="{{this.identifier}}" data-id="{{this.id}}">{{this.identifier}}</li>
+                {{/each}}
+            </ul>
+        </div>        
+    </div>    
+    {{/if}}
+</script>

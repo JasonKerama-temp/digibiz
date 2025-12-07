@@ -1,0 +1,24 @@
+<script id="customer-identifier-selection-template" type="text/x-handlebars-template ">
+    <div class="col s12">        
+        <div class="identifier-visibility-setting-wrapper">                    
+            <!-- <select id="select-customer-identifier-for-role-assignment" class="browser-default">            
+                <option value="">--Select--</option>
+                {{#if customer_contacts_identifiers_list_data}}
+                {{#each customer_contacts_identifiers_list_data}}
+                <option value="{{this.identifier}}" data-id="{{this.id}}">{{this.identifier}}</option>
+                {{/each}}
+                {{/if}}
+            </select> -->
+            <div id="select-customer-identifier-for-role-assignment" class="wrapper-dropdown cursor-pointer" tabindex="1">                
+                <span class="disabled selected-dropdown selected-value-customer-identifier-for-role-assignment" name="customer_identifier_for_role_assignment" data-value="" data-id="">--Select--</span>
+                <ul class="custom-dropdown"> 
+                    {{#if customer_contacts_identifiers_list_data}}            
+                    {{#each customer_contacts_identifiers_list_data}}
+                    <li class="customer_identifier_for_role_assignment" data-value="{{this.identifier}}" data-id="{{this.id}}">{{this.identifier}}</li>
+                    {{/each}}
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</script>

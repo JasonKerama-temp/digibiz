@@ -1,0 +1,39 @@
+<script id="file-information-template" type="text/x-handlebars-template ">
+    <div class="file-information info-panel-section information_menu_slider" id="{{id}}">
+        <div class="file-folder">
+            <div class="filemanager-close-btn no-select"><i class="material-icons" aria-hidden="true">close</i></div>
+                <div class="file-name" id="information_name_id" data-real="{{real_name}}">
+                    <i class="assets_type_{{#if file_type }}{{file_type}}{{else}}{{type}}{{/if}} icomoon-" aria-hidden="true"></i>
+                    <span class="file_type_header ellipsify">{{filename}}</span>
+                    {{#ifcond type '===' "file"}}
+                    <span class="storage-location"><i class="{{storageName}}"></i></span>
+                    <span id="storage" class="storage-type"><i class="{{#if encryption}}icon-encrypted{{else}}icon-unencrypted{{/if}}"></i></span>
+                    {{/ifcond}}
+                </div>
+                <div class="file-description">
+                    <dl>
+                        {{#ifcond type '===' "file"}}
+                        <div class="storage-details">                          
+                            <span class="storage-size-header">File Size</span>
+                            <span id="information_size" class="info_size">{{file_size}}</span>
+                            <span class="storage-size-header">Storage Size</span>
+                            <span id="storage_size">{{storagesize}}</span>
+                        </div>
+                        <dt>Uploaded On</dt>
+                        <dd id="information_created_date">{{created_at}}</dd>
+                        {{/ifcond}}
+                        {{#ifcond type '===' "folder"}}
+                        <div class="storage-details">
+                            <span class="storage-size-header">Storage Size</span>
+                            <span id="information_size">{{size}}</span>
+                        </div>
+                        <dt>Created At</dt>
+                        <dd id="information_created_date">{{created_at}}</dd>
+                        {{/ifcond}}                        
+                    </dl>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</script>

@@ -1,0 +1,23 @@
+<script id="customer-identifiers-data-list-template" type="text/x-handlebars-template">
+    <div class="customer-identifiers-list-contentbox scrollinit">
+        {{#if customer_identifiers_list_data}}
+        {{#each customer_identifiers_list_data}}
+            <div class="customer-identifier-wrapper common-listing-wrapper" data-id="{{this.id}}" data-status="{{this.status.status}}">                    
+            <div class="profile-pic-info-wrapper">                            
+              <div class="customer-identifier-data-wrapper ellipsify">
+                <div class="customer-identifier-name wrapper-primary-heading"><span class="truncate">{{this.identifier}}</span></div>
+              </div>              
+            </div>             
+            <div class="btn-wrap">              
+             <div class="more-menu-wrapper show-action-customer-identifier-data" id="show-action-customer-identifier-data"><i class="material-icons">more_vert</i></div>
+            </div>
+          </div>                                  
+        {{/each}}
+        {{else}}
+            <div class="no_data">No Identifiers found</div>
+        {{/if}}
+      </div>
+      <div class="fixed-action-btn create-survey-btn-wrapper">
+          <a class="btn-floating btn-save btn-large" id="customer_identifier_add_button"><i class="material-icons">add</i></a>
+      </div>
+</script>

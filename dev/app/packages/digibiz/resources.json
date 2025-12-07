@@ -1,0 +1,644 @@
+{
+    "digibiz_account": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "digibiz_account_role_update": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "digibiz_account_storage": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "business_storage": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "landing_page": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "digibiz_notifications": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "business_notifications": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "digibiz_business_settings": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "business_settings": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "module_admin_management": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "module_admin_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_notification_details_page": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "super_admin_notification_details_page": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "profile_manager": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "department_management": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "department_create": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_types": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_category": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_designation": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_creation_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_filter": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_create": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_profile": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_profile": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_group_creation_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_group_create": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "business_tags": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "business_types": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "business_owner_business_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "business_admin_business_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "business_add": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "business_edit": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "view_business_profile": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "business_profile_management": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "business_management": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "super_admin_management_hub": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_configurations": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_controls": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_management_hub": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_business_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employees_business_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_business_apps_hub": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_management_hub": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_identifiers_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_creation": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "identifiers_list_customer_creation": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_creation_identifiers_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_creation_active_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_creation_pending_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_create": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "collaborator_customer_create": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_notification_details_page": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_contacts_identifiers_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_groups_identifiers_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_contacts_groups_identifiers_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_contacts_items_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_contact_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_groups_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_groups_details": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_contact_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_access_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "collaborator_hub": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "collaborator_contact_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "collaborator_customer_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "collaborator_contact_list_notification_details": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "collaborator_groups_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "collaborator_group_create": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "role_management_employee_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "role_management_employee_apps_access_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "digibiz_logs": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "communication_groups": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "communication_group_details": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "communication_employee_group_details": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "communication_customer_group_details": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_business_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customers_business_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_business_apps_hub": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_access_identifiers": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "collaborator_customer_identifier": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_access_identifiers_items": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_access_identifiers_item_page": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "collaborator_group_details": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "prospect_app_hub_page": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "jeevi_app_hub_page": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "employee_scan_qr": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "customer_scan_qr": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "associate_customer_scan_qr": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "super_admin_scan_qr": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "business_scan_qr": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "prospect_settings": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "business_display_control": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "collaborator_add": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "business_app_permission_settings": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "digibiz_home": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "digibiz_profile": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "digibiz_accounts": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "account_confirmation" :{
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "reregister_confirmation" :{
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "test_route":{
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "digibiz_credentials": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "digibiz_activity": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "edit_employee_profile" :{
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "edit_customer_profile" :{
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "edit_associate_customer_profile" :{
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "teams_management_hub": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "team_group_creation_list": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    },
+    "teams_group_create": {
+        "text/javascript": [
+            "app/assets/js/idletimer.js"
+        ],
+        "text/css": []
+    }
+}

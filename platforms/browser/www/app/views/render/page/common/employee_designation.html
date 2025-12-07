@@ -1,0 +1,41 @@
+<script id="employee-designation-template" type="text/x-handlebars-template">
+    <!-- <div class="employee-designation-main-container">         -->
+<!-- <div class="employee-designation-add-heading-container">
+            <a class="employee-designation-heading-name">Employee Designation</a>
+        </div> -->
+<div class="employee-designation-content-box scrollinit">
+    {{#if employee_designation}}
+    {{#each employee_designation}}
+    <div class="employee-designation-wrapper common-listing-wrapper" data-employee-designation-id="{{this.id}}">
+        <div class="employee-designation-container">
+            <div class="employee_designation_name wrapper-primary-heading">{{this.designation}}</div>
+        </div>
+        <div class="more-menu-wrapper cursor-pointer show-action-employee-designation-data"><i class="material-icons">more_vert</i>
+        </div>
+    </div>
+    {{/each}}
+    {{else}}
+    <div class="no_data">No data found</div>
+    {{/if}}
+
+</div>
+<div class="fixed-action-btn create-survey-btn-wrapper">
+    <a class="btn-floating btn-save btn-large cursor-pointer" id="add-employee-designation"><i class="material-icons">add</i></a>
+</div>
+<!-- <div class="employee-designation-create-container hide">
+    <div class="employee-name-content-box">
+        <label for="employee_designation" class="active">Employee Designation</label>
+        <div id="employee_designation" type="text" data-length="60" contenteditable="true" class="validate"
+            autocomplete="off"></div>
+    </div>
+    <div class="button-wrapper">
+        <a class="waves-effect waves-light" id="save-employee-designation">Save</a>
+    </div>
+    <div class="button-wrapper hide">
+        <a class="waves-effect waves-light" id="edit-employee-designation">Save</a>
+    </div>
+</div>
+<div class="employee-designation-add-button-wrapper">
+    <a class="employee-designation-add-button" id="employee_designation_add_button">Add Designation</a>
+</div> -->
+</script>

@@ -1,0 +1,213 @@
+@use "../abstracts" as storage;
+#main-content-wrapper>.business-storage-selection-main-container, #digibiz-account-settings-main-container {
+    width: 100%;
+}
+.digibiz-account-storage-page-main-container {
+    height: 100%;
+}
+.cloud-storage-container {
+    display: flex;
+    height: calc(100% - 50px);
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+}
+
+.cloud-storage-wrapper {
+    /* display: flex; */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+[platform="browser"] .cloud-storage-wrapper,
+[platform="desktop"] .cloud-storage-wrapper {
+    display: flex;
+}
+
+.cloud-storage-account {
+    min-width: 200px;
+    max-width: 210px;
+    width: 100%;
+    height: 115px;
+    padding: 5px;
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    @include storage.bd-radius(10px);
+    @include storage.var(background-color, hubappbtn,1);
+    @include storage.var(color, whiteTextColor,1);
+    text-align: center;
+}
+
+.cloud-storage-account.add-storage-account,
+.cloud-storage-account.add-storage-digibiz-account {
+    min-width: 200px;
+    max-width: 210px;
+    width: 100%;
+    height: 115px;
+    padding: 10px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    @include storage.bd-radius(10px);
+    @include storage.var(background-color, hubappbtn,1);
+    @include storage.var(color, whiteTextColor,1);
+    text-align: center;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.cloud-storage-account.add-storage-account i,
+.cloud-storage-account.add-storage-digibiz-account i {
+    font-size: 35px;
+}
+
+.cloud-storage-account-title {
+    height: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .75rem;
+}
+
+.cloud-storage-account div[class^="cloud-storage-account-"] {
+    flex: 0 0 100%;
+    display: flex;
+}
+.cloud-storage-account div[class^="cloud-storage-account-"] > button {
+    flex: 1;
+}
+.cloud-storage-account-logo::before {
+    content: "";
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 auto;
+}
+
+.cloud-storage-account[data-storage] {
+    box-shadow: 0 1px 10px 1px rgba(50, 50, 50, .082);
+}
+
+.cloud-storage-account[data-storage]:hover,
+.cloud-storage-account[data-storage]:focus {
+    box-shadow: 0 1px 20px 1px rgba(50, 50, 50, .082);
+}
+
+.cloud-storage-account[data-storage="DJ"] .cloud-storage-account-logo::before {
+    background: url("../images/storage/dj-logo.png") no-repeat center / 35px 35px;
+}
+
+.cloud-storage-account[data-storage="DropBox"] .cloud-storage-account-logo::before {
+    background: url("../images/storage/Dropbox_Icon.svg") no-repeat center / 35px 35px;
+}
+
+.cloud-storage-account[data-storage="GoogleDrive"] .cloud-storage-account-logo::before {
+    background: url("../images/storage/google-drive.svg") no-repeat center / 50px 50px;
+}
+
+.cloud-storage-account[data-storage="OneDrive"] .cloud-storage-account-logo::before {
+    background: url("../images/storage/microsoft-onedrive.svg") no-repeat center / 35px 35px;
+}
+.add-storage-list-wrapper li[data-storage] {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 50px;
+    @include storage.var(background-color, cardBackground,.9);
+    border-bottom: 1px solid rgba(180, 180, 180, .09);
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.add-storage-list-wrapper li[data-storage]:hover,
+.add-storage-list-wrapper li[data-storage]:focus {
+    @include storage.var(background-color, cardBackground,.9);
+}
+
+.add-storage-list-wrapper li[data-storage]:last-of-type {
+    border-bottom: unset;
+}
+
+.add-storage-list-wrapper li[data-storage]::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    @include storage.bd-radius(50%);
+    left: 5px;
+}
+
+.add-storage-list-wrapper li[data-storage][class^="disable"] {
+    pointer-events: none;
+    opacity: .3;
+}
+
+.add-storage-list-wrapper li[data-storage="DJ"]::before {
+    background: rgba(230, 230, 230, 1) url("../images/storage/dj-logo.png") no-repeat center / 15px 15px;
+}
+
+.add-storage-list-wrapper li[data-storage="GoogleDrive"]::before {
+    background: rgba(230, 230, 230, 1) url("../images/storage/google-drive.svg") no-repeat center / 20px 20px;
+}
+
+.add-storage-list-wrapper li[data-storage="DropBox"]::before {
+    background: rgba(230, 230, 230, 1) url("../images/storage/Dropbox_Icon.svg") no-repeat center / 15px 15px;
+}
+
+.add-storage-list-wrapper li[data-storage="OneDrive"]::before {
+    background: rgba(230, 230, 230, 1) url("../images/storage/microsoft-onedrive.svg") no-repeat center / 15px 15px;
+}
+.add-storage-digibiz-account-finish-btn-container {
+    justify-content: center;
+    display: flex;
+    margin-top: 20px;
+}
+#add_storage_digibiz_account_finish {
+    flex: 1;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    pointer-events: auto;
+    margin: 0 10px;
+    background-color: darkgray;
+    color: rgba(35, 35, 35, 1);
+    font-size: 0.85rem;
+    @include storage.bd-radius(20px);
+    max-width: 93px;
+}
+button.setdefault-account-btn {
+    font-size: .6rem;
+    height: unset;
+    line-height: unset;
+    display: block;
+    width: 100%;
+}
+.show-account-btn {
+    font-size: 0.8rem;
+    height: 25px;
+    @include storage.bd-radius(20px);
+}
+.storage-active-account {
+    display: flex;
+    align-items: center;
+    .profile-picture-wrapper {
+        @include storage.bd-radius(50%);
+        overflow: hidden;
+        width: 35px;
+        height: 35px;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .profile-details-wrapper {
+        padding: 0 15px;
+    }
+}

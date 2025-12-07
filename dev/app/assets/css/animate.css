@@ -1,0 +1,318 @@
+@-webkit-keyframes slide-right {
+    0% {
+        transform: translate(300px, 0px);
+        opacity:0;
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes slide-right {
+    0% {
+        transform: translate(300px, 0px);
+        opacity:0;
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+}
+
+@-o-keyframes slide-right {
+    0% {
+        transform: translate(300px, 0px);
+        opacity:0;
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+}
+
+@keyframes slide-right {
+    0% {
+        transform: translate(300px, 0px);
+        opacity:0;
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+}
+
+.enter-page {
+    animation-name: slide-right;
+    animation-duration: 0.5s;
+}
+
+@-webkit-keyframes slide-left{
+    0% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+
+    100% {
+        transform: translate(300px, 0px);
+        opacity:0;
+    }
+}
+
+@-moz-keyframes slide-left {
+    0% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+
+    100% {
+        transform: translate(300px, 0px);
+        opacity:0;
+    }
+}
+
+@-o-keyframes slide-left {
+    0% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+
+    100% {
+        transform: translate(300px, 0px);
+        opacity:0;
+    }
+}
+
+@keyframes slide-left {
+    0% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+
+    100% {
+        transform: translate(300px, 0px);
+        opacity:0;
+    }
+}
+
+.leave-page {
+    animation-name: slide-left;
+    animation-duration: 0.5s;
+}
+
+@-webkit-keyframes slide-up{
+    0% {
+        transform: translate(0px, 150px);
+        opacity:0;
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+}
+
+@-moz-keyframes slide-up {
+    0% {
+        transform: translate(0px, 150px);
+        opacity:0;
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+}
+
+@-o-keyframes slide-up {
+    0% {
+        transform: translate(0px, 150px);
+        opacity:0;
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translate(0px, 150px);
+        opacity:0;
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+}
+
+.slide-top {
+    animation-name: slide-up;
+    animation-duration: 0.3s;
+}
+
+@-webkit-keyframes slide-down{
+    0% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+
+    100% {
+        transform: translate(0px, 350px);
+        opacity:0;
+    }
+}
+
+@-moz-keyframes slide-down {
+    0% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+
+    100% {
+        transform: translate(0px, 350px);
+        opacity:0;
+    }
+}
+
+@-o-keyframes slide-down {
+    0% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+
+    100% {
+        transform: translate(0px, 350px);
+        opacity:0;
+    }
+}
+
+@keyframes slide-down {
+    0% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+
+    100% {
+        transform: translate(0px, 350px);
+        opacity:0;
+    }
+}
+
+.slide-bottom {
+    animation-name: slide-down;
+    animation-duration: 0.6s;
+}
+
+
+@-webkit-keyframes modal-slide-up{
+    0% {
+        transform: translate(0px, 350px);
+        opacity:0;
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+}
+
+@-moz-keyframes modal-slide-up {
+    0% {
+        transform: translate(0px, 350px);
+        opacity:0;
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+}
+
+@-o-keyframes modal-slide-up {
+    0% {
+        transform: translate(0px, 350px);
+        opacity:0;
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+}
+
+@keyframes modal-slide-up {
+    0% {
+        transform: translate(0px, 350px);
+        opacity:0;
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+}
+
+.modal-slide-top {
+    animation-name: modal-slide-up;
+    animation-duration: 0.3s;
+}
+
+@-webkit-keyframes modal-slide-down{
+    0% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+
+    100% {
+        transform: translate(0px, 350px);
+        opacity:0;
+    }
+}
+
+@-moz-keyframes modal-slide-down {
+    0% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+
+    100% {
+        transform: translate(0px, 350px);
+        opacity:0;
+    }
+}
+
+@-o-keyframes modal-slide-down {
+    0% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+
+    100% {
+        transform: translate(0px, 350px);
+        opacity:0;
+    }
+}
+
+@keyframes modal-slide-down {
+    0% {
+        transform: translate(0px, 0px);
+        opacity:1;
+    }
+
+    100% {
+        transform: translate(0px, 350px);
+        opacity:0;
+    }
+}
+
+.modal-slide-bottom {
+    animation-name: modal-slide-down;
+    animation-duration: 0.3s;
+}

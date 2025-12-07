@@ -1,0 +1,24 @@
+<script id="employee-creation-group-data-list-template" type="text/x-handlebars-template">
+    <div class="employee-creation-group-list-contentbox">
+        {{#if employee_creation_group_list_data}}
+        {{#each employee_creation_group_list_data}}
+            <div class="employee-group-wrapper" data-group-id="{{this.id}}" data-created_status="{{this.create_status}}">
+                <div class="profile-pic-info-wrapper view-employee-group cursor-pointer">
+                    <div class="employee-group-display-pic profile-pic-container p-{{imageLetter}}">
+                        <img class="group_img profile-pic" src="{{this.group_image.avtarUrl}}" data-group-id="{{this.id}}"/>
+                        <span class="persona">{{imageLetter}}</span>
+                    </div>
+                    <div class="employee-group-data-wrapper ellipsify">
+                        <div class="employee-group-name wrapper-primary-heading"><span class="truncate">{{this.name}}</span></div>                        
+                    </div>
+                </div>                 
+            </div>
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}
+        <div class="fixed-action-btn create-survey-btn-wrapper">
+            <a class="btn-floating btn-save btn-large" id="add-employee-group-btn"><i class="material-icons">add</i></a>
+        </div>       
+      </div>
+</script>

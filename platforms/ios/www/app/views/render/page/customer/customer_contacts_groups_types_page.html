@@ -1,0 +1,37 @@
+<script id="customer-contacts-groups-type-page-template" type="text/x-handlebars-template">
+    <div class="content-wrapper">
+        <div class="survey-list-container">
+            <div class="surveylist-container">
+                <div class="listing-tabs-wrapper">
+                  <div class="main-tab-wrapper">
+                    <ul class="maintab list-tabs">
+                        <li class="tab active" data-id="standard"><a class="standard-customer-group-identifier-tab">Standard</a><span class="slider"></li>
+                        <li class="tab" data-id="custom"><a class="custom-customer-group-identifier-tab">Custom</a><span class="slider"></li>
+                        <!-- <li class="slider"></li> -->
+                    </ul>
+                    <div class="voiceit_private_page_search_container">
+                      <span class="informationbtn waves-effect" data-information="custom-group-information-list"><i class="material-icons">error</i></span>
+                      <span class="filterbtn waves-effect"><i class="material-icons">sort</i></span>
+                      <span class="searchbtn waves-effect"><i class="material-icons">search</i></span>
+                      <div class="expand-search-wrap">
+                        <input class="expand-search-input" type="search" placeholder="Search" autocomplete="off"/>
+                        <span class="searchclosebtn"><i class="material-icons hide">close</i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-content-container">
+                    <div class="tab-content active swiper-slide" id="standard">                             
+                                  <div class="standard-customer-group-type-container">
+                                  <div id="standard-customer-group-type-data-container"></div>
+                                </div>                            
+                    </div>
+                    <div class="tab-content swiper-slide" id="custom">                           
+                                <div class="custom-custom-group-type-container">
+                                <div id="custom-customer-group-type-data-container"></div>
+                              </div>                           
+                    </div>                    
+                </div>
+        </div>
+    </div>
+</script>

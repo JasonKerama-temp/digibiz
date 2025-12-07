@@ -1,0 +1,1 @@
+cordova.define("cordova-plugin-media-capture.helpers",(function(e,a,l){var i=e("./MediaFile");l.exports={wrapMediaFiles:function(e){var a,l=[];for(a=0;a<e.length;a++){var t=new i;t.name=e[a].name,t.localURL=e[a].localURL||e[a].fullPath,t.fullPath=e[a].fullPath,t.type=e[a].type,t.lastModifiedDate=e[a].lastModifiedDate,t.size=e[a].size,l.push(t)}return l}}}));

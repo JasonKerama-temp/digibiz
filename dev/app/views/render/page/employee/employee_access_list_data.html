@@ -1,0 +1,24 @@
+<script id="employee-access-data-list-template" type="text/x-handlebars-template">
+    <div class="employee-access-list-contentbox">
+        {{#if employee_access_list_data}}
+        {{#each employee_access_list_data}}
+        <div class="employee-access-employee-wrapper" data-id="{{this.dj_unique_employee_id}}">
+            <div class="profile-pic-info-wrapper">
+                <div class="employee-identity-pic profile-pic-container p-{{imageLetter}}">
+                    <span class="persona">{{imageLetter}}</span>
+                    <img class="profile-pic" src="{{this.identity_picture.avtarUrl}}" />
+                </div>                   
+                <div class="employee-access-data-wrapper ellipsify">
+                    <div class="employee-access-name wrapper-primary-heading"><span class="truncate">{{#if this.display_name}}{{this.display_name}}{{else}}{{this.name.first}}&nbsp;{{this.name.last}}{{/if}}</span></div>
+                </div>
+            </div>   
+            <div class="employee-access-type">
+                <a class="employee-access-type-buttons" id="employee_app_access_assignment_btn">App Access</a>
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}        
+      </div>
+</script>

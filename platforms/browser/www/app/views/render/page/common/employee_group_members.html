@@ -1,0 +1,24 @@
+<script id="employee-group-members-list-template" type="text/x-handlebars-template">
+    {{#ifcond custom_group_from '==' 'employee_list'}}
+    {{#if group_members_data}}
+    {{#each group_members_data}}
+    <div class="custom-employee-group-member-wrapper" data-dj-unique-employee-id="{{this.member.dj_unique_employee_id}}" data-member-id="{{this.id}}">
+        <div class="file-select">
+           
+            <div class="contact-profile-container profile-pic-container p-{{imageLetter}}" data-dj-unique-employee-id="{{this.dj_unique_employee_id}}">
+                <img src="{{this.identity_picture.avtarUrl}}" class="chat-avatar-image">
+                <span class="persona">{{imageLetter}}</span>
+            </div>
+        </div>
+        <div class="filemanager-file-wrapper">
+            <span class="custom-employee-group-member-name wrapper-primary-heading">{{#if this.member_display_name}}{{this.member_display_name}}{{else}}{{this.member_name.first}}&nbsp;{{this.member_name.last}}{{/if}}</span>
+        </div>
+        <div class="btn-wrap">              
+            <div class="more-menu-wrapper cursor-pointer" id="delete_custom_employee_group_member" data-member-id="{{this.id}}"><i class="material-icons">delete</i></div>
+        </div>
+    </div>
+    {{/each}}
+   
+    {{/if}}
+    {{/ifcond}}
+</script>

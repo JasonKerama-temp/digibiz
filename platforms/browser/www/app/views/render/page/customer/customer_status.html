@@ -1,0 +1,18 @@
+<script id="customer-status-template" type="text/x-handlebars-template">
+    <div class="employee-status-content-box scrollinit">
+        {{#if customer_status}}
+        {{#each customer_status}}
+        <div class="employee-type-wrapper common-listing-wrapper" data-customer-status="{{this.status}}">
+            <div class="employee-type-container">
+                <div class="employee_type_name wrapper-primary-heading status--{{this.status}}">{{this.status}}</div>
+            </div>
+            <!-- <div class="more-menu-wrapper show-action-employee-type-data"><i class="material-icons">more_vert</i></div> -->
+        </div>
+        {{/each}}
+        {{else}}
+        <div class="no_data">No data found</div>
+        {{/if}}
+    </div>
+    
+    
+    </script>

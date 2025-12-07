@@ -1,0 +1,22 @@
+<script id="scroll-collaborator-group-list-selection-template" type="text/x-handlebars-template">       
+        {{#if groupList}}  
+        {{#each groupList}}
+        <div class="group-selection-wrapper" data-group-id="{{this.id}}" data-group-type="collaborator" data-status="{{this.status.status}}">
+            <div class="collaborator-group-profile-pic-info-wrapper">
+                <div class="profile-pic-container p-{{imageLetter}}">
+                <img class="group_img profile-pic" src="{{this.group_image.avtarUrl}}" data-group-id="{{this.id}}"/>
+                <span class="persona">{{imageLetter}}</span>
+                </div>
+                <div class="collaborator-group-data-wrapper ellipsify">
+                    <div class="collaborator-group-name wrapper-primary-heading"><span class="truncate">{{this.name}}</span></div>
+                    <div class="collaborator-group-status wrapper-secondary-heading status--{{this.status.status}}">{{this.status.status}}</div>
+                </div>
+            </div>   
+            <input type="checkbox" class="filled-in cursor-pointer communication-group-create-collaborator-group-selected" id="filled-in-box-{{this.id}}" {{#if this.selected}} checked="checked" {{/if}} />
+            <label for="filled-in-box-{{this.id}}"></label>              
+        </div> 
+        {{/each}}
+        {{else}}
+        <div class="end_data">End of listing</div>    
+        {{/if}}  
+</script>

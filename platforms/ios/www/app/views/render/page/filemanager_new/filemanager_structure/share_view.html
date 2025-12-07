@@ -1,0 +1,49 @@
+<script id="share-view-template" type="text/x-handlebars-template">
+    <div class="col s12 m12 l12 mt20">
+        <div class="">Sharing Settings</div>
+        <div class="shared-info-file">
+            <div class="file-name" id="information_name_id" data-real="{{real_name}}">
+                    <i class="assets_type_{{#if file_type }}{{file_type}}{{else}}{{type}}{{/if}}" aria-hidden="true"></i>
+                    <span class="file_type_header ellipsify">{{filename}}</span>
+            </div>
+            <div class="file-description">
+                <dl>
+                    <div class="storage-details">
+                        <span class="storage-size-header">File Size</span>
+                        <span id="information_size" class="info_size">{{filesize}}</span>
+                        <!-- <span class="storage-size-header">Storage Size</span>
+                        <span id="storage_size">{{storagesize}}</span> -->
+                    </div>
+                </dl>
+            </div>
+        </div>
+        <div class="shared-file-to-contacts bg-color">
+            <span>Who has Access</span>
+            <div class=""><span>Revoke Share</span><i class="material-icons">close</i></div>
+        </div>
+        <div class="">
+            <div class="selected-shared-contact-list groups-container-scroll form-validation">                            
+                <div class="group-list" id="popup-group-list">
+                    {{#if grouplist}}
+                    {{#each grouplist}}
+                    {{#if this.is_owner}}
+                        <div class="tooltipped group-list-container" data-position="left" data-delay="50" data-tooltip="{{#if this.name}}{{#startupper this.name}}{{/startupper}} {{else}} 'No Name' {{/if}}">
+                            {{#if this.group_image_id}}
+                            <img src="{{#getImageURL this.group_image_id}}{{/getImageURL}}" alt="avatar"class="mw40 mh40 br50 mr6"> 
+                                {{else}}
+                                <div class="profile-text group-profile-text text-small-size">
+                                    <span>{{#if this.name}}{{#oneLetterUpper this.name}}{{/oneLetterUpper}}{{/if}}</span>
+                                    <img src="{{../avatarUrl}}" alt="avatar" class="mw40 mh40 br50 mr6">    
+                                </div>                                                                            
+                            {{/if}}
+                            <span class="contact-username truncate">{{#if this.name}}{{#startupper this.name}}{{/startupper}} {{else}} 'No Name' {{/if}}</span>
+                            <div class="revoke-access"><i class="material-icons">close</i></div>
+                        </div>                            
+                    {{/if}}
+                    {{/each}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

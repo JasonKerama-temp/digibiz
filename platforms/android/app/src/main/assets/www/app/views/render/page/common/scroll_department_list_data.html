@@ -1,0 +1,19 @@
+<script id="scroll-department-data-list-template" type="text/x-handlebars-template">
+        {{#if department_list_data}}
+        {{#each department_list_data}}
+            <div class="department-wrapper common-listing-wrapper" data-id="{{this.id}}">
+                <!-- <div class="profile-pic-info-wrapper view-department"> -->
+                    <div class="profile-pic-info-wrapper">
+                        <div class="department-data-wrapper ellipsify">
+                            <div class="department-name wrapper-primary-heading"><span class="truncate">{{this.name}}</span></div>
+                        </div>
+                    </div>
+                    <div class="btn-wrap">              
+                        <div class="more-menu-wrapper show-action-department cursor-pointer" id="show-action-department"><i class="material-icons">more_vert</i></div>
+                    </div>              
+            </div>
+        {{/each}}
+        {{else}}
+        <div class="end_data">End of listing</div>
+        {{/if}}  
+</script>

@@ -1,0 +1,52 @@
+{
+    "packages": [
+        "digibiz"
+    ],
+    "middlewares": {
+        "checkSession": "checkSession",
+        "checkDigibizAccount": "checkDigibizAccount",
+        "checkJeeviDetails": "checkJeeviDetails"
+    },
+    "resources": {
+        "text/javascript": [
+            "dev/app/assets/js/init.js",
+            "dev/app/assets/js/config.js",
+            "dev/app/assets/js/api.js",
+            "dev/app/assets/js/urls.js",
+            "dev/app/assets/js/appManager.js",
+            "dev/app/assets/js/device.helper.js",
+            "dev/app/lib/js/materialize.min.js",
+            "dev/app/assets/js/handlebars-helper.js",
+            "dev/app/views/layouts/empty.col.js",
+            "dev/app/views/layouts/one.col.js",
+            "dev/app/views/layouts/home.col.js",
+            "dev/app/assets/js/common.methods.js",
+            "dev/app/assets/js/common.exec.js",
+            "dev/app/lib/js/intlTelInput.min.js",
+            "dev/app/lib/js/socket.io.js",
+            "dev/app/lib/js/utils.js",
+            "dev/app/assets/js/validate.js",
+            "dev/app/assets/js/idletimer_app.js",
+            "dev/app/assets/js/sockets.js",
+            "dev/app/lib/js/moment.min.js",
+            "dev/app/lib/js/jquery.overlayScrollbars.min.js",
+            "dev/app/lib/js/chunkuploader.js",
+            "dev/app/lib/js/jquery.touchSwipe.min.js",
+            "dev/app/lib/js/fastclick.min.js",
+            "dev/app/lib/js/cropper.min.js",
+            "dev/app/lib/js/shotcapture.js",
+            "dev/app/lib/js/swiper-bundle.min.js",
+            "dev/app/assets/js/exe.js",
+            "dev/app/lib/js/jquery.qrcode.min.js"
+        ],
+        "text/css": [
+            "dev/app/lib/css/materialize.min.css",
+            "dev/app/lib/css/material-icons.css",
+            "dev/app/lib/css/fonts-icon.css",
+            "dev/app/lib/css/OverlayScrollbars.min.css",
+            "dev/app/lib/css/swiper-bundle.min.css",
+            "dev/app/assets/css/main.css",
+            "dev/app/lib/css/cropper.min.css"
+        ]
+    }
+}

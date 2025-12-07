@@ -1,0 +1,26 @@
+<script id="customer-contact-list-data-template" type="text/x-handlebars-template">
+    <div class="customer-contact-list-contentbox">
+        {{#if customer_contact_list_data}}
+        {{#each customer_contact_list_data}}
+            <div class="customer-contact-wrapper" data-id="{{this.id}}" data-identifier-id="{{this.identifier_id}}">
+                <div class="profile-pic-info-wrapper">                    
+                    <div class="customer-contact-data-wrapper ellipsify">
+                        <div class="customer-contact-name wrapper-primary-heading"><span class="truncate">{{#if this.display_name}}{{this.display_name}}{{else}}{{this.name.first}} {{this.name.last}}{{/if}}</span></div>
+                        {{#ifcond this.role.type '==' 'employee'}}
+                        <div class="customer-detail wrapper-secondary-heading"><span class="truncate">{{this.role.business_name}}</span></div>
+                        {{/ifcond}}
+                        {{#if this.label}}
+                        <div class="customer-label wrapper-secondary-heading"><span class="truncate">Label: {{this.label}}</span></div>
+                        {{/if}}
+                        {{#if this.primaryCustomerData}}
+                        <div class="associate-customer-info wrapper-secondary-heading"><span class="truncate">{{this.IdentifierName}} - {{#if this.primaryCustomerData.display_name}}{{this.primaryCustomerData.display_name}}{{else}}{{this.primaryCustomerData.name.first}}&nbsp;{{this.primaryCustomerData.name.last}}{{/if}}</span></div>
+                        {{/if}}
+                    </div>
+                </div>                 
+            </div>
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}              
+      </div>
+</script>

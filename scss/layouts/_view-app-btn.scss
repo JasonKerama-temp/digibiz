@@ -1,0 +1,721 @@
+@use "../abstracts" as appBtn;
+.customer-management-land-page-main-container,
+.view-business-profile-land-page-main-container,
+.employee-management-land-page-main-container, 
+.collaborator-management-land-page-main-container,
+.view-business-land-page-main-container, 
+.view-business-profile-land-page-main-container, 
+#digibiz-business-settings-main-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.view-business-land-page-wrapper,
+.view-business-profile-land-page-wrapper,
+.customer-management-land-page-wrapper,
+.employee-management-land-page-wrapper,
+.collaborator-management-land-page-wrapper,
+.view-business-profile-land-page-wrapper,
+.digibiz-business-settings-page-wrapper,
+.employee-management-land-page-wrapper,
+.customer-management-land-page-wrapper {
+    height: calc(100% - 80px);
+    width: 100%;
+    max-width: 440px;        
+    max-height: 560px;
+    display: flex;
+    align-items: center;
+}
+.view-business-land-page-icons-container,
+.view-business-profile-land-page-main-container,
+.view-business-profile-land-page-icons-container,
+.digibiz-business-settings-page-icons-container,
+.employee-management-land-page-icons-container,
+.customer-management-land-page-icons-container {
+    width: 100%;
+    height: 100%;
+    // margin: 20px;
+    position: relative;
+}
+.prospect-app-hub-page-icons-container > div {
+    display: flex;
+}
+.part-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(65px, auto));
+    grid-gap: 10px;
+    grid-auto-rows: 80px;
+    padding: 40px;
+    width: 100%;
+    margin: auto;
+    > li {
+        display: flex;
+        flex-flow: column;
+    }
+    > div {
+        text-align: center;
+        align-items: center;
+        width: min-content;
+        justify-content: center;
+        // margin: 15px 5px;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        > a {
+            width: 60px;
+            height: 60px;
+            @include appBtn.var(background-color, hubappbtn, 1);
+            @include appBtn.var(color, whiteTextColor, 1);
+            text-shadow: rgb(0 0 0 / 90%) 0 1px 2px;
+            border: 1px solid #242424;
+            // box-shadow: rgb(255 255 255 / 25%) 0 1px 0, inset rgb(255 255 255 / 25%) 0 1px 0, inset rgb(0 0 0 / 50%) 0 0 0, inset rgb(255 255 255 / 8%) 0 1.25rem 0, inset rgb(0 0 0 / 30%) 0 -1.25rem 1.25rem, inset rgb(255 255 255 / 10%) 0 1.25rem 1.25rem;
+            transition: all .2s linear;
+            cursor: pointer;
+            pointer-events: auto;
+            @include appBtn.bd-radius(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 250ms ease-in-out;
+            margin: 0px 10px;
+            &::before {
+                content: "";
+                display: block;
+                background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(76 216 180) 30%, rgba(45, 149, 122, 0) 100%);
+                padding: 0 12px;
+                left: 15%;
+                height: 1px;
+                width: 40%;
+                box-shadow: rgb(255 255 255 / 20%) 0 1px 5px;
+                transition: all .3s ease-in-out;
+                position: absolute;
+                top: 0;
+            }
+            &:hover {
+                color: #fff;
+                text-decoration: none;
+                box-shadow: rgb(0 0 0 / 50%) 0 2px 5px, inset rgb(255 255 255 / 25%) 0 1px 0, inset rgb(0 0 0 / 25%) 0 0 0, inset rgb(255 255 255 / 3%) 0 20px 0, inset rgb(0 0 0 / 15%) 0 -20px 20px, inset rgb(255 255 255 / 5%) 0 20px 20px;
+            }
+            &:hover::before {
+                left: 45%;
+            }
+            + span {
+                font-size: .65rem;
+                // @include appBtn.var(color, textColor,.95);
+                color: #7fc2b8;
+                display: block;
+                margin-top: 5px;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    @include appBtn.orientation(portrait) {
+        @include appBtn.minheight(800px) {
+            @include appBtn.minbreakpoint(480px) {
+                grid-template-columns: repeat(auto-fill, minmax(110px, auto));
+                grid-auto-rows: 140px;
+                > div {
+                    > a {
+                        width: 90px;
+                        height: 90px;
+                    }
+                }
+            }
+        }
+    }    
+}
+.view-business-land-page-icons-container[data-type="super_admin"] .part-buttons {
+    grid-gap: 20px;
+}
+.employee-management-land-page-icons-container .part-buttons {
+    grid-gap: 20px;
+}
+.profile-metadata-container.individual {
+    @include appBtn.var(background-color, hubappbtn,.4);
+    @include appBtn.bd-radius-top(5px 5px 0 0);
+}
+.collaborator-management-land-page-icons-container {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    // div {
+    //     text-align: center;
+    //     align-items: center;
+    //     width: min-content;
+    //     display: flex;
+    //     flex-flow: column;
+    //     justify-content: center;
+    //     margin: 15px 5px;
+    //     position: relative;
+    //     > a {
+    //         width: 60px;
+    //         height: 60px;
+    //         @include appBtn.var(background-color, hubappbtn, 1);
+    //         @include appBtn.var(color, whiteTextColor, 1);
+    //         text-shadow: rgb(0 0 0 / 90%) 0 1px 2px;
+    //         border: 1px solid #242424;
+    //         // box-shadow: rgb(255 255 255 / 25%) 0 1px 0, inset rgb(255 255 255 / 25%) 0 1px 0, inset rgb(0 0 0 / 50%) 0 0 0, inset rgb(255 255 255 / 8%) 0 1.25rem 0, inset rgb(0 0 0 / 30%) 0 -1.25rem 1.25rem, inset rgb(255 255 255 / 10%) 0 1.25rem 1.25rem;
+    //         transition: all .2s linear;
+    //         cursor: pointer;
+    //         pointer-events: auto;
+    //         @include appBtn.bd-radius(10px);
+    //         display: flex;
+    //         align-items: center;
+    //         justify-content: center;
+    //         position: relative;
+    //         overflow: hidden;
+    //         transition: all 250ms ease-in-out;
+    //         margin: 0px 10px;
+    //         &::before {
+    //             content: "";
+    //             display: block;
+    //             background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+    //             padding: 0 12px;
+    //             left: 15%;
+    //             height: 1px;
+    //             width: 40%;
+    //             box-shadow: rgb(255 255 255 / 20%) 0 1px 5px;
+    //             transition: all .3s ease-in-out;
+    //             position: absolute;
+    //             top: 0;
+    //         }
+    //         &:hover {
+    //             color: #fff;
+    //             text-decoration: none;
+    //             box-shadow: rgb(0 0 0 / 50%) 0 2px 5px, inset rgb(255 255 255 / 25%) 0 1px 0, inset rgb(0 0 0 / 25%) 0 0 0, inset rgb(255 255 255 / 3%) 0 20px 0, inset rgb(0 0 0 / 15%) 0 -20px 20px, inset rgb(255 255 255 / 5%) 0 20px 20px;
+    //         }
+    //         &:hover::before {
+    //             left: 45%;
+    //         }
+    //         + span {
+    //             font-size: .65rem;
+    //             white-space: nowrap;
+    //             color: #7fc2b8;
+    //             display: block;
+    //             margin-top: 5px;
+    //         }
+    //     }
+    // }
+}
+.collaborator-contact-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.view-business-land-page-wrapper,
+.customer-management-land-page-wrapper,
+.digibiz-business-settings-page-wrapper,
+.view-business-profile-land-page-wrapper,
+.employee-management-land-page-wrapper,
+.prospect-app-hub-page-wrapper,
+.view-employee-business-apps-land-page-wrapper,
+.collaborator-management-land-page-wrapper {
+    justify-content: center;
+    max-width: 340px;
+    width: 100%;
+    margin: auto;
+    @include appBtn.var(background-color, hubsliderbg, 0.4);
+    @include appBtn.bd-radius(15px);
+    -webkit-backdrop-filter: blur(2em);
+    backdrop-filter: blur(2em);
+    // box-shadow: 0 2px 25px -5px rgb(0 0 0 / 35%), inset 0 0 0 1px rgb(205 205 205), inset 0 0 100px -18px rgb(255 255 255);
+    box-shadow: 0 2px 25px -5px rgb(0 0 0 / 35%), inset 0 0 69px 1px #0e4d45, inset 0 0 322px 1px rgb(19 125 112);
+    @include appBtn.orientation(portrait) {
+        @include appBtn.minheight(800px) {
+            @include appBtn.minbreakpoint(480px) {
+                @include appBtn.maxbreakpoint(860px) {
+                    max-width: 440px;
+                }
+            }
+        }
+    }
+}
+
+.hub-settings-wrapper {
+    display: flex;
+    margin-left: auto;
+}
+[class$="-app-hub-page-wrapper"] {
+    .hub-btn-back {
+        width: 40px;
+        height: 40px;
+        @include appBtn.bd-radius(50%);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(5, 5, 5, .3);
+        cursor: pointer;
+        pointer-events: auto;
+        z-index: 2;
+    }
+    [class$="_hub_page_heading"] {
+        position: absolute;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        padding-left: 55px;
+        color: white;
+        text-shadow: rgb(0 0 0 / 90%) 0 1px 6px;
+    }
+    span.module_name {
+        @include appBtn.var(color, whiteTextColor, 1);
+        text-shadow: rgb(0 0 0 / 90%) 0 1px 6px;
+        letter-spacing: .01rem;
+        font-size: .68rem;
+    }
+    .part-buttons a {
+        margin: 0!important;
+    }
+    .hub-settings-wrapper > div {
+        background-color: #040404;
+        min-width: 35px;
+        width: 35px;
+        height: 35px;
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // color: white;
+        color: #d3f6ed;
+        @include appBtn.bd-radius(50%);
+        box-shadow: rgb(255 255 255 / 25%) 0 1px 0, inset rgb(255 255 255 / 25%) 0 1px 0, inset rgb(0 0 0 / 50%) 0 0 0, inset rgb(255 255 255 / 8%) 0 1.25rem 0, inset rgb(0 0 0 / 30%) 0 -1.25rem 1.25rem, inset rgb(255 255 255 / 10%) 0 1.25rem 1.25rem;
+        transition: all 250ms linear;
+        text-shadow: rgb(0 0 0 / 90%) 0 1px 2px;
+        border: 1px solid #242424;
+        position: relative;
+    }
+}
+.digibiz-home-page-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.jeevi-role-btn, 
+.employee-role-btn, 
+.customer-role-btn, 
+.business-role-btn,
+#my-business-identification-icon,
+.profile-detail-btn,
+span.material-icons.custom-icon::before {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1.6rem;
+    position: unset;
+} 
+#my-business-identification-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    span {
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        @include appBtn.var(background-color, hubappbtn, 1);
+        &::before {
+            font-size: 1.1rem;
+            @include appBtn.var(color, whiteTextColor, 1);
+        }
+    }
+}
+.jeevi-role-btn span.material-icons.custom-icon::before {
+    content: "\e94e";
+}
+.employee-role-btn span.material-icons.custom-icon::before {
+    content: "\e94f";
+}
+.customer-role-btn span.material-icons.custom-icon::before {
+    content: "\e951";
+}
+.business-role-btn span.material-icons.custom-icon::before,
+#my-business-identification-icon span.material-icons.custom-icon::before {
+    content: "\e950";
+}
+.profile-detail-btn span.material-icons.custom-icon::before {
+    content: "\e853";
+    font-family: "Material Icons"!important;
+}
+.digibiz-home-page-top-band-main-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    padding: 8px 10px;
+    z-index: 10;
+    @include appBtn.var('color','mainHeaderTextColor',1);
+    margin-bottom: 1px;
+    .digibiz-home-page-top-band-wrapper {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        height: 60px;
+        > div {           
+            transition: all 250ms linear;
+            position: relative;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            margin-right: 10px;
+            > div {
+                min-width: 35px;
+                width: 35px;
+                height: 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                @include appBtn.bd-radius(50%);
+                @include appBtn.var(color,'btnIcnColor',1);
+                @include appBtn.var(background-color,'topBtm',1);
+                // box-shadow: rgb(255 255 255 / 25%) 0 1px 0, inset rgb(255 255 255 / 25%) 0 1px 0, inset rgb(0 0 0 / 50%) 0 0 0, inset rgb(255 255 255 / 8%) 0 1.25rem 0, inset rgb(0 0 0 / 30%) 0 -1.25rem 1.25rem, inset rgb(255 255 255 / 10%) 0 1.25rem 1.25rem;
+                text-shadow: rgb(0 0 0 / 90%) 0 1px 2px;
+                border: 1px solid #242424;
+                span.material-icons {
+                    font-size: 16px;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                }
+            }
+            span:not([class]) {
+                font-size: .6rem;
+                margin-top: 5px;
+                @include appBtn.var(color,'completed',1);
+            }
+        }
+    }
+}
+#collaborator-business-list {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    height: 70px;
+    > div {
+        min-width: 35px;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include appBtn.bd-radius(50%);
+        @include appBtn.var(color,'btnIcnColor',1);
+        @include appBtn.var(background-color,'topBtm',1);
+        // box-shadow: rgb(255 255 255 / 25%) 0 1px 0, inset rgb(255 255 255 / 25%) 0 1px 0, inset rgb(0 0 0 / 50%) 0 0 0, inset rgb(255 255 255 / 8%) 0 1.25rem 0, inset rgb(0 0 0 / 30%) 0 -1.25rem 1.25rem, inset rgb(255 255 255 / 10%) 0 1.25rem 1.25rem;
+        text-shadow: rgb(0 0 0 / 90%) 0 1px 2px;
+        border: 1px solid #242424;
+        i.material-icons {
+            font-size: 16px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+    }
+    span:not([class]) {
+        display: flex;
+        text-align: center;
+        width: 80px;
+        font-size: .6rem;
+        margin-top: 5px;
+        @include appBtn.var(color,'completed',1);
+    }
+}
+[platform="browser"] .digibiz-home-page-bottom-band-main-container,
+[platform="desktop"] .digibiz-home-page-bottom-band-main-container {
+    width: 100%;
+    height: 60px;
+    // order: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // position: absolute;
+    background-color: #0e4d45;
+    @include appBtn.var(background-color,hubsliderbg,1);
+}
+[platform="Android"] .digibiz-home-page-bottom-band-main-container,
+[platform="iOS"] .digibiz-home-page-bottom-band-main-container {
+    display: flex;
+    justify-content: center;
+    order: 1;
+    height: 65px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #0e4d45;
+    @include appBtn.var(background-color,hubsliderbg,1);
+    // background-color: rgba(255, 255, 255, 0.2);
+    // box-shadow: 0 2px 25px -5px rgb(0 0 0 / 35%), inset 0 0 0 1px rgb(235 235 235), inset 0 0 100px -18px rgb(255 255 255);
+}
+.digibiz-home-page-bottom-band-wrapper > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 65px;
+    color: white;
+    // background-color: rgba(0, 0, 0, 0.3);
+    @include appBtn.bd-radius(10px);
+    padding: 0 10px;
+    width: 50px;
+    margin-right: 10px;
+    box-shadow: rgb(255 255 255 / 25%) 0 1px 0, inset rgb(255 255 255 / 25%) 0 1px 0, inset rgb(200 200 200 / 50%) 200 200 200, inset rgb(255 255 255 / 8%) 0 1.25rem 0, inset rgb(200 200 200 / 30%) 0 -1.25rem 1.25rem, inset rgb(255 255 255 / 10%) 0 1.25rem 1.25rem;
+    &:last-child {
+        margin-right: unset;
+    }
+}
+[platform="Android"] .digibiz-home-page-bottom-band-wrapper > div,
+[platform="iOS"] .digibiz-home-page-bottom-band-wrapper > div {
+    flex-flow: column;
+    flex: 1;
+}
+#app-root::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    pointer-events: none;
+    // background: linear-gradient(360deg, rgba(0, 0, 0, .70) -5%, rgba(0, 0, 0, 0%) 30%);
+}
+// .digibiz-home-page-bottom-band-wrapper > div::before {
+//     content: "";
+//     display: block;
+//     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+//     padding: 0 12px;
+//     left: 15%;
+//     height: 1px;
+//     width: 40%;
+//     box-shadow: rgb(255 255 255 / 20%) 0 1px 5px;
+//     -webkit-transition: all .3s ease-in-out;
+//     -moz-transition: all .3s ease-in-out;
+//     -ms-transition: all .3s ease-in-out;
+//     -o-transition: all .3s ease-in-out;
+//     transition: all .3s ease-in-out;
+//     position: absolute;
+//     top: 0;
+// }
+[platform="Android"] .digibiz-home-page-bottom-band-wrapper,
+[platform="iOS"] .digibiz-home-page-bottom-band-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    .role-btn {
+        flex-flow: column;
+        background-color: unset;
+        box-shadow: unset;
+        color: #c7c7c7;
+        &::before {
+            content: unset;
+        }
+        > span {
+            color: #c7c7c7;
+            text-align: center;
+        }
+        &.active {
+            color: #28ea9a;
+            > span {
+                color: #28ea9a;
+                font-weight: 500;
+            }
+        }
+    }
+}
+[platform="browser"] .digibiz-home-page-bottom-band-wrapper,
+[platform="desktop"] .digibiz-home-page-bottom-band-wrapper {
+    display: flex;
+    // flex-flow: column;
+}
+[platform="browser"] .digibiz-home-page-bottom-band-wrapper > div,
+[platform="desktop"] .digibiz-home-page-bottom-band-wrapper > div {
+    flex-flow: column;
+}
+
+[platform="browser"] .digibiz-home-page-bottom-band-wrapper > div.active,
+[platform="desktop"] .digibiz-home-page-bottom-band-wrapper > div.active {
+    color: #28ea9a;
+    > span {
+        color: #28ea9a;
+    }
+}
+.digibiz-home-page-bottom-band-wrapper > div > span {
+    // color: white;
+    color: #448978;
+    font-size: .55rem;
+    // text-shadow: 0 0 3px rgba(5, 5, 5, .7);
+    white-space: nowrap;
+}
+.digibiz-home-page-middle-band-main-container {
+    flex: 1;
+    width: calc(100% - 70px);
+    height: calc(100% - 55px);
+    > div {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        padding: 0 20px;
+        > div {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+// .prospect-app-hub-page-main-container {
+//     padding: 0 15px;
+// }
+[platform="Android"] .digibiz-home-page-middle-band-main-container,
+[platform="iOS"] .digibiz-home-page-middle-band-main-container {
+    width: 100%;
+}
+[platform="Android"] .digibiz-home-page-wrapper,
+[platform="iOS"] .digibiz-home-page-wrapper {
+    flex-flow: column;
+}
+.customer-management-land-page-wrapper {
+    margin: auto;
+}
+
+[app="communication_group_details"] section#main-content-wrapper .communication-group-create-main-container,
+.collaborator-group-create-main-container {
+    margin: 0 auto;
+}
+.collaborator-management-land-page-wrapper {
+    margin: 10px;
+    height: calc(100% - 40px);
+    .collaborator-management-land-page-icons-container {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        margin: 20px;
+        min-height: 100%;
+    }
+}
+.swiper-pagination-bullet-active {
+    --swiper-theme-color: #ffffff;
+    opacity: var(--swiper-pagination-bullet-opacity, 1);
+    background: var(--swiper-pagination-color, var(--swiper-theme-color));
+}
+.prospect-app-hub-page-wrapper-title-band-wrapper {
+    height: 40px;
+    z-index: 2;
+    > .hub-settings-wrapper > div {
+        color: #7fc2b8;
+        width: 35px;
+        height: 35px;
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        > i {
+            font-size: 1.4rem;
+        }
+    }
+}
+.back-btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    .hub-btn-back {
+        width: 40px;
+        height: 80px;
+        background-color: rgba(50,50,50,.5);
+        color: white;
+        @include appBtn.bd-radius(50%);
+        backdrop-filter: blur(2em);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        margin: 0 8px;
+    }
+}
+#prospect-app-hub-settings-main-container {
+    flex-flow: column;
+    .back-btn-wrapper {
+        left: 0;
+        top: 0;
+        height: 60px;
+        width: 40px;
+        padding: 8px;
+        margin: 0 8px;
+    }
+    .setting {
+        justify-content: center;
+        max-width: 340px;
+        width: 100%;
+        height: calc(100% - 180px);
+        max-height: 580px;
+        margin: auto;
+        @include appBtn.var(background-color, hubsliderbg,.4);
+        @include appBtn.bd-radius(15px);
+        -webkit-backdrop-filter: blur(2em);
+        backdrop-filter: blur(2em);
+        box-shadow: 0 2px 25px -5px rgb(0 0 0 / 35%), inset 0 0 0 1px #0e4d45, inset 0 0 102px -28px #137d70;
+    }
+}
+.setting_list_section > span {
+    font-size: .7rem;
+    color: #7fc2b8;
+}
+.settings_menu_wrapper .setting_list_section {
+    line-height: .65rem;
+    margin-top: 4px;
+}
+.qr-scan-icn::before,
+.request-icn::before,
+.logout-icn::before {
+    position: absolute;
+}
+.qr-scan-icn::before {
+    content: "\f206";
+}
+.request-icn::before {
+    content: "\e9bc";
+}
+.logout-icn::before {
+    content: "\e9ba";
+}
+#prospect-app-hub-settings-main-container .back-btn-wrapper {
+    opacity: 1;
+}

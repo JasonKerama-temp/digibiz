@@ -1,0 +1,416 @@
+@use "../abstracts" as listing;
+
+.business-profile-display-control-wrapper {
+    width: 100%;
+    .list-wrapper {
+        @include listing.var(background-color, card-list-bg,1);
+        margin-bottom: 1px;
+        .profile-pic-info-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            overflow: hidden;
+            @include listing.var(color, whiteTextColor,.6);
+            height: 100%;
+            .profile-pic-container {
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                min-height: 40px;
+                flex: 0 0 40px;
+                @include listing.bd-radius(50%);
+                background-color: grey;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                // margin-right: 10px;
+                span.persona {
+                    font-size: .89rem;
+                    font-weight: 600;
+                    @include listing.var(color, whiteTextColor,1);
+                }
+            }
+        }
+        &:not(.selected-row) .checkbox-conatiner {
+            display: none;
+        }
+        &.selected-row {
+            .checkbox-conatiner {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                @include listing.var(background-color, checkboxSelected,1);              
+                @include listing.bd-radius(50%);
+                label {
+                    @include listing.var(color, whiteTextColor,1);
+                }
+            }
+        }
+    }
+}
+.employee-selection-list-container, .standard-employee-group-selection-wrapper, .customer-selection-list-container {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    height: 70px;
+    @include listing.var(background-color, card-list-bg,1);
+    margin-bottom: 1px;
+}
+.contact-profile-container {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    @include listing.bd-radius(50%);
+    background-color: grey;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+    }
+    > img[src=''], img[src='undefined'] {
+        display: none; 
+    }
+    span.persona {
+        font-size: .89rem;
+        font-weight: 600;
+        color: white;
+        @include listing.var(color, whiteTextColor,1);
+    }
+}
+.contacts-messenger-container:not(.selected-row) .selectcontact-checkbox, 
+.department-list-data-wrapper:not(.selected-row) .checkbox-conatiner, 
+.sync-contact-data:not(.selected-row) .checkbox-conatiner, 
+.employee-contact-access-employee-wise-wrapper:not(.selected-row) .checkbox-conatiner, 
+.employee-contact-access-department-list-data:not(.selected-row) .checkbox-conatiner, 
+.employee-contact-access-custom-group-list-data:not(.selected-row) .checkbox-conatiner, 
+.identifier-items-list-data:not(.selected-row) .checkbox-conatiner, 
+.communication-employee-selection-list:not(.selected-row) .checkbox-conatiner, 
+.employee-selection-list-container:not(.selected-row) .checkbox-conatiner, 
+.standard-employee-group-selection-wrapper:not(.selected-row) .checkbox-conatiner, 
+.customer-groups-contact-wrapper:not(.selected-row) .checkbox-conatiner, 
+.customer-group-custom-group-wrapper:not(.selected-row) .checkbox-conatiner, 
+.customer-contact-access-employee-wrapper:not(.selected-row) .checkbox-conatiner, 
+.communication-groups-identifier-based-customer-contact-wrapper:not(.selected-row) .checkbox-conatiner, 
+.collaborator-contact-wrapper .profile-pic-info-wrapper:not(.selected-row) .checkbox-conatiner {
+    display: none;
+}
+.profile-pic-container>.checkbox-conatiner, .sync-contact-data>.checkbox-conatiner, .contact-profile-container>.checkbox-conatiner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include listing.var(background-color, checkboxSelected,1);
+    @include listing.bd-radius(50%);
+}
+.profile-pic-container>.checkbox-conatiner i, .sync-contact-data>.checkbox-conatiner i, .contact-profile-container>.checkbox-conatiner i {
+    @include listing.var(color, whiteTextColor,1);
+}
+.profile-page-main-container {
+    .profile-page-main-wrapper {
+        width: 100%;
+        height: 100%;
+        .profile-page-body-main-container {
+            height: calc(100% - 90px);
+            .profile-page-body-wrapper {
+                height: 100%;
+                .profile-page-buttons-container {
+                    height: 100%;
+                    .profile-page-menu {
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.profile-metadata {
+    display: flex;
+    flex-flow: row;
+    -webkit-transition: all 400ms ease-in-out;
+    transition: all 400ms ease-in-out;
+    margin: 0px 5px;
+    flex: 1;
+    .profile-image {
+        width: 90px;
+        height: 90px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        span {
+            width: 55px;
+            height: 55px;
+            flex: 0 0 55px;
+            margin-right: unset;
+            @include listing.bd-radius(50%);
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+                @include listing.bd-radius(50%);
+            }
+        }
+    }
+    .profile-info-container {
+        height: auto;
+        padding: 5px;
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+        -ms-flex-item-align: center;
+        align-self: center;
+        // max-width: 130px;
+        .mobile_number {
+            font-size: .75rem;
+            @include listing.var(color, whiteTextColor,.7);
+        }
+        .header-name {
+            font-size: calc(14px + (24 - 14) * ((100vw - 300px) / (1600 - 300)));
+            font-weight: 600;
+            @include listing.var(color, whiteTextColor,1);
+        }
+    }
+}
+.profile-page-buttons-container {
+    .profile-page-menu {
+        padding-left: 40px;
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            min-height: 45px;
+            > a {
+                width: 60px;
+                    height: 60px;
+                    // @include appBtn.var(background-color, hubappbtn, 1);
+                    background-color: rgba(41, 158, 127,1);
+                    @include listing.var(color, whiteTextColor, 1);
+                    // text-shadow: rgb(0 0 0 / 90%) 0 1px 2px;
+                    border: 1px solid #242424;
+                    // box-shadow: rgb(255 255 255 / 25%) 0 1px 0, inset rgb(255 255 255 / 25%) 0 1px 0, inset rgb(0 0 0 / 50%) 0 0 0, inset rgb(255 255 255 / 8%) 0 1.25rem 0, inset rgb(0 0 0 / 30%) 0 -1.25rem 1.25rem, inset rgb(255 255 255 / 10%) 0 1.25rem 1.25rem;
+                    transition: all .2s linear;
+                    cursor: pointer;
+                    pointer-events: auto;
+                    @include listing.bd-radius(10px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    overflow: hidden;
+                    transition: all 250ms ease-in-out;
+                    margin: 0px 10px;
+                    &::before {
+                        content: "";
+                        display: block;
+                        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(76, 216, 180) 30%, rgba(45, 149, 122, 0) 100%);
+                        padding: 0 12px;
+                        left: 15%;
+                        height: 1px;
+                        width: 40%;
+                        box-shadow: rgb(255 255 255 / 20%) 0 1px 5px;
+                        transition: all .3s ease-in-out;
+                        position: absolute;
+                        top: 0;
+                    }
+                    &:hover {
+                        @include listing.var(color, whiteTextColor, 1);
+                        text-decoration: none;
+                        box-shadow: rgb(0 0 0 / 50%) 0 2px 5px, inset rgb(255 255 255 / 25%) 0 1px 0, inset rgb(0 0 0 / 25%) 0 0 0, inset rgb(255 255 255 / 3%) 0 20px 0, inset rgb(0 0 0 / 15%) 0 -20px 20px, inset rgb(255 255 255 / 5%) 0 20px 20px;
+                    }
+                    &:hover::before {
+                        left: 45%;
+                    }
+                    i {
+                        margin-right: unset;
+                        font-size: 2rem;
+                    }
+            }
+        }
+    }
+}
+.profile-page-buttons-container .profile-page-menu li span {
+    font-size: .65rem;
+    margin-top: 5px;
+    color: #7fc2b8;
+}
+#upload-file-preview img.preview-file {
+    height: inherit;
+}
+#upload-file-preview video {
+    width: 100%;
+}
+.business-address-content-box {
+    padding: 8px;
+    border: 1px solid rgba(var(--b6a, 219, 219, 219), .2);
+    @include listing.bd-radius(5px);
+    display: flex;
+}
+.business-add-address-wrapper {
+    width: 100%;
+}
+.cancel-businesss-address-btn {
+    @include listing.bd-radius(50%);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    @include listing.var(color, blackTextColor, 1);
+    background-color: lightgray;
+    max-width: 35px;
+    max-height: 35px;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.business-add-pancard-wrapper, .business-add-gst-wrapper {
+    display: flex;
+    > a {
+        margin: 18px 12px;
+    }
+}
+.business-add-pancard-content-box, .business-add-gst-content-box {
+    width: calc(100% - 50px);
+    max-width: 600px;
+}
+.business-add-partnership-deed-wrapper, .business-add-partnership-registration-certificate-wrapper, .business-add-llp-registration-certificate-wrapper, .business-add-transaction-person-wrapper, .business-add-memorandum-of-association-wrapper, .business-add-articles-of-association-wrapper, .business-trust-establishment-license-wrapper {
+    display: flex;
+    align-items: center;
+}
+.business-add-partnership-deed-content-box, .business-add-partnership-registration-certificate-content-box, .business-add-llp-registration-certificate-content-box, .business-add-transaction-person-content-box, .business-add-memorandum-of-association-content-box, .business-add-articles-of-association-content-box {
+    width: calc(100% - 50px);
+    max-width: 600px;
+}
+.business-add-transaction-person-content-box label,
+.business-add-llp-registration-certificate-content-box label,
+.business-add-gst-content-box label,
+.business-add-pancard-content-box label,
+.business-trust-establishment-license-content-box label,
+.business-add-shop-established-license-content-box label {
+    @include listing.var(color,whiteTextColor,.8);
+}
+.business-status-line.wrapper-secondary-heading {
+    margin-bottom: 13px;
+}
+.biz-status-line {
+    white-space: pre-wrap;
+    hyphens: auto;
+}
+// .business-display-picture-wrapper {
+//     width: 60px;
+//     height: 60px;
+// }
+.business-profile-data-section.business-profile-section-one {
+    position: sticky;
+    top: 0px;
+    @include listing.var(background-color,hubsliderbg,.98);
+    z-index: 1;
+}
+.business-add-partnership-deed-wrapper>a, .business-add-partnership-registration-certificate-wrapper>a, .business-add-llp-registration-certificate-wrapper>a, .business-add-transaction-person-wrapper>a, .business-add-memorandum-of-association-wrapper>a, .business-add-articles-of-association-wrapper>a, .business-trust-establishment-license-wrapper>a {
+    margin: 18px 12px;
+}
+.uploaded-multimedia-files {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    &:empty {
+        display: none;
+    }
+}
+.file-details.ellipsify {
+    font-size: .7rem;
+}
+.business-creation-parts-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.settings-container .business-creation-parts-container {
+    align-items: unset;
+}
+.business-cloud-folder-employee-wrapper, .business-cloud-folder-customer-wrapper {
+    display: flex;
+    align-items: center;
+} 
+.business-creation-parts-container .profile-pic-info-wrapper,
+.business-cloud-folder-customer-wrapper .profile-pic-info-wrapper {
+    order: 2;
+}
+.declaration-signature-busines-btn-container {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    display: unset !important;
+    text-align: unset;
+}
+.standard-declaration-input {
+    display: unset;
+}
+.standard-declaration-input > p {
+    margin-top: 20px;
+}
+.staus-type:not([data-status="inactive"]) {
+    display: none;
+}
+.staus-type[data-status="inactive"] {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.modal-popup-content {
+    #communication-group-create-employee-group-list-main-container,
+    #communication-group-create-customer-group-list-main-container,
+    #communication-group-create-collaborator-group-list-main-container {
+        #communication-group-create-employee-group-list-wrapper,
+        #communication-group-create-customer-group-list-wrapper,
+        #communication-group-create-collaborator-group-list-wrapper {
+            .group-selection-wrapper {
+                @include listing.var(background-color,hubsliderbg,.98);
+            }
+        }
+    }
+    #customer-group-custom-groups-list-main-container {
+        #customer-group-custom-groups-list-wrapper {
+            .customer-group-custom-group-wrapper {
+                margin-bottom: 1px;
+                @include listing.var(background-color,hubsliderbg,.98);
+            }
+        }
+    }
+}
+.group-selection-wrapper {
+    padding: 0px 12px;
+    display: flex;
+    min-height: 70px;
+    width: 100%;
+    /* height: 100%; */
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* margin-bottom: 1px; */
+    // background-color: rgba(var(--card-list-bg), 1);
+    margin-bottom: 1px;
+    /* border-bottom: 1px solid rgba(var(--textColor), 0.095); */
+    // color: rgba(var(--headerFontColor), 1);
+}
+
+.group-selection-wrapper [type="checkbox"]+label {
+    margin-left: auto;
+}

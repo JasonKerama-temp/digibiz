@@ -1,0 +1,22 @@
+@use "../abstracts" as commonList;
+.common-list-wrapper,
+.pending-customer-wrapper,
+.collaborator-contact-wrapper,
+.pending-collaborator-contact-wrapper,
+.communication-groups-identifier-based-customer-contacts-item-wrapper .accordion-title {
+    padding: 8px;
+    display: flex;
+    min-height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 1px;
+    @include commonList.var(background-color, card-list-bg,1);
+    @include commonList.var(color, headerFontColor,1);
+    span {
+        &.material-icons {
+            @include commonList.var(color, whiteTextColor,1);
+        }
+    }
+}

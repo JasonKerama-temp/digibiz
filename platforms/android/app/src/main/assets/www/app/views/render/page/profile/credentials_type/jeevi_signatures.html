@@ -1,0 +1,57 @@
+<script id="jeevi-top-signature-template" type="text/x-handlebars-template ">
+    <!-- <div class=""> -->
+        <div class="pn-border pn-body mb20">
+             <div class="media" style="margin-top: 0px;">
+                 <div class="media-left pr30 profile_image_hover">
+                     <div class="header_text head-text-color truncate no-select"><div class="tooltip-icon custom-tooltipped"">Signature Picture</div>
+                   
+                     </div>
+                     <form id="signature_form">
+                         <div class="pics-wrapper">
+                            {{#each avatarUrl}}
+                            <div id="signature_picture_{{image_id}}" image_id="{{image_id}}" class="view second-effect form-validation">
+                                <div class="photo-container">
+                                    <div class="profile-text text-large"><span class="hide">{{#if imageLetter}} {{imageLetter}} {{/if}}</span> </div>
+                                    <img id="{{image_id}}" src="{{image_url}}" {{#if defaultImage}} data-default-image-letter = {{imageLetter}} {{/if}}/>
+                                    {{#ifcond status '==' "unused"}}
+                                    <div class="mask">
+                                        <a class="info cursor_pointer" title="Full Image"><i class="material-icons signature_add_photo" aria-hidden="true" image_id="{{image_id}}">photo_camera</i></a>                            
+                                            <a class="info ml5 signature_image_delete cursor_pointer" data-id='{{image_id}}'><i class="material-icons">delete</i></a>                            
+                                    </div>
+                                    <input type='file' name='signaturealimage' id='image_signatureal_profile_id_{{image_id}}' class="update_pic_signature" data-image='signatureal_image'
+                                    data-image-id='{{image_id}}'>
+                                    <i class="material-icons icon-validation-warning" aria-hidden="true">warning</i>
+                                    <span class="left-warning-message"> </span>
+                                    {{/ifcond}}
+                                    {{#ifcond status '==' "used"}}
+                                    <div class="mask">
+                                        <a><i class="material-icons" aria-hidden="true" >lock</i></a>                            
+                                    </div>
+                                    {{/ifcond}}
+                                </div>
+                            </div>
+                            {{/each}}
+                         {{#times remaining}}
+                             <div id="signature_picture_{{this}}" class="view second-effect form-validation">
+                                <div class="photo-container">
+                                    <div class="profile-text text-large"><span class="hide">{{#if imageLetter}} {{imageLetter}} {{/if}}</span> </div>
+                                    <img src="app/assets/images/avatars/placeholder.png" id="sign_new_{{this}}"/>
+                                    <div class="mask">
+                                        <a class="info cursor_pointer" title="Full Image"  
+                                        image_count="{{this}}" ><i class="material-icons signature_add_photo" aria-hidden="true" dummy_image_id="{{this}}">photo_camera</i></a>                            
+                                            <a id="signature_image_delete_{{this}}" class="info ml5 signature_image_delete cursor_pointer hide"><i class="material-icons">delete</i></a>                            
+                                    </div>
+                                    <input type='file' name='signaturealimage' id='image_signatureal_profile_id__{{this}}' class="update_pic_signature" data-image='signatureal_image'
+                                        data-image-id=''>
+                                    <i class="material-icons icon-validation-warning" aria-hidden="true">warning</i>
+                                    <span class="left-warning-message"> </span>
+                                </div>
+                             </div>
+                         {{/times}}
+                        </div>
+                    </form>
+                 </div>
+             </div>
+         </div>
+     <!-- </div>        -->
+ </script>

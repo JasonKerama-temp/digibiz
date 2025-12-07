@@ -1,0 +1,1 @@
+cordova.define("cordova-plugin-zip.Zip",(function(o,i,n){var e=cordova.require("cordova/exec");i.unzip=function(o,i,n,d){e((function(o){if(o&&void 0!==o.loaded){if(d)return d(function(o){return{loaded:o.loaded,total:o.total}}(o))}else n&&n(0)}),(function(o){n&&n(-1)}),"Zip","unzip",[o,i])}}));

@@ -1,0 +1,40 @@
+<script id="employee-types-template" type="text/x-handlebars-template">
+    <!-- <div class="employee-types-main-container">        
+        <div class="employee-types-add-heading-container">
+            <a class="employee-types-heading-name">Employee Types</a>
+        </div> -->
+<div class="employee-types-content-box scrollinit">
+    {{#if employee_types}}
+    {{#each employee_types}}
+    <div class="employee-type-wrapper common-listing-wrapper" data-employee-type-id="{{this.id}}">
+        <div class="employee-type-container">
+            <div class="employee_type_name wrapper-primary-heading">{{this.type}}</div>
+        </div>
+        <div class="more-menu-wrapper show-action-employee-type-data"><i class="material-icons">more_vert</i></div>
+    </div>
+    {{/each}}
+    {{else}}
+    <div class="no_data">No data found</div>
+    {{/if}}
+</div>
+<div class="fixed-action-btn create-survey-btn-wrapper">
+    <a class="btn-floating btn-save btn-large cursor-pointer" id="add-employee-type"><i
+            class="material-icons">add</i></a>
+</div>
+<!-- <div class="employee-types-create-container hide">
+    <div class="employee-name-content-box">
+        <label for="employee_type" class="active">Employee Type</label>
+        <div id="employee_type" type="text" data-length="60" contenteditable="true" class="validate" autocomplete="off">
+        </div>
+    </div>
+    <div class="button-wrapper">
+        <a class="waves-effect waves-light" id="save-employee-type">Save</a>
+    </div>
+    <div class="button-wrapper hide">
+        <a class="waves-effect waves-light" id="edit-employee-type">Save</a>
+    </div>
+</div>
+<div class="employee-type-add-button-wrapper">
+    <a class="employee-type-add-button" id="employee_type_add_button">Add Type</a>
+</div> -->
+</script>

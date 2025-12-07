@@ -1,0 +1,1 @@
+cordova.define("cordova-plugin-file.Flags",(function(e,i,o){o.exports=function(e,i){this.create=e||!1,this.exclusive=i||!1}}));

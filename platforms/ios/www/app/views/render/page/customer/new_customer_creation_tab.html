@@ -1,0 +1,65 @@
+<script id="new-customer-creation-tab-template" type="text/x-handlebars-template">
+    <div class="content-wrapper">
+        <div class="survey-list-container">
+            <div class="surveylist-container">
+                <div class="listing-tabs-wrapper">
+                  <div class="main-tab-wrapper">
+                    <ul class="maintab list-tabs">
+                        <li class="tab active" data-id="identifiers"><a class="customer-identifiers-tab">Identifiers</a><span class="slider"></li>
+                        <!-- <li class="tab" data-id="associate_customer"><a class="associate-customer-identifiers-tab">Associate-Customer</a><span class="slider"></li> -->
+                        <li class="tab" data-id="labels"><a class="customer-label-tab" >Labels</a><span class="slider"></li>
+                        <li class="tab" data-id="customer_active"><a class="customer-active-tab">Active</a><span class="slider"></li>
+                        <li class="tab active" data-id="customer_pending"><a class="customer-pending-tab">Pending</a><span class="slider"></li>
+                        <li class="tab" data-id="customer_alumini"><a class="customer-alumini-tab">Alumini</a><span class="slider"></li>
+                        <!-- <li class="slider"></li> -->
+                    </ul>
+                    <div class="voiceit_private_page_search_container">
+                        <span class="informationbtn waves-effect" data-information="custom-information-list"><i class="material-icons">error</i></span>
+                    </div>
+                    <!-- <div class="voiceit_private_page_search_container">
+                      <span class="searchbtn waves-effect"><i class="material-icons">search</i></span>
+                      <div class="expand-search-wrap">
+                        <input class="expand-search-input" type="search" placeholder="Search" autocomplete="off"/>
+                        <span class="searchclosebtn"><i class="material-icons hide">close</i></span>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+                <div class="tab-content-container">
+
+                    <div class="tab-content swiper-slide" id="identifiers">                             
+                        <div class="customer-identifiers-list-container">
+                            <div id="customer-identifiers-list-data-container"></div>
+                        </div>                            
+                    </div>
+                    <div class="tab-content swiper-slide" id="labels">                           
+                                <div class="associate-customer-identifiers-list-container">
+                                <div id="associate-customer-identifiers-list-data-container"></div>
+                              </div>                           
+                    </div>
+                    <!-- <div class="tab-content swiper-slide" id="labels">                           
+                        <div class="primary-customer-label-list-container">
+                            <div id="primary-customer-label-list-data-container"></div>
+                        </div>                           
+                    </div>   -->
+                    <div class="tab-content swiper-slide" id="customer_active">                             
+                        <div class="active-customer-list-container">
+                            <div id="active-customer-list-data-container"></div>
+                        </div>                            
+                    </div>
+                    <div class="tab-content active swiper-slide" id="customer_pending">                           
+                        <div class="pending-customer-list-container">
+                            <div id="pending-customer-list-data-container"></div>
+                        </div>                           
+                    </div>
+                    <div class="tab-content swiper-slide" id="customer_alumini">                           
+                        <div class="alumini-customer-list-container">
+                            <div id="alumini-customer-list-data-container"></div>
+                        </div>                           
+                    </div>
+                                      
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

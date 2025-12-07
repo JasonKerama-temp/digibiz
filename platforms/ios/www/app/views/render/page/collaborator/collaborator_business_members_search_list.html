@@ -1,0 +1,21 @@
+<script id="collaborator-contact-selection-list-template" type="text/x-handlebars-template">
+    <div class="collaborator-business-members_search_list-template">
+            {{#if businessList}}
+             {{#each businessList}}
+                <div class="collaborator-contact-selection-list-container" data-contact-id="{{this.id}}" data-business-id="{{this.business_id}}">
+                    <div class="contact-profile-container profile-pic-container p-{{imageLetter}}">
+                        <img src="{{this.display_picture.avtarUrl}}" class="chat-avatar-image">
+                        <span class="persona">{{imageLetter}}</span>
+                    </div>
+                    <div class="contact-name-wrapper wrapper-primary-heading ellipsify">{{#if this.business_name}}{{this.business_name}}{{/if}}</div>
+                     <!-- <p>
+                        <input type="checkbox" class="filled-in contact-select-btn" id="{{this.id}}" data-id="{{this.id}}" data-business-id="{{this.business_id}}" />
+                        <label for="{{this.id}}"></label>
+                    </p> -->
+                </div>
+           {{/each}}
+           {{else}}
+           <div class="no-data">No Business found</div>
+         {{/if}}
+    </div>    
+</script>

@@ -1,0 +1,88 @@
+<script id="contact-settings-template" type="text/x-handlebars-template">
+    <div class="contact-settings-container">
+        
+
+        <div class="security-setting-wrapper security-setting view-settings">
+            {{#ifcond setting_type '==' "employee_control"}}
+            <div class="bizchat-group-bizchat-edit-icon-parent">
+           
+                <a id="contact-control-activity-logs" class="white-text right"><span class="material-icons">wysiwyg</span><span>Logs</span></a>
+            </div>
+            <div class="security-setting-bg">
+                <div class="setting-heading">Employees who can add/be added as contacts</div>
+                <p>
+                    <input class="with-gap viewed-settings" value="contacts" name="employee-settings" type="radio" id="contacts" {{#ifcond contact_control_type '==' "contacts"}}checked{{/ifcond}} />
+                    <label for="contacts">All</label>
+                </p>
+                <p>
+                    <input class="with-gap viewed-settings" value="none" name="employee-settings" type="radio" id="none" {{#ifcond contact_control_type '==' "none"}}checked{{/ifcond}} />
+                    <label for="none">None</label>
+                </p>
+                <p>
+                    <input class="with-gap viewed-settings" value="only_for" name="employee-settings" type="radio" id="only_for" {{#ifcond contact_control_type '==' "only_for"}}checked{{/ifcond}} />
+                    <label for="only_for">Only</label>
+                </p>
+                <p>
+                    <input class="with-gap viewed-settings" value="except_for" name="employee-settings" type="radio" id="except_for" {{#ifcond contact_control_type '==' "except_for"}}checked{{/ifcond}} />
+                    <label for="except_for">Except</label>
+                </p>
+                
+            </div>
+            {{/ifcond}}
+            {{#ifcond setting_type '==' "customer_control"}}
+            <div class="bizchat-group-bizchat-edit-icon-parent">
+           
+                <a id="customer-control-activity-logs" class="white-text right"><span class="material-icons">wysiwyg</span><span>Logs</span></a>
+            </div>
+            <div class="security-setting-bg">
+                <div class="setting-heading">Employees who can be added as customers by other businesses</div>
+                <p>
+                    <input class="with-gap viewed-settings" value="contacts" name="employee-customer-settings" type="radio" id="employee_customer_contacts" {{#ifcond customer_control_type '==' "contacts"}}checked{{/ifcond}} />
+                    <label for="employee_customer_contacts">All</label>
+                </p>
+                <p>
+                    <input class="with-gap viewed-settings" value="none" name="employee-customer-settings" type="radio" id="employee_customer_none" {{#ifcond customer_control_type '==' "none"}}checked{{/ifcond}} />
+                    <label for="employee_customer_none">None</label>
+                </p>
+                <p>
+                    <input class="with-gap viewed-settings" value="only_for" name="employee-customer-settings" type="radio" id="employee_customer_only_for" {{#ifcond customer_control_type '==' "only_for"}}checked{{/ifcond}} />
+                    <label for="employee_customer_only_for">Only</label>
+                </p>
+                <p>
+                    <input class="with-gap viewed-settings" value="except_for" name="employee-customer-settings" type="radio" id="employee_customer_except_for" {{#ifcond customer_control_type '==' "except_for"}}checked{{/ifcond}} />
+                    <label for="employee_customer_except_for">Except</label>
+                </p>
+               
+               
+               
+            </div>
+            {{/ifcond}}
+            {{#ifcond setting_type '==' "trusted_control"}}
+            <div class="bizchat-group-bizchat-edit-icon-parent">
+           
+                <a id="trusted-control-activity-logs" class="white-text right"><span class="material-icons">wysiwyg</span><span>Logs</span></a>
+            </div>
+            <div class="security-setting-bg">
+                <div class="setting-heading">Employees who can be added as trusted pins by other businesses</div>
+                <p>
+                    <input class="with-gap viewed-settings" value="contacts" name="employee-trusted-settings" type="radio" id="employee_trusted_contacts" {{#ifcond trusted_control_type '==' "contacts"}}checked{{/ifcond}} />
+                    <label for="employee_trusted_contacts">All</label>
+                </p>
+                <p>
+                    <input class="with-gap viewed-settings" value="none" name="employee-trusted-settings" type="radio" id="employee_trusted_none" {{#ifcond trusted_control_type '==' "none"}}checked{{/ifcond}} />
+                    <label for="employee_trusted_none">None</label>
+                </p>
+                <p>
+                    <input class="with-gap viewed-settings" value="only_for" name="employee-trusted-settings" type="radio" id="employee_trusted_only_for" {{#ifcond trusted_control_type '==' "only_for"}}checked{{/ifcond}} />
+                    <label for="employee_trusted_only_for">Only</label>
+                </p>
+                <p>
+                    <input class="with-gap viewed-settings" value="except_for" name="employee-trusted-settings" type="radio" id="employee_trusted_except_for" {{#ifcond trusted_control_type '==' "except_for"}}checked{{/ifcond}} />
+                    <label for="employee_trusted_except_for">Except</label>
+                </p>
+               
+            </div>
+            {{/ifcond}}
+        </div>
+    </div>
+</script>

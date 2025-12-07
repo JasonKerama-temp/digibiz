@@ -1,0 +1,23 @@
+<script id="business-tags-template" type="text/x-handlebars-template">
+    <div class="business-tags-main-container">        
+        <div class="business-tags-add-heading-container">
+            <a class="business-tags-add-heading-name">Business Tags</a>
+        </div>  
+        <div class="add-business-tags-button-container">
+            <a class="waves-effect waves-light add-business-tags-btn cursor-pointer">Add Tags</a>
+        </div>   
+        <div class="business_tags_list_content_box">
+            {{#if businessTags}}
+                {{#each businessTags}}
+                    <div class="business-tags-content-box" data-id="{{this.id}}" data-parent-id="{{this.parent_id}}">
+                    <div class="business-tags-box-name-symbol-content-box">
+                        <i class="material-icons business-tag-arrow-right" id="business_tag_arrow_button">keyboard_arrow_right</i>                                
+                        <div id="added_business_tag_department" type="text" contenteditable="false" class="validate cursor-pointer" autocomplete="off" disabled>{{this.name}}</div>
+                    </div>
+                    <div class="sub_business_tag_container_box" data-id="{{this.id}}"></div>
+                    </div>
+                {{/each}}
+            {{/if}}
+        </div>  
+    </div> 
+</script>

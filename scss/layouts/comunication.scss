@@ -1,0 +1,42 @@
+
+@use "../abstracts" as comunication;
+.communication-group-moderator-members-container,
+.communication-group-members-container,
+.collaborator-group-moderator-container,
+.customer-group-members-container,
+.collaborator-group-members-container {
+    .communication-group-moderator-members-list,
+    .communication-group-employee-members-list,
+    .communication-group-collaborator-members-list,
+    .communication-group-customer-members-list,
+    .customer-group-members-list,
+    .collaborator-group-moderator-list,
+    .collaborator-group-members-list {
+        &:has(.os-content > div) {
+            min-height: 80px;
+            max-height: 350px;
+            height: 100%;
+        }
+        .communication-group-moderator-member-wrapper {
+            .moderator-data-container {
+                .wrapper-secondary-heading {
+                    font-size: .75rem!important;
+                }
+                .wrapper-tertiary-heading {
+                    font-size: .7rem!important;
+                }
+            }
+        }
+    }
+}
+.communication-groups-identifier-based-customer-contact-wrapper {
+    @include comunication.var(background-color, card-list-bg,1);
+    margin-bottom: 1px;
+    .communication-groups-identifier-based-contact-data-wrapper {
+        .customer-contact-details-wrapper {
+            .wrapper-secondary-heading {
+                font-size: .7rem;
+            }
+        }
+    }
+}

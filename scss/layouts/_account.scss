@@ -1,0 +1,187 @@
+@use "../abstracts/" as account;
+/*****ACCOUNT PAGE*****/
+.digibiz-account-page-main-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    .digibiz-account-page-wrapper {
+        padding: 20px;
+        margin: auto;
+        @include account.bd-radius(10px);
+        background-color: rgba(var(--hubsliderbg), 0.95);
+        box-shadow: 0 2px 25px -5px rgb(0 0 0 / 35%), inset 0 0 0 1px rgb(205 205 205), inset 0 0 100px -18px rgb(255 255 255);
+        .digibiz-account-page-content-box {
+            position: relative;
+            margin: 30px;
+            text-align: center;
+            .digibiz-account-core-details-profile-picture-wrapper {
+                justify-content: center;
+                display: flex;
+                padding: 6px;
+                .digibiz-account-profile-pic-container {
+                    width: 80px;
+                    height: 80px;
+                    /* min-width: 50px;
+                    min-height: 50px;
+                    flex: 0 0 50px; */
+                    @include account.bd-radius(50%);
+                    background-color: lightgrey;
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    /* margin-right: 15px; */
+                }
+            }
+        }
+    }
+}
+
+
+.digibiz-account-page-content-box>div {
+    padding: 6px;
+}
+.digibiz-account-name-data {
+    font-weight: 500;
+}
+.digibiz-account-mobile-number-data {
+    font-size: .85rem;
+}
+.digibiz-account-dob-data {
+    font-size: .8rem;
+}
+.digibiz-account-page-buttons-box {
+    /* position: relative; */
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 20px;
+    /* bottom: 0; */
+    /* left: 0; */
+    /* right: 0; */
+    /* height: 100%; */
+    /* width: 100%; */
+}
+
+#digibiz_account_confirm_button,
+#add_storage_digibiz_account_finish,
+#digibiz_account_role_update_confirm_button {
+    flex: 1;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    pointer-events: auto;
+    margin: 0 10px;
+    background-color: darkgray;
+    color: rgba(35, 35, 35, 1);
+    font-size: 0.85rem;
+    @include account.bd-radius(20px);
+    max-width: 93px;
+}
+#digibiz_account_role_update_confirm_button {
+    background-color: #007067;
+    color: white;
+}
+#digibiz_account_cancel_button,
+#digibiz_account_role_update_cancel_button {
+    flex: 1;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    pointer-events: auto;
+    margin: 0 10px;
+    background-color: darkgray;
+    color: rgba(35, 35, 35, 1);
+    font-size: 0.85rem;
+    @include account.bd-radius(20px);
+    max-width: 93px;
+}
+
+.terms-conditions-data {
+    padding: 20px;
+}
+
+.add-storage-digibiz-account-finish-btn-container {
+    justify-content: center;
+    /* align-items: center; */
+    display: flex;
+    margin-top: 20px;
+}
+
+span.custom-communication-group-moderator-type,
+.custom-communication-group-moderator-group_name,
+.employee-module-name {
+    font-size: small;
+    color: darkgrey;
+}
+
+.moderator-data-container>span,
+.member-data-container>span {
+    // padding-left: 80px;
+    display: flex;
+}
+
+.communication-group-communication-container,
+.communication-group-employee-container,
+.communication-group-customer-container {
+    /*height: 50px;*/
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* padding: 10px; */
+    font-size: 1.3rem;
+    /* background-color: var(--titleBandBg); */
+    margin-bottom: 1px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#communication-group-communication-data-container,
+#communication-group-employee-data-container,
+#communication-group-customer-data-container {
+    /* overflow-y: auto!important; */
+    width: 100%;
+}
+
+.cloud-storage-account-buttons button:not(.btn-flat) {
+    height: 25px;
+    line-height: 25px;
+    margin: 5px;
+    padding: 0 10px;
+    @include account.bd-radius(15px);
+    @include account.var(background-color, completed, .5);
+    @include account.var(color, blackTextColor, 1);
+    /* font-weight: 500; */
+    font-size: .8rem;
+}
+
+.cloud-storage-account-buttons button.btn-flat {
+    font-size: .7rem;
+    text-transform: unset;
+    height: 25px;
+    line-height: 25px;
+    margin: 5px;
+    padding: 0 10px;
+    @include account.bd-radius(15px);
+    @include account.var(background-color, hubsliderbg, .9);
+    @include account.var(color, whiteTextColor, 1);
+}
+
+// authunticate
+
+.storage-active-account {
+    display: flex;
+    align-items: center;
+    .profile-picture-wrapper {
+        width: 35px;
+        height: 35px;
+    }
+}

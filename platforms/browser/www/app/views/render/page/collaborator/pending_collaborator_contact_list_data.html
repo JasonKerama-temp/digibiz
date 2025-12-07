@@ -1,0 +1,22 @@
+<script id="pending-collaborator-contact-list-data-template" type="text/x-handlebars-template">
+    <div class="pending-collaborator-contact-list-contentbox">
+        {{#if pending_collaborator_contact_list_data}}
+        {{#each pending_collaborator_contact_list_data}}
+        <div class="pending-collaborator-contact-wrapper" data-business-id="{{this.contact.business_id}}">                    
+            <div class="profile-pic-info-wrapper">
+              <div class="profile-pic-container view-business-profile-pic cursor-pointer p-{{imageLetter}}">
+                  <img class="profile-pic" src="{{this.display_picture.avtarUrl}}" data-id="{{this.display_picture.thumbnail}}" data-business-id="{{this.contact.business_id}}"/>
+                  <span class="persona">{{imageLetter}}</span>
+              </div>
+              <div class="pending-collaborator-data-wrapper">
+                <div class="pending-collaborator-business-name wrapper-primary-heading"><span class="truncate">{{#if this.business_display_name}}{{this.business_display_name}}{{else}}{{this.business_name}}{{/if}}</span></div>
+                <div class="pending-collaborator-business-message wrapper-secondary-heading"><span class="">{{#if this.message}}{{this.message}}{{/if}}</span></div>
+              </div>              
+            </div>   
+          </div>                                  
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}             
+      </div>
+</script>

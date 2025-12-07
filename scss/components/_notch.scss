@@ -1,0 +1,57 @@
+
+
+[platform="iOS"] {
+    // .main {
+    //     padding-top: constant(safe-area-inset-top);
+    //     padding-top: env(safe-area-inset-top);
+    // }
+    .header-band {
+        padding-top: constant(safe-area-inset-top);
+        padding-top: env(safe-area-inset-top);
+    }
+    .sidebar-slider-wrapper {
+        padding-top: constant(safe-area-inset-top);
+        padding-top: env(safe-area-inset-top);
+    }
+    .fixed-action-btn {
+        padding-bottom: constant(safe-area-inset-bottom);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+    // .register-busines-btn-container,
+    // .register-employee-btn-container,
+    // .group-save-cancel-container {
+    //     padding-bottom: constant(safe-area-inset-bottom);
+    //     padding-bottom: env(safe-area-inset-bottom);
+    // }
+    .business-owner-business-list-title-band {
+        padding-top: constant(safe-area-inset-top);
+        padding-top: env(safe-area-inset-top);
+    }
+    .employee-business-list-title-band,
+    .view-employee-business-apps-land-page-wrapper-title-band-wrapper,
+    .prospect-app-hub-page-wrapper-title-band-wrapper,
+    .business-owner-business-list-title-band {
+        padding-top: constant(safe-area-inset-top);
+        padding-top: env(safe-area-inset-top);
+    }
+    .storage-map-header-wrapper {
+        padding-top: constant(safe-area-inset-top);
+        padding-top: env(safe-area-inset-top);
+    }
+    .back-btn-wrapper {
+        padding-top: constant(safe-area-inset-top);
+        padding-top: env(safe-area-inset-top);
+    }
+    .digibiz-home-page-top-band-main-container {
+        padding-top: constant(safe-area-inset-top);
+        padding-top: env(safe-area-inset-top);
+    }
+    // .digibiz-home-page-middle-band-main-container {
+    //     > div {
+    //         > div {
+    //             padding-top: constant(safe-area-inset-top);
+    //             padding-top: env(safe-area-inset-top);
+    //         }
+    //     }
+    // }
+}

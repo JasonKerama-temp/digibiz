@@ -1,0 +1,52 @@
+<script id="active-employee-creation-data-list-template" type="text/x-handlebars-template">
+    <div class="employee-creation-list-contentbox scrollinit">
+        {{#if employee_creation_employee_list_data}}
+        {{#each employee_creation_employee_list_data}}
+            <div class="employee-wrapper test" data-employee-id="{{this.dj_unique_employee_id}}" data-status="{{this.status.status}}" data-socket-status="{{this.socket_enable_status}}">                    
+            <div class="profile-pic-info-wrapper">
+                <div class="employee-identity-pic profile-pic-container p-{{imageLetter}} view-employee-profile-pic cursor-pointer">
+                    <span class="persona">{{imageLetter}}</span>
+                    <img class="profile-pic" src="{{this.identity_picture.avtarUrl}}" data-id="{{this.identity_picture.thumbnail}}" data-employee-id="{{this.dj_unique_employee_id}}"/>
+                </div>            
+              <div class="employee-data-wrapper employee-get-profile-information ellipsify">
+                <div class="employee-name wrapper-primary-heading"><span class="truncate">{{this.name.first}}&nbsp;{{this.name.last}}</span></div>
+                {{#if this.display_name}}
+                <div class="employee-display-name wrapper-secondary-heading"><span class="truncate">{{this.display_name}}</span></div>
+                {{/if}}
+                <!-- {{#ifcond this.employee_role '==' 'super_admin'}}
+                <div class="employee-data-type wrapper-secondary-heading">Super-Admin</div>
+                {{/ifcond}} -->
+                <div class="employee-information wrapper-tertiary-heading">{{#if this.designation_name}}{{this.designation_name}}{{else}}{{#if this.company_employee_id}}{{this.company_employee_id}}{{/if}}{{/if}}{{#if this.company_employee_id}}&nbsp;|&nbsp;{{this.company_employee_id}}{{/if}}</div>
+                {{#ifcond this.status.status '==' 'accepted'}}
+                <div class="employee-status wrapper-quaternary-heading status--accepted">Accepted</div>
+                {{/ifcond}}
+                {{#ifcond this.status.status '==' "unassigned"}}
+                <div class="employee-status wrapper-quaternary-heading status--unassigned">Unassigned</div>
+                {{/ifcond}}
+                {{#ifcond this.status.status '==' "inactive"}}
+                <div class="employee-status wrapper-quaternary-heading status--inactive">Inactive</div>
+                {{/ifcond}}
+                {{#ifcond this.status.status '==' "exited"}}
+                <div class="employee-status wrapper-quaternary-heading status--exited">Exited</div>
+                {{/ifcond}}
+                {{#ifcond this.status.status '==' "deleted"}}
+                <div class="employee-status wrapper-quaternary-heading status--deleted">Deleted</div>
+                {{/ifcond}}
+            </div>              
+            </div>  
+            <div class="btn-wrap employee-active-page-btn-wrap">
+                {{#ifcond this.employee_role '==' 'super_admin'}}
+                <div class="more-menu-wrapper super-admin-icon-identifier" title="Super Admin"><i class="material-icons">workspace_premium</i></div>
+                {{/ifcond}}
+                <div class="more-menu-wrapper show-action-employee-data cursor-pointer" id="show-action-employee-data"><i class="material-icons">more_vert</i></div>
+            </div>
+        </div>                                  
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}     
+    </div>
+    <div class="fixed-action-btn create-survey-btn-wrapper">
+        <a class="btn-floating btn-save btn-large cursor-pointer" id="employee_creation_add_button"><i class="material-icons">add</i></a>
+    </div>  
+</script>

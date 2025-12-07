@@ -1,0 +1,140 @@
+@use "../abstracts" as splashscreen;
+.logo-display-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: linear-gradient(155deg, #b1fae2 0%, #64f7ee 22%, #3fbba2 63%, #68a170 100%);
+    background: url("../images/background.jpg") no-repeat center / cover;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &::before {
+      content: "Enhancing Digital Relevance";
+      width: 150px;
+      height: 150px;
+      background: url("../images/applogo/digibiz.svg") center / 130px no-repeat;
+      display: flex;
+      flex-flow: column-reverse;
+      align-items: center;
+      color: rgba(255,255,255,1);
+      text-shadow: 0 0 6px rgba(0,0,0,1);
+      text-align: center;
+      white-space: nowrap;
+      font-size: .85rem;
+    }
+    div {
+      position: absolute;
+      bottom: 60px;
+      color: rgba(255,255,255,1);
+      text-shadow: 0 0 6px rgba(0,0,0,1);
+      font-size: .8rem;
+      display: flex;
+      justify-content: center;
+      min-width: 150px;
+      span {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .logo-display-container div span:nth-of-type(1)::before {
+    content: "";
+    -o-animation: connecting 1s 0s forwards;
+    -moz-animation: connecting 1s 0s forwards;
+    -webkit-animation: connecting 1s 0s forwards;
+    animation: connecting 1s 0s forwards;
+  }
+   .logo-display-container div span:nth-of-type(2)::before {
+    content: "";
+    -o-animation: establishing 1s 1s forwards;
+    -moz-animation: establishing 1s 1s forwards;
+    -webkit-animation: establishing 1s 1s forwards;
+    animation: establishing 1s 1s forwards;
+  }
+  .logo-display-container div span:nth-of-type(3)::before {
+    content: "";
+    -o-animation: securing 1s 2s infinite;
+    -moz-animation: securing 1s 2s infinite;
+    -webkit-animation: securing 1s 2s infinite;
+    animation: securing 1s 2s infinite;
+  } 
+  @-o-keyframes connecting {
+    0% { content: 'Connecting...'; opacity: 0}
+   20% { content: 'Connecting...'; opacity: 1}
+   80% { content: 'Connecting...'; opacity: 1}
+   100% { content: 'Connecting...'; opacity: 0}
+ }
+ @-o-keyframes establishing {
+  0% { content: 'Establishing Session...'; opacity: 0}
+  20% { content: 'Establishing Session...'; opacity: 1}
+  80% { content: 'Establishing Session...'; opacity: 1}
+  100% { content: 'Establishing Session...'; opacity: 0}
+ }
+ @-o-keyframes securing {
+  0% { content: 'Securing Session...'; opacity: 0}
+  20% { content: 'Securing Session...'; opacity: 1}
+  80% { content: 'Securing Session...'; opacity: 1}
+ 100% { content: 'Securing Session...'; opacity: 0}
+ }
+  @-moz-keyframes connecting {
+    0% { content: 'Connecting...'; opacity: 0}
+   20% { content: 'Connecting...'; opacity: 1}
+   80% { content: 'Connecting...'; opacity: 1}
+   100% { content: 'Connecting...'; opacity: 0}
+ }
+ @-moz-keyframes establishing {
+  0% { content: 'Establishing Session...'; opacity: 0}
+  20% { content: 'Establishing Session...'; opacity: 1}
+  80% { content: 'Establishing Session...'; opacity: 1}
+  100% { content: 'Establishing Session...'; opacity: 0}
+ }
+ @-moz-keyframes securing {
+  0% { content: 'Securing Session...'; opacity: 0}
+  20% { content: 'Securing Session...'; opacity: 1}
+  80% { content: 'Securing Session...'; opacity: 1}
+ 100% { content: 'Securing Session...'; opacity: 0}
+ }
+  @-webkit-keyframes connecting {
+    0% { content: 'Connecting...'; opacity: 0}
+   20% { content: 'Connecting...'; opacity: 1}
+   80% { content: 'Connecting...'; opacity: 1}
+   100% { content: 'Connecting...'; opacity: 0}
+ }
+ @-webkit-keyframes establishing {
+  0% { content: 'Establishing Session...'; opacity: 0}
+  20% { content: 'Establishing Session...'; opacity: 1}
+  80% { content: 'Establishing Session...'; opacity: 1}
+  100% { content: 'Establishing Session...'; opacity: 0}
+ }
+ @-webkit-keyframes securing {
+  0% { content: 'Securing Session...'; opacity: 0}
+  20% { content: 'Securing Session...'; opacity: 1}
+  80% { content: 'Securing Session...'; opacity: 1}
+ 100% { content: 'Securing Session...'; opacity: 0}
+ }
+  @keyframes connecting {
+     0% { content: 'Connecting...'; opacity: 0}
+    20% { content: 'Connecting...'; opacity: 1}
+    80% { content: 'Connecting...'; opacity: 1}
+    100% { content: 'Connecting...'; opacity: 0}
+  }
+  @keyframes establishing {
+   0% { content: 'Establishing Session...'; opacity: 0}
+   20% { content: 'Establishing Session...'; opacity: 1}
+   80% { content: 'Establishing Session...'; opacity: 1}
+   100% { content: 'Establishing Session...'; opacity: 0}
+  }
+  @keyframes securing {
+   0% { content: 'Securing Session...'; opacity: 0}
+   20% { content: 'Securing Session...'; opacity: 1}
+   80% { content: 'Securing Session...'; opacity: 1}
+  100% { content: 'Securing Session...'; opacity: 0}
+  }

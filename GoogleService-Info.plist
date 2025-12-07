@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>341123861707-88befmjse9321haed0dt4rl0irtp9q83.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.341123861707-88befmjse9321haed0dt4rl0irtp9q83</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBGHxR0fPUyZ7rR5LN3z6J1j5J2ESMPM-8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>341123861707</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.digitaljeevi.staging.business</string>
+	<key>PROJECT_ID</key>
+	<string>dj-business-86b2d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>dj-business-86b2d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:341123861707:ios:7c3c1f062ad211b1bc1f4e</string>
+</dict>
+</plist>

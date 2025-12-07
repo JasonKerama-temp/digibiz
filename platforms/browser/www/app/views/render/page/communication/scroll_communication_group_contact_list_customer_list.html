@@ -1,0 +1,22 @@
+<script id="scroll-communication-group-identifier-based-customer-contact-list-data-template" type="text/x-handlebars-template">
+    {{#if communication_group_identifier_based_customer_contact_list_data}}
+ 
+        {{#each communication_group_identifier_based_customer_contact_list_data}}
+        <div class="communication-group-identifier-based-customer-contacts-identifier-wrapper user-conatiner accordion-itemmm">
+            <div class="accordion-titleee cursor-pointer" data-tab="{{this.id}}" data-type="identifier">                
+                <div class="communication-group-identifier-based-customer-contacts-identifier-data-wrapper ellipsify">
+                    <div class="communication-group-identifier-based-customer-contacts-identifier-name"><span class="truncate">{{this.identifier}}</span></div>             
+                </div>     
+                <span class="material-icons">expand_more</span>
+            </div>
+
+            <div class="accordion-contenttt" id="{{this.id}}" data-content-type="identifier">
+                
+            </div>
+        </div>
+        {{/each}}
+   
+        {{else}}
+        <div class="end_data">End of listing</div>    
+    {{/if}}
+</script>

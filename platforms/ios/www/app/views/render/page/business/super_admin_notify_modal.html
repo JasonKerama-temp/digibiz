@@ -1,0 +1,23 @@
+<script id="add-super-admin-notify-template" type="text/x-handlebars-template">
+    <div class="add-super-admin-notify-modal-main-conatiner">
+    <div class="super-admin-creation-parts-container" data-step="1">                    
+        <div class="super-admin-unique-name-container">
+            <span class="super-admin-name-heading">Unique Name</span>
+            <div class="super-admin-unique-name-box">
+                <input class="unique-name validation" type="text" id="super_admin_unique_name_field" placeholder="Enter unique name" value="{{#if adminData.core_unique_name}}{{adminData.core_unique_name}}{{/if}}">
+            </div>
+        </div>
+        <div class="or_data">(OR)</div>
+        <div class="super-admin-mobile-number-container">
+            <span class="super-admin-mobile_number-heading">Mobile Number</span>
+            <div class="contact-input-wrap">
+                <div class="form-componenents form-validation">
+                    <input class="form-control contact_mobile mobile-flag" id="add-super-admin-mobile-number" name="contacts[mobile_number]" type="tel" autocomplete="off" value="{{#if adminData.mobile_number}}{{adminData.mobile_number}}{{/if}}">
+                    <i class="material-icons icon-validation-warning" aria-hidden="true">warning</i>
+                    <span class="left-warning-message"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</script>

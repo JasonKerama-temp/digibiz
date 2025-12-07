@@ -1,0 +1,322 @@
+@use "../abstracts" as employeetype;
+
+// .employee-type-wrapper, 
+// .employee-category-wrapper, 
+// .employee-designation-wrapper, 
+[class*=common-listing-], 
+.alumini-customer-wrapper, 
+.collaborator-groups-list-wrapper,
+.collaborator-contact-list-notification-details-wrapper,
+.collaborator-group-moderator-member-wrapper,
+.collaborator-group-creator-business-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-bottom: unset;
+    min-height: 60px;
+    @include employeetype.var(background-color, card-list-bg, 1);
+    @include employeetype.var(color, headerFontColor, 1);
+    margin-bottom: 1px;
+    position: relative;
+}
+
+.employee-type-container,
+.employee-category-container,
+.employee-designation-container {
+    width: 95%;
+    display: flex;
+    padding: 5px 10px;
+    align-items: center;
+    min-height: 30px;
+}
+
+.wrapper-primary-heading,
+.customer-groups-identifier-name {
+    font-size: .9rem;
+    @include employeetype.var(color, whiteTextColor, 1);
+}
+
+.more-menu-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 40px;
+    width: 40px;
+    cursor: pointer;
+    pointer-events: auto;
+    margin-left: auto;
+    @include employeetype.var(color, whiteTextColor, .7);
+}
+
+.standard-employees-groups-list-container {
+    width: 100%;
+}
+
+.digibiz-logs-wrapper {
+    min-height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 1px;
+    background-color: rgba(var(--card-list-bg), 1);
+    color: rgba(var(--headerFontColor), 1);
+}
+
+.log-date {
+    font-size: x-small;
+    margin-top: 5px;
+    color: darkgrey;
+}
+
+.employee-create-main-container {
+    margin-top: 5px;
+    width: 100%;
+
+    .employee-create-main-wrapper {
+        @include employeetype.bd-radius(5px);
+        margin: 10px 10px 70px 10px;
+        @include employeetype.var(background-color, hubsliderbg, .4);
+        // border: 1px solid rgba(var(--b6a,219,219,219),.2);
+        box-shadow: 0 2px 25px -5px rgb(0 0 0 / 35%), inset 0 0 0 1px #0e4d45, inset 0 0 40px -48px rgb(255 255 255);
+        height: auto;
+
+        .customer-create-main-container,
+        .employee-create-content-box-profile {
+            padding: 10px;
+        }
+    }
+}
+
+[platform=browser] .business-profile-section-one,
+[platform=browser] .customer-profile-section-one,
+[platform=browser] .employee-profile-section-one,
+[platform=desktop] .business-profile-section-one,
+[platform=desktop] .customer-profile-section-one,
+[platform=desktop] .employee-profile-section-one {
+    display: flex;
+    align-items: center;
+    @include employeetype.bd-radius(5px);
+    margin-bottom: 15px;
+    @include employeetype.var(background-color, hubsliderbg, 1);
+}
+
+.business-profile-section-one-subsection,
+.customer-profile-section-one-subsection,
+.employee-profile-section-one-subsection {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+}
+
+.employee-display-picture-wrapper {
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+}
+
+.business-profile-data-section .multimedia-container,
+.customer-profile-data-section .multimedia-container,
+.employee-profile-data-section .multimedia-container {
+    padding-left: unset;
+    margin-top: unset;
+    align-self: flex-start;
+}
+
+.business-profile-data-section .multimedia_wrapper,
+.customer-profile-data-section .multimedia_wrapper,
+.employee-profile-data-section .multimedia_wrapper {
+    margin-top: unset;
+    padding-left: unset;
+    margin: unset;
+    padding: unset;
+}
+
+[platform=browser] .business-display-picture-wrapper .identity-picture-wrapper,
+[platform=browser] .customer-display-picture-wrapper .identity-picture-wrapper,
+[platform=browser] .employee-display-picture-wrapper .identity-picture-wrapper,
+[platform=desktop] .business-display-picture-wrapper .identity-picture-wrapper,
+[platform=desktop] .customer-display-picture-wrapper .identity-picture-wrapper,
+[platform=desktop] .employee-display-picture-wrapper .identity-picture-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.business-profile-data-info-box {
+    margin-left: 10px;
+}
+
+.multimedia-container .identity-picture-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.identity-picture-wrapper,
+.identity-video-wrapper {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+    @include employeetype.bd-radius(10px);
+    // background-color: #a5a5a5;
+    @include employeetype.var(background-color, hubsliderbg, 1);
+    box-shadow: inset 0 0 20px rgb(0 0 0 / 10%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// .business-profile-data-info-box, .customer-profile-data-info-box, .employee-profile-data-info-box {
+//     margin-top: 25px;
+// }
+.modal-popup-browser .modal-popup-content,
+.modal-popup-desktop .modal-popup-content {
+    flex: 1;
+    padding: 0 5px;
+    @include employeetype.var(color, modalBodyText, 1);
+    position: relative;
+}
+
+.customer-create-content-box-profile .customer-display-name-content-box,
+.customer-create-content-box-profile .customer-name-content-box,
+.employee-create-content-box-profile .employee-name-content-box {
+    width: unset;
+    display: flex;
+    .material-icons {
+        font-size: 1.3rem;
+    }
+}
+
+
+
+div#business_name_profile {
+    // font-size: calc(14px + (16 - 14) * ((100vw - 300px) / (1600 - 300)));
+    font-size: 1rem;
+    font-weight: 600;
+    @include employeetype.var(color, whiteTextColor, .8);
+}
+
+div#business_display_name_profile {
+    font-size: calc(18px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
+    font-weight: 500;
+    @include employeetype.var(color, whiteTextColor, 1);
+}
+
+#customer_name_profile,
+#employee_name_profile {
+    font-size: calc(14px + (16 - 14) * ((100vw - 300px) / (1600 - 300)));
+    @include employeetype.var(color, whiteTextColor, .4);
+}
+
+#customer_display_name_profile,
+#employee_display_name_profile {
+    font-size: calc(18px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
+    font-weight: 500;
+    @include employeetype.var(color, whiteTextColor, 1);
+}
+
+.customer-profile-data-info-box:not(.customer-display-name-present) #customer_name_profile,
+.employee-profile-data-info-box:not(.employee-display-name-present) #employee_name_profile {
+    font-size: calc(18px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
+    font-weight: 500;
+    @include employeetype.var(color, whiteTextColor, 1);
+}
+
+#customer_role_type_profile {
+    font-size: 12px;
+    font-weight: 250;
+    @include employeetype.var(color, whiteTextColor, 1);
+}
+
+div#business_contact_number_profile,
+div#business_email_profile,
+div#business_registered_address_profile,
+div#customer_alternate_email_profile,
+div#customer_designation_profile,
+div#customer_display_phone_number_profile,
+div#customer_email_profile,
+div#customer_phone_number_profile,
+div#employee_alternate_email_profile,
+div#employee_company_employee_id_profile,
+div#employee_designation_profile,
+div#employee_display_phone_number_profile,
+div#employee_email_profile,
+div#employee_phone_number_profile {
+    display: flex;
+    align-items: center;
+    font-size: .75rem;
+    @include employeetype.var(color, whiteTextColor, .7);
+}
+
+div#business_display_name_profile_box {
+    display: flex;
+    align-items: center;
+    font-size: .9rem;
+    @include employeetype.var(color, lightGreen, 1);
+}
+
+.employee-profile-data-value {
+    @include employeetype.var(color, whiteTextColor, 1);
+}
+
+div#business_contact_number_profile i,
+div#business_email_profile i,
+div#business_registered_address_profile i,
+div#customer_alternate_email_profile i,
+div#customer_designation_profile i,
+div#customer_display_phone_number_profile i,
+div#customer_email_profile i,
+div#customer_phone_number_profile i,
+div#employee_alternate_email_profile i,
+div#employee_company_employee_id_profile i,
+div#employee_designation_profile i,
+div#employee_display_phone_number_profile i,
+div#employee_email_profile i,
+div#employee_phone_number_profile i {
+    margin-right: 5px;
+    font-size: 15px;
+    @include employeetype.bd-radius(50%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    background-color: rgba(5, 5, 5, .3);
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+div#business_display_name_profile_box i {
+    margin-right: 5px;
+    font-size: 15px;
+    @include employeetype.bd-radius(50%);
+    @include employeetype.var(color, lightGreen, 1);
+    display: flex;
+    align-items: center;
+    background-color: rgba(5, 5, 5, .3);
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+.employee-contact-access-employee-wise-list-main-container {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+
+    .employee-contact-access-employee-wise-wrapper {
+        width: 100%;
+        height: 100%;
+
+        .employee-contact-access-employee-wise-info-wrapper {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.user-conatiner-roles-list {
+    display: flex;
+    min-height: 60px;
+    align-items: center;
+}

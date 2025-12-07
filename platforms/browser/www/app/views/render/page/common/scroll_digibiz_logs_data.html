@@ -1,0 +1,16 @@
+<script id="scroll-digibiz-logs-list-data-template" type="text/x-handlebars-template">
+            {{#if log_list_data}}
+            {{#each log_list_data}}
+            <div class="digibiz-logs-wrapper">
+                <div class="profile-pic-info-wrapper">
+                    <div class="activity-log-details-wrapper">
+                        <div class="activity-log-message">{{this.action.activity}}</div>
+                        <div class="log-date"><span>{{this.action.date}}</span></div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+            {{else}}
+            <div class="end_data">End of listing</div>
+            {{/if}}
+</script>

@@ -1,0 +1,59 @@
+@use "../abstracts" as login;
+.login-bg {
+    // latest build test
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &::before {
+        content: "";
+        background: linear-gradient(155deg, #b1fae2 0%, #64f7ee 22%, #3fbba2 63%, #68a170 100%);
+        background: url("https://resources.staging.digitaljeevi.com/images/background.jpg") no-repeat center/cover;
+        -o-object-fit: contain;
+        object-fit: contain;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+    }
+    .container {
+        width: 100%;
+        height: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        .login-container-box {
+            position: relative;
+            height: 100vh !important;
+            #login-container {
+                width: 100%;
+                min-height: 100%;
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}
+[app="fill_individual_details"] .form-group {
+   > label.sm-title {
+        @include login.var(color, loginInputLabel,.8);
+   }
+    .error_note {
+        color: red!important;
+        font-size: 12px;
+        bottom: -4px;
+        left: 0;
+        position: absolute;
+   }
+   .radio-inline {
+    position: relative;
+    label[for="primaryradio-otp"] {
+        + span.error_note {
+            left: unset;
+        }
+    }
+    label {
+        @include login.var(color, blackTextColor,1);
+    }
+   }
+}

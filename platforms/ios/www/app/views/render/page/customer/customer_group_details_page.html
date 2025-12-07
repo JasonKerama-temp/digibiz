@@ -1,0 +1,180 @@
+<script id="customer-group-details-template" type="text/x-handlebars-template">
+    <div class="customer-group-create-main-container">
+        <div class="row flex-height">
+            <div class="customer-group-create-border">
+                <div class="customer-group-creation-main-content-box">
+                    <div class="customer-group-creation-main-section">
+                        <div class="customer-group-creation-group-info-section creation-info-bg-wrapper">                                
+                            {{#ifcond group_data.group_type '==' 'custom'}}
+                            <div class="customer-group-customer-edit-icon-parent">
+                                <a id="delete_customer_group" class="right cursor-pointer"><i class="material-icons">delete</i></a>
+                                <a id="add_customer_group_customer_btn" class="right"><i class="material-icons">person_add</i></a>
+                            </div> 
+                            {{/ifcond}}
+                            {{#ifcond group_type '==' 'custom'}}
+                            <div class="customer-group-customer-edit-icon-parent">
+                                <a id="add_customer_group_customer_btn" class="right"><i class="material-icons">person_add</i></a>
+                            </div> 
+                            {{/ifcond}}
+                            <div class="customer-group-info-wrapper creation-info-wrapper">
+                                <div class="pdleft">                                        
+                                        <div class="multimedia-container">
+                                            <div class="multimedia_wrapper">
+                                                <div class="identity-picture-wrapper view">
+                                                    <img class="attached-img" id="group_image" src="{{group_data.group_image.avtarUrl}}"/>                             
+                                                    <div class="mask">
+                                                        <!-- {{#if this.group_image.avtarUrl}}<a class="group_image_preview" data-image-id="{{group_data.group_image.thumbnail}}"><i class="material-icons">pageview</i></a>{{/if}} -->
+                                                        {{#if group_data.group_image.avtarUrl}}<a class="info group-image-multimedia-load-btn cursor_pointer"><i class="material-icons" id="group-image-load-btn" data-thumbnail-id="{{group_data.group_image.thumbnail}}">photo_camera</i></a>{{/if}}
+                                                        {{#if group_data.group_image.avtarUrl}}
+                                                        <a class="info cursor_pointer"><i class="material-icons" id="group-image-delete" data-image-id="{{group_data.group_image.thumbnail}}">delete</i></a>
+                                                        {{else}}
+                                                        <a class="info group-image-multimedia-load-btn cursor_pointer"><i class="material-icons" id="group-image-load-btn">add</i></a>
+                                                        {{/if}}
+                                                    </div>
+                                                    <input type="file" class="validate" id="group-image-upload" name="multimediaFiles">
+                                                </div>
+                                             </div> 
+                                             <div class="upload-preview-wrapper hide" id="upload-preview-wrapper">
+                                                <div class="upload-preview-header">
+                                                    <span>Preview</span>
+                                                    <button id="upload-preview-close-btn" class="close-preview"><i class="material-icons">close</i></button>
+                                                </div>
+                                                <div class="upload-preview-container">
+                                                    <div class="upload-preview-container-file-preview" id="upload-file-preview"></div>
+                                                </div>
+                                                <div class="upload-preview-footer hide">              
+                                                  <button id="upload-footer-send-btn" class="disabled"><i class="material-icons">send</i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>                
+                                <div class="mt20">
+                                        <div class="input-field form-validation">
+                                            <input id="customerGroupName" class="inputform-validation" name="name" type="text" autofocus="" value="{{group_data.name}}" {{#ifcond group_data.group_type '==' 'standard'}}disabled{{/ifcond}}>
+                                            <label class="active" for="name">Group Name</label>
+                                            <i class="material-icons icon-validation-warning" aria-hidden="true">warning</i>
+                                            <span class="left-warning-message"></span>
+                                        </div>  
+                                        <div class="input-field form-validation">
+                                            <textarea id="customer_group_desc" class="inputform-validation materialize-textarea" name="description" value="{{group_data.description}}">{{group_data.description}}</textarea>
+                                            <label class="active" for="name">Group Description</label>
+                                            <i class="material-icons icon-validation-warning" aria-hidden="true">warning</i>
+                                            <span class="left-warning-message"></span>
+                                        </div>  
+                                        <div class="visibility-setting-wrapper">  
+                                            <!-- <label class="active" for="name">Group Visibility</label>                  
+                                            <select id="select-visibility-type" class="browser-default">            
+                                                <option value="">--Select--</option>
+                                                <option value="internal" {{#ifcond group_data.visibility '==' 'internal'}} selected {{/ifcond}}>Internal</option>
+                                                <option value="external" {{#ifcond group_data.visibility '==' 'external'}} selected {{/ifcond}}>External</option>
+                                            </select> -->
+                                            <span class="custom-dropdown-heading">Group Visibility</span>
+                                            <div id="group-visibility" class="wrapper-dropdown cursor-pointer" tabindex="1">
+                                                {{#if group_data.visibility}}
+                                                    <span class="disabled selected-dropdown selected-value-group-visbility" name="group_visibility" data-value="{{group_data.visibility}}">{{#ifcond group_data.visibility '==' 'internal'}} Internal {{/ifcond}}{{#ifcond group_data.visibility '==' 'external'}} External {{/ifcond}}</span>
+                                                {{else}}
+                                                    <span class="disabled selected-dropdown selected-value-group-visbility" name="group_visibility" data-value="" data-id="">--Select--</span>
+                                                {{/if}}
+                                                    <ul class="custom-dropdown">             
+                                                        <li class="group_visibility" data-value="internal">Internal</li>
+                                                        <li class="group_visibility" data-value="external">External</li>
+                                                    </ul>
+                                            </div>
+                                        </div>                                   
+                                </div>                                
+                            </div>
+                        </div>
+                        <div class="customer-group-creation-group-members-section">
+                            <div class="customer-group-creation-group-members-contentbox">
+                                <div class="customer-group-customer-heading bg-color members-header-wrapper">
+                                    <span class="members-title">Members</span>
+                                    <span class="search-member-button waves-effect"><i class="material-icons">search</i></span>
+                                </div>
+                                <div class="customer-group-members-container members-content-wrapper">
+                                    <div class="customer-group-members-list" id="customer-group-members-list">                                         
+                                        {{#ifcond group_data.customer_group_type '==' 'primary_customers'}}
+                                        <div class="members-message">All {{label_name}} of this Business</div>
+                                        {{/ifcond}}
+                                        {{#ifcond group_data.customer_group_type '==' 'primary_associate_customers'}}
+                                        <div class="members-message">All {{label_name}} and Associate {{label_name}} of this Business</div> 
+                                        {{/ifcond}}   
+                                        {{#ifcond group_data.customer_group_type '==' 'primary'}}
+                                        <div class="members-message">{{group_data.name}} {{label_name}} of this Business</div> 
+                                        {{/ifcond}} 
+                                        {{#ifcond group_data.customer_group_type '==' 'combination'}}
+                                        <div class="members-message">{{group_data.name}} {{label_name}} and Associate {{label_name}} of this Business</div> 
+                                        {{/ifcond}}
+                                        {{#ifcond group_data.customer_group_type '==' 'custom'}}
+
+                                        {{#ifcond group_data.custom_group_from '==' 'contact_list'}}
+                                        {{#if group_members_data}}
+                                        {{#each group_members_data}}
+                                        <div class="custom-customer-group-member-wrapper" data-customer-id="{{this.member.customer_id}}" data-customer-type="{{this.member.customer_type}}" data-member-id="{{this.id}}" data-role-id="{{this.member_data.role.id}}" data-role-type="{{this.member_data.role.type}}" data-role-business-id="{{this.member_data.role.business_id}}" {{#ifcond this.member.customer_type '==' 'associate_customer'}} data-parent-customer-id="{{this.member.parent_customer_id}}"{{/ifcond}}>
+                                            <div class="file-select">                                               
+                                                <div class="contact-profile-container profile-pic-container p-{{imageLetter}}">
+                                                    <img src="{{this.identity_picture.avtarUrl}}" class="chat-avatar-image">
+                                                    <span class="persona">{{imageLetter}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="filemanager-file-wrapper">
+                                                <div class="custom-customer-group-member-information-wrapper">
+                                                    <span class="custom-customer-group-member-name wrapper-primary-heading">{{#if this.member_display_name}}{{this.member_display_name}}{{else}}{{this.member_name.first}}&nbsp;{{this.member_name.last}}{{/if}}</span>
+                                                    {{#if this.role_business_name}}
+                                                    <span class="custom-customer-group-member-role-business-name wrapper-secondary-heading">{{this.role_business_name}}</span>
+                                                    {{/if}}
+                                                    {{#ifcond this.member.customer_type '==' 'associate_customer'}}
+                                                    <span class="custom-customer-group-member-info wrapper-secondary-heading">{{#if this.member_data.identifierName}}{{this.member_data.identifierName}}{{/if}}{{#if this.member_data.primaryCustomerData}}&nbsp;|&nbsp;{{this.member_data.primaryCustomerData.identifier_name}}&nbsp;|&nbsp;{{#if this.member_data.primaryCustomerData.display_name}}{{this.member_data.primaryCustomerData.display_name}}{{else}}{{this.member_data.primaryCustomerData.name.first}}{{/if}}{{/if}}</span>
+                                                    {{/ifcond}}
+                                                    {{#ifcond this.member.customer_type '==' 'customer'}}
+                                                    <span class="custom-customer-group-member-info wrapper-secondary-heading">{{#if this.member_data.identifier_name}}{{this.member_data.identifier_name}}{{/if}}{{#if this.member_data.label}}&nbsp;|&nbsp;{{this.member_data.label}}{{/if}}</span>
+                                                    {{/ifcond}}
+                                                </div>
+                                            </div>
+                                            <div class="btn-wrap">              
+                                                <div class="more-menu-wrapper" id="delete_custom_customer_group_member" data-member-id="{{this.id}}"><i class="material-icons">delete</i></div>
+                                            </div>
+                                        </div>
+                                        {{/each}}                                       
+                                        {{/if}}
+                                        {{/ifcond}}
+                                        {{#ifcond group_data.custom_group_from '==' 'group_list'}}
+                                        {{#if group_members_data}}
+                                        {{#each group_members_data}}
+                                        <div class="custom-customer-group-member-wrapper" data-group-id="{{this.id}}">
+                                            <div class="file-select">                                               
+                                                <div class="contact-profile-container profile-pic-container p-{{imageLetter}}">
+                                                    <img src="{{this.identity_picture.avtarUrl}}" class="chat-avatar-image">
+                                                    <span class="persona">{{imageLetter}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="filemanager-file-wrapper">
+                                                <span class="custom-customer-group-member-name wrapper-primary-heading">{{#if this.name}}{{this.name}}{{/if}}</span>
+                                            </div>
+                                            <div class="btn-wrap">              
+                                                <div class="more-menu-wrapper" id="delete_custom_customer_group_member_group" data-group-id="{{this.id}}"><i class="material-icons">delete</i></div>
+                                            </div>
+                                        </div>
+                                        {{/each}}                                       
+                                        {{/if}}
+                                        {{/ifcond}}
+
+                                        {{/ifcond}}
+                                        
+                                    </div>
+                                </div>                                
+                            </div>                            
+                        </div>
+                    </div>
+                    
+                    <div class="create-survey-btn-wrapper group-save-cancel-container">
+                        <div class="group-save-cancel-wrapper">
+                            <a class="button-btn btn-save secondary-color-button cursor-pointer" id="customer_group_cancel_button"><i class="material-icons">cancel</i><span>Cancel</span></a>
+                            <a class="button-btn btn-save primary-color-button cursor-pointer" id="customer_group_add_button"><i class="material-icons">save</i><span>Save</span></a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

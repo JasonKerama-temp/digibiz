@@ -1,0 +1,82 @@
+<script id="employee-group-members-list-template" type="text/x-handlebars-template">
+           
+    {{#ifcond group_type '==' 'custom'}}
+
+    {{#ifcond custom_group_from '==' 'employee_list'}}
+    {{#if group_members_data}}
+    {{#each group_members_data}}
+    <div class="custom-employee-group-member-wrapper" data-dj-unique-employee-id="{{this.member.dj_unique_employee_id}}" data-member-id="{{this.id}}">
+        <div class="file-select">
+           
+            <div class="contact-profile-container profile-pic-container p-{{imageLetter}}" data-dj-unique-employee-id="{{this.dj_unique_employee_id}}">
+                <img src="{{this.identity_picture.avtarUrl}}" class="chat-avatar-image">
+                <span class="persona">{{imageLetter}}</span>
+            </div>
+        </div>
+        <div class="filemanager-file-wrapper">
+            <span class="custom-employee-group-member-name wrapper-primary-heading">{{#if this.member_display_name}}{{this.member_display_name}}{{else}}{{this.member_name.first}}&nbsp;{{this.member_name.last}}{{/if}}</span>
+            <div class="employee-information wrapper-tertiary-heading">{{#if this.designation_name}}{{this.designation_name}}{{/if}}</div>
+        </div>
+        
+        <div class="btn-wrap">              
+            <div class="more-menu-wrapper cursor-pointer" id="delete_custom_employee_group_member" data-member-id="{{this.id}}"><i class="material-icons">delete</i></div>
+        </div>
+    </div>
+    {{/each}}
+    {{else}}
+        <div class="end_data">End of listing</div>  
+    {{/if}}
+    {{/ifcond}}
+
+    {{#ifcond custom_group_from '==' 'department_list'}}
+    {{#if department_list_data}}
+    {{#each department_list_data}}
+    <div class="custom-employee-group-member-wrapper" data-department-id="{{this.id}}">
+        <div class="file-select">
+            <!-- <input type="checkbox" name="selectedmembers[]" class="contactlists filled-in" value="{{this.dj_unique_employee_id}}" id="selected-{{this.dj_unique_employee_id}}" checked=""> -->
+            <!-- <i class="material-icons">done</i> -->
+            <div class="contact-profile-container profile-pic-container p-{{this.imageLetter}}" data-department-id="{{this.id}}">
+                <span class="persona">{{this.imageLetter}}</span>
+            </div>
+        </div>
+        <div class="filemanager-file-wrapper">
+            <span class="custom-employee-group-member-name wrapper-primary-heading">{{this.name}}</span>
+        </div>
+        <div class="btn-wrap">              
+            <div class="more-menu-wrapper cursor-pointer" id="delete_custom_department_list_group_department" data-department-id="{{this.id}}"><i class="material-icons">delete</i></div>
+        </div>
+    </div>
+    {{/each}}
+    {{else}}
+    <div class="end_data">End of listing</div>  
+    {{/if}}
+    {{/ifcond}}
+
+
+    {{#ifcond custom_group_from '==' 'standard_group'}}
+    {{#if group_members_data}}
+    {{#each group_members_data}}
+    <div class="custom-employee-group-member-wrapper" data-id="{{this.id}}" data-member-group-id="{{this.member.id}}">
+        <div class="file-select">
+            <!-- <input type="checkbox" name="selectedmembers[]" class="contactlists filled-in" value="{{this.dj_unique_employee_id}}" id="selected-{{this.dj_unique_employee_id}}" checked=""> -->
+            <!-- <i class="material-icons">done</i> -->
+            <div class="contact-profile-container profile-pic-container p-{{this.imageLetter}}">
+                <img src="{{this.group_image.avtarUrl}}" class="chat-avatar-image">
+                <span class="persona">{{this.imageLetter}}</span>
+            </div>
+        </div>
+        <div class="filemanager-file-wrapper">
+            <span class="custom-employee-group-member-name wrapper-primary-heading">{{this.member_name}} (#{{memberGroupMembersCount}})</span>
+        </div>
+        <div class="btn-wrap">              
+            <div class="more-menu-wrapper cursor-pointer" id="delete_custom_employee_group_member" data-member-id="{{this.id}}"><i class="material-icons">delete</i></div>
+        </div>
+    </div>
+    {{/each}}
+    {{else}}
+    <div class="end_data">End of listing</div>  
+    {{/if}}
+    {{/ifcond}}
+
+    {{/ifcond}}
+</script>

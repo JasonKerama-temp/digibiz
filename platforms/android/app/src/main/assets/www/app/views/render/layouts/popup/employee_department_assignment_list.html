@@ -1,0 +1,17 @@
+<script id="employee-department-assignment-template" type="text/x-handlebars-template">
+<div class="employee-department-assignment-main-container"> 
+    {{#if departmentList}}  
+    {{#each departmentList}}
+    <div class="sub-departments-content-box sub-department-box" data-id="{{this.id}}">
+        <div class="sub-department-box-name-symbol-content-box">
+            <i class="material-icons arrow-right" id="employee_department_assignment_arrow_button">keyboard_arrow_right</i>                                
+            <div id="added_sub_department" type="text" data-length="60" contenteditable="false" class="validate cursor-pointer" autocomplete="off" disabled>{{this.name}}</div>
+            <input type="checkbox" class="filled-in department-selected" id="filled-in-box-{{this.id}}" />
+            <label for="filled-in-box-{{this.id}}"></label>
+        </div>
+        <div class="sub_sub_department_conatiner_box hide" data-id="{{this.id}}"></div>
+    </div>
+    {{/each}}
+    {{/if}}                            
+</div>
+</script>

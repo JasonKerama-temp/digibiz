@@ -1,0 +1,30 @@
+<script id="identifier-items-list-data-template" type="text/x-handlebars-template">
+    <div class="contact-items-list-contentbox">
+        {{#if identifier_items_list_data}}
+        {{#each identifier_items_list_data}}
+            <div class="customer-identifier-item-wrapper identifier-items-list-data" data-id="{{this.id}}">
+                <div class="profile-pic-info-wrapper">  
+                    <div class="profile-pic-container p-{{#firstletter this.name}}{{/firstletter}}">
+                        <span class="persona">{{#firstletter this.name}}{{/firstletter}}</span>
+                        <div class="checkbox-conatiner">                        
+                            <label for="filled-in-box-{{this.id}}">
+                                <input type="checkbox" class="filled-in customer-identifier-item-selected cursor-pointer" id="filled-in-box-{{this.id}}"/>
+                                <i class="material-icons">done</i>
+                            </label>
+                        </div>
+                    </div>                  
+                    <div class="contact-items-data-wrapper ellipsify">
+                        <div class="contact-item-name wrapper-primary-heading"><span class="truncate">{{this.name}}</span></div>
+                    </div>
+                </div>
+                <!-- <div class="checkbox-conatiner">
+                    <input type="checkbox" class="filled-in customer-identifier-item-selected" id="filled-in-box-{{this.id}}" />
+                    <label for="filled-in-box-{{this.id}}"></label>
+                </div>         -->
+            </div>
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}              
+      </div>
+</script>

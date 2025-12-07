@@ -1,0 +1,189 @@
+.asset-viewer-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    .viewer-wrapper {
+        display: flex;
+        flex-flow: column;
+        height: 100%;
+        background-color: rgba(var(--viewerHeaderBg),.99);
+        .viewer-header {
+            height: 60px;
+            min-height: 60px;
+            display: flex;
+            background-color: rgba(var(--viewerHeaderBg),1);
+            color: rgba(var(--appBarTextColor),1);
+            z-index: 999;
+            .header-text-wrapper {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                > a {
+                    height: 40px;
+                    width: 40px;
+                    flex: 0 0 50px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: rgba(var(--appBarTextColor),1);
+                  }
+              }
+              .viewer-action-btn {
+                flex: 0 0 100px;
+                ul {
+                    margin: 0;
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
+                    justify-content: flex-end;
+                    li {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 50px;
+                        a {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            overflow: hidden;
+                            color: rgba(var(--appBarTextColor),1);
+                            i {
+                                font-size: 20px;
+                                display: flex;
+                                align-items: center;
+                              }
+                          }
+                      }
+                  }
+              }
+              &[style=""] ~ .viewer-body, &:not([style=""]) ~ .viewer-body {
+                background-color: rgba(var(--assetViewerColor),.99);
+                width: 100%;
+                height: calc(100% - 60px);                
+                max-height: 100%;
+              }
+              &[style^="display"] ~ .viewer-body {
+                height: 100%;
+              }
+          }
+      }
+      .option_dropdown_wrapper {
+        position: absolute;
+        right: 3px;
+        min-width: 160px;
+        max-width: 220px;
+        display: none;
+        top: 3px;
+        ul {
+            position: relative;
+            max-height: 240px;
+            overflow-y: auto;
+            line-height: 0;
+            margin: 0;
+            flex: 1;
+            li {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                height: 40px;
+                line-height: 40px;
+                padding: 0 15px !important;
+                border-bottom: 1px solid rgba(var(--accentColor),1);
+                background-color: var(--dropdownmenuBgColor);
+                color: rgba(var(--textColor),1);
+                cursor: pointer;
+              }
+          }
+      }
+      .viewer-body {
+        background-color: rgba(var(--assetViewerColor),.99);
+        width: 100%;
+        max-height: 100%;
+        .container.viewer-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(var(--assetViewerColor),1);
+            height: 100%;
+            padding: 10px;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box !important;
+            .viewer-slider {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                // position: absolute;
+                .assets-container {
+                    flex: 1 0 100%;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}
+.viewer-action-btn * {
+    height: 100%;
+}
+[platform="browser"] .assets-container, [platform="desktop"] .assets-container, [platform="Android"] .assets-container, [platform="iOS"] .assets-container {
+    color: rgba(var(--textColor),.9);
+}
+.container .assets-container > img, .container .assets-container > video {
+    max-width: 95%;
+    width: auto;
+    height: auto;
+    max-height: 95%;
+    aspect-ratio: auto;
+    object-fit: contain;
+}
+[platform="browser"] a.arrow-btn-type-left, [platform="desktop"] a.arrow-btn-type-left, [platform="Android"] a.arrow-btn-type-left, [platform="iOS"] a.arrow-btn-type-left {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px;
+    left: 20px;
+    opacity: 0;
+    transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+[platform="browser"] .viewer-body:hover > a.arrow-btn-type-left, [platform="desktop"] .viewer-body:hover > a.arrow-btn-type-left, [platform="browser"] .viewer-body:hover > a.arrow-btn-type-right, [platform="desktop"] .viewer-body:hover > a.arrow-btn-type-right {
+    opacity: 1;
+    background-color: rgba(var(--whiteTranslucent),.0);
+    transition: all 250ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+[platform="browser"] .viewer-body:hover > a.arrow-btn-type-right:hover, [platform="desktop"] .viewer-body:hover > a.arrow-btn-type-right:hover, [platform="browser"] .viewer-body:hover > a.arrow-btn-type-left:hover, [platform="desktop"] .viewer-body:hover > a.arrow-btn-type-left:hover, [platform="Android"] .viewer-body:hover > a.arrow-btn-type-right:hover, [platform="iOS"] .viewer-body:hover > a.arrow-btn-type-right:hover, [platform="Android"] .viewer-body:hover > a.arrow-btn-type-left:hover, [platform="iOS"] .viewer-body:hover > a.arrow-btn-type-left:hover {
+    background-color: rgba(var(--whiteTranslucent),.6);
+    color: rgba(var(--blackTranslucent),1);
+    border-radius: 50%;
+  }
+[platform="browser"] a.arrow-btn-type-right, [platform="desktop"] a.arrow-btn-type-right, [platform="Android"] a.arrow-btn-type-right, [platform="iOS"] a.arrow-btn-type-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px;
+    right: 20px;
+    opacity: 0;
+    transition: opacity 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+.container .assets-container > img, .container .assets-container > video, .container .assets-container > audio, .container .assets-container > iframe {
+    z-index: 1;
+}
+[platform="Android"] .container,
+[platform="iOS"] .container  {
+  width: 100%;
+}

@@ -1,0 +1,120 @@
+<script id="associate-customer-profile-edit-template" type="text/x-handlebars-template">
+    <div class="customer-create-main-container">
+        <div class="customer-create-heading-container">
+            <a class="customer-create-heading-name">Associate Customer Details</a>
+        </div>        
+        <div class="customer-create-main-wrapper">
+            <div class="customer-create-content-box">                
+
+                <div class="associate-customer-creation-parts-container">
+                    <div class="associate-customer-add-identity-picture-container">
+                        <div class="associate-customer-identity-picture-content-box">
+                            <label for="associate_customer_identity_picture_lebel">Identity Picture</label> 
+                            <div class="multimedia-container">
+                                <div class="multimedia_wrapper">
+                                    <div class="identity-picture-wrapper view">
+                                        <img class="attached-img" id="associate_customer_identity_picture" src="{{associateCustomerData.identity_picture.avtarUrl}}"/>                             
+                                        <div class="mask">
+                                            {{#if associateCustomerData.identity_picture.avtarUrl}}<a class="associate_customer_identity_pic_preview cursor_pointer" data-thumbnail-id="{{associateCustomerData.identity_picture.thumbnail}}"><i class="material-icons">pageview</i></a>{{/if}}
+                                            {{#if associateCustomerData.identity_picture.avtarUrl}}<a class="info associate-customer-identity-picture-multimedia-load-btn cursor_pointer"><i class="material-icons" id="associate-customer-identity-picture-load-btn" data-thumbnail-id="{{associateCustomerData.identity_picture.thumbnail}}">photo_camera</i></a>{{/if}}
+                                            {{#if associateCustomerData.identity_picture.avtarUrl}}
+                                            <a class="info cursor_pointer"><i class="material-icons" id="associate_customer-identity-picture-delete" data-thumbnail-id="{{associateCustomerData.identity_picture.thumbnail}}">delete</i></a>
+                                            {{else}}
+                                            <a class="info associate-customer-identity-picture-multimedia-load-btn cursor_pointer"><i class="material-icons" id="customer-identity-picture-load-btn">add</i></a>
+                                            {{/if}}
+                                        </div>                                        
+                                        <input type="file" class="validate" id="associate-customer-identity-picture-upload" name="multimediaFiles">
+                                    </div>
+                                 </div> 
+                                 <div class="upload-preview-wrapper hide" id="upload-preview-wrapper">
+                                    <div class="upload-preview-header">
+                                        <span>Preview</span>
+                                        <button id="upload-preview-close-btn" class="close-preview"><i class="material-icons">close</i></button>
+                                    </div>
+                                    <div class="upload-preview-container">
+                                        <div class="upload-preview-container-file-preview" id="upload-file-preview"></div>
+                                    </div>
+                                    <div class="upload-preview-footer hide">              
+                                      <button id="upload-footer-send-btn" class="disabled"><i class="material-icons">send</i></button>
+                                    </div>
+                                </div>                                             
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="associate-customer-add-identity-video-container">
+                        <div class="associate-customer-identity-video-content-box">
+                            <label for="associate_customer_identity_picture_lebel">Identity Video</label> 
+                            <div class="multimedia-container">
+                                <div class="multimedia_wrapper">
+                                    <div class="identity-video-wrapper view">
+                                        <!-- <video width="610px" height="450px" controlslist="nodownload" class="attached-video" id="associate_customer_identity_video" src="{{associateCustomerData.identity_video.avtarUrl}}" disablePictureInPicture muted></video> -->
+                                        <img class="attached-video" id="associate_customer_identity_video" src="{{associateCustomerData.identity_video.avtarUrl}}"/>
+                                        <div class="mask">
+                                            {{#if associateCustomerData.identity_video.avtarUrl}}<a class="associate_customer_identity_video_preview" data-thumbnail-id="{{associateCustomerData.identity_video.thumbnail}}" data-video-id="{{associateCustomerData.identity_video.video_id}}"><i class="material-icons">play_circle_filled</i></a>{{/if}}
+                                            {{#if associateCustomerData.identity_video.avtarUrl}}<a class="info associate-customer-identity-video-multimedia-load-btn cursor_pointer"><i class="material-icons" id="associate-customer-identity-video-load-btn" data-thumbnail-id="{{associateCustomerData.identity_video.thumbnail}}" data-video-id="{{associateCustomerData.identity_video.video_id}}">photo_camera</i></a>{{/if}}
+                                            {{#if associateCustomerData.identity_video.avtarUrl}}
+                                            <a class="info cursor_pointer"><i class="material-icons" id="associate_customer-identity-video-delete" data-thumbnail-id="{{associateCustomerData.identity_video.thumbnail}}" data-video-id="{{associateCustomerData.identity_video.video_id}}">delete</i></a>
+                                            {{else}}
+                                            <a class="info associate-customer-identity-video-multimedia-load-btn cursor_pointer"><i class="material-icons" id="associate-customer-identity-video-load-btn">add</i></a>
+                                            {{/if}}
+                                        </div>     
+                                        <input type="file" accept="video/*" class="validate hide" id="associate-customer-identity-video-upload" name="associate-customer-display-video">                       
+                                    </div>
+                                </div> 
+                                <div class="upload-preview-wrapper hide" id="upload-preview-wrapper">
+                                    <div class="upload-preview-header">
+                                        <span>Preview</span>
+                                        <button id="upload-preview-close-btn" class="close-preview"><i class="material-icons">close</i></button>
+                                    </div>
+                                    <div class="upload-preview-container">
+                                        <div class="upload-preview-container-file-preview" id="upload-file-preview"></div>
+                                    </div>
+                                    <div class="upload-preview-footer hide">              
+                                    <button id="upload-footer-send-btn" class="disabled"><i class="material-icons">send</i></button>
+                                    </div>
+                                </div>                                             
+                            </div>
+                        </div>
+                    </div>
+                    <div class="associate-customer-add-display-name-container">
+                        <div class="associate-customer-display-name-content-box">
+                                <label for="add-associate-customer-display-phone-number">Alternate Mobile Number</label>
+                                <div class="contact-input-wrap">
+                                    <div class="form-componenents form-validation">
+                                        <input class="form-control contact_mobile mobile-flag" id="add-associate-customer-display-phone-number" name="contacts[mobile_number]" type="tel" autocomplete="off" value="{{#if associateCustomerData.display_phone_number}}{{associateCustomerData.display_phone_number}}{{/if}}">
+                                        <i class="material-icons icon-validation-warning" aria-hidden="true">warning</i>
+                                        <span class="left-warning-message"></span>
+                                    </div>
+                                </div>
+                        </div>                                    
+                    </div>                     
+                    <div class="associate-customer-add-alternate-email-container">
+                        <div class="associate-customer-alternate-email-content-box">
+                            <label for="associate_customer_alternate_email">Alternate E-mail</label>                                
+                            <div id="associate_customer_alternate_email" type="text" contenteditable="true" class="validate" autocomplete="off">{{#if associateCustomerData.alternate_email}}{{associateCustomerData.alternate_email}}{{/if}}</div>
+                        </div>                                    
+                    </div>
+                    <div class="associate-customer-add-date-of-birth-container"> 
+                        <div class="associate-customer-date-of-birth-content-box">
+                            <label for="associate_customer_date_of_birth">Date Of Birth</label>      
+                            <input type="text" id="associate_customer_date_of_birth" placeholder="Date-of-birth" autocomplete="off" value="{{#if associateCustomerData.date_of_birth}}{{associateCustomerData.date_of_birth}}{{/if}}">
+                        </div>                       
+                    </div>
+                    <div class="associate-customer-add-wedding-anniversary-container"> 
+                        <div class="associate-customer-wedding-anniversary-content-box">
+                            <label for="associate_customer_wedding_anniversary">Wedding Anniversary</label>      
+                            <input type="text" id="associate_customer_wedding_anniversary" placeholder="Wedding anniversary" autocomplete="off" value="{{#if associateCustomerData.wedding_anniversary}}{{associateCustomerData.wedding_anniversary}}{{/if}}">
+                        </div>                       
+                    </div>
+                </div>
+
+            </div>
+            <div class="register-customer-btn-container">  
+                <div class="register-customer-btn-wrapper">
+                    <a class="button-btn waves-effect waves-light cancel-associate-customer-btn secondary-color-button cursor-pointer"><i class="material-icons">close</i><span>Close</span></a>
+                    <a class="button-btn waves-effect waves-light save-associate-customer-btn-profile primary-color-button cursor-pointer"><i class="material-icons">save</i><span>Save</span></a>
+                </div>                                     
+            </div> 
+        </div>
+    </div>
+</script>

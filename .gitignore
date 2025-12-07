@@ -1,0 +1,25 @@
+/.vscode
+/www
+/package-lock.json
+/node_modules
+/hooks
+/plugins
+/typings
+/config
+/www/app/config.js
+/dist
+/res
+jsconfig.json
+.npmignore
+.jshintrc
+# /dev/app/assets/js/config.js
+/platforms/android/*
+!/platforms/android/app
+/platforms/android/app/*
+!/platforms/android/app/src
+/platforms/android/app/src/main/*
+!/platforms/android/app/src/main/assets
+/platforms/ios/*
+!/platforms/ios/www
+/platforms/browser/*
+!/platforms/browser/www

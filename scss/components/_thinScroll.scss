@@ -1,0 +1,18 @@
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(100,100,100,.8); 
+}
+
+@supports (scrollbar-color: rgba(100,100,100,.8) transparent) {
+    * {
+        scrollbar-color: rgba(100,100,100,.8) transparent;
+        scrollbar-width: thin;
+    }
+}

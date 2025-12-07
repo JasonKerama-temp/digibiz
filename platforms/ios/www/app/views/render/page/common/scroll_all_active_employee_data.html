@@ -1,0 +1,34 @@
+<script id="scroll-all-active-employee-template" type="text/x-handlebars-template">
+    {{#if contactList}}
+    {{#each contactList}}
+        <div class="contact-selection-list-container">
+        <div class="contact-selection-wrapper">
+            <div class="contact-profile-container" data-contact-id="{{this.id}}" data-member-id="{{this.contact.id}}" data-digibiz-account-id="{{this.contact_digibiz_account_id}}" {{#ifcond this.contact.type '==' 'employee'}} data-business-id="{{this.business_id}}" {{/ifcond}} >
+                <div class="profile-pic-container p-{{#firstletter this.name.first}}{{/firstletter}}">
+                    {{#if this.identity_picture}}
+                    <div class="table-profile-text text-small-size"><span class="persona">{{#firstletter this.name.first}}{{/firstletter}}</span></div>
+                   
+                    <img src="{{#digibiz_api_url}}{{/digibiz_api_url}}/api/employee/getEmployeeIdentityPicture?id={{this.dj_unique_employee_id}}&device_id={{@root.device_id}}&image_id={{this.identity_picture.thubnail}}"
+                    class="chat-avatar-image"> 
+                  
+                    {{else}}                           
+                        <div class="table-profile-text text-small-size"><span class="persona">{{#firstletter this.name.first}} {{/firstletter}}</span></div>
+                    {{/if}}
+                </div>    
+
+            </div>
+            <div class="contact-details-wrapper">
+                <div class="contact-name-wrapper">{{#if this.name}}{{this.name.first}}{{this.name.last}}{{/if}}</div>
+                <!-- <div class="contact-business-name-wrapper ellipsify">{{#if this.business_name}}{{this.business_name}}{{/if}}</div> -->
+            </div>
+        </div>
+            <div class="checkbox-container">
+                <input type="checkbox" name="recommend-contact" class="filled-in contact-recommend-to-member-select-btn" id="{{this.dj_unique_employee_id}}" data-contact-id="{{this.dj_unique_employee_id}}" data-member-id="{{this.dj_unique_employee_id}}" data-member-type="employee" data-type="{{this.type}}" {{#if this.selected}} checked {{/if}}/>
+                <label for="{{this.dj_unique_employee_id}}"></label>
+            </div>
+        </div>
+    {{/each}}
+    {{else}}
+        <div class="no-data">No contacts found</div>
+    {{/if}}
+</script>

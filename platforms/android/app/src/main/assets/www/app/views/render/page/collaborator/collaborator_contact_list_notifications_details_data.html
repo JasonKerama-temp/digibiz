@@ -1,0 +1,32 @@
+<script id="collaborator-contact-list-notification-details-data-template" type="text/x-handlebars-template">
+    <div class="collaborator-contact-list-notification-details-contentbox">
+        {{#if collaborator_contact_list_notification_details}}
+        {{#each collaborator_contact_list_notification_details}}
+            <div class="collaborator-contact-list-notification-details-wrapper" data-business-id="{{this.contact.business_id}}" data-notification-id="{{this.id}}">
+                <div class="profile-pic-info-wrapper">
+                    <!-- <div class="business-display-pic profile-pic-container">
+                    <img class="profile-pic" src="{{this.display_picture.avtarUrl}}" />
+                    <span class="persona">{{imageLetter}}</span>
+                    </div> -->
+                    <div class="collaborator-contact-list-notification-details-data-wrapper ellipsify">
+                        <div class="collaborator-contact-list-notification-sent"><span class="truncate">Notification Sent</span></div>
+                        <div class="collaborator-contact-list-notification-status status--{{this.contact.status.status}}"><span>{{this.contact.status.status}}</span></div>
+                        <div class="sent-notification-date">Sent at:<span>{{this.createdDate}}</span></div>
+                        <div class="expire-notification-date">Expires at:<span>{{this.expiryDate}}</span></div>                        
+                    </div>
+                </div>  
+                <div class="btn-wrap">    
+                    {{#ifcond this.contact.status.status '==' 'pending'}}          
+                    <div class="more-menu-wrapper delete-collaborator-contact-list-notification-data" id="delete-collaborator-contact-list-notification"><i class="material-icons">delete</i></div>
+                    {{/ifcond}}                    
+                </div>               
+            </div>
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}   
+        <!-- <div class="fixed-action-btn create-survey-btn-wrapper hide">
+            <a class="btn-floating black btn-save btn-large" id="resent-collaborator-contact-notification" title="Resend Notification"><i class="material-icons">add_alert</i></a>
+        </div> -->
+      </div>
+</script>

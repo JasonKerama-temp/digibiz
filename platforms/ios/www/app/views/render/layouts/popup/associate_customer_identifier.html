@@ -1,0 +1,12 @@
+<script id="associate-customer-identifier-template" type="text/x-handlebars-template ">
+    <div class="col s12">        
+        <div contenteditable="true" id="associate_customer_identifier_name" type="text" class="validate" placeholder="new folder" autofocus>{{#if identifier}}{{identifier}}{{/if}}</div>
+        <!-- <div class="identifier-visibility-setting-wrapper">            
+            <select id="select-identifier-visibility-type" class="browser-default">            
+                <option value="">--Select--</option>
+                <option value="internal" {{#ifcond visibility '==' 'internal'}} selected {{/ifcond}}>Internal</option>
+                <option value="external" {{#ifcond visibility '==' 'external'}} selected {{/ifcond}}>External</option>
+            </select>
+        </div> -->
+    </div>
+</script>

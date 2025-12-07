@@ -1,0 +1,124 @@
+$breakpoint: (
+  "maxxs": 320px,
+  "maxxsm": 600px,
+  "maxmd": 767.98px,
+  "maxlg": 992px,
+  "maxxl": 1280px,
+  "mh": 400px,
+);
+
+@mixin maxxs {
+  @media only screen and (max-width: map-get($breakpoint, 'maxxs')) {
+    @content;
+  }
+}
+@mixin maxsm {
+  @media only screen and (max-width: map-get($breakpoint, 'maxsm')) {
+    @content;
+  }
+}
+@mixin maxmd {
+  @media only screen and (max-width: map-get($breakpoint, 'maxmd')) {
+    @content;
+  }
+}
+@mixin maxlg {
+  @media only screen and (max-width: map-get($breakpoint, 'maxlg')) {
+    @content;
+  }
+}
+@mixin maxxl {
+  @media only screen and (max-width: map-get($breakpoint, 'maxxl')) {
+    @content;
+  }
+}
+
+@mixin maxbreakpoint($bp: 0) {
+  @media (max-width: $bp) {
+    @content;
+  }
+}
+@mixin minbreakpoint($bp: 0) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+@mixin minheight($bp: 0) {
+  @media (min-height: $bp) {
+    @content;
+  }
+}
+@mixin orientation($bp: 0) {
+  @media (orientation: $bp) {
+    @content;
+  }
+}
+
+// border-radius
+@mixin bd-radius($value: 8px) {
+  -webkit-border-radius: $value;
+  -moz-border-radius: $value;
+  border-radius: $value;
+}
+@mixin bd-radius-top($value: 8px 8px 0 0) {
+  -webkit-border-radius: $value;
+  -moz-border-radius: $value;
+  border-radius: $value;
+}
+@mixin bd-radius-bottom($value: 0 0 8px 8px) {
+  -webkit-border-radius: $value;
+  -moz-border-radius: $value;
+  border-radius: $value;
+}
+// border mixin
+@mixin border-direction($direction, $width, $style, $color, $alpha) {
+  border-#{$direction}: $width $style  rgba(var(--#{$color}),$alpha);
+}
+@mixin border-default($width, $style, $color, $alpha) {
+  border: $width $style rgba(var(--#{$color}),$alpha);
+}
+// box-shadow
+
+@mixin boxshadow($shadows...) {
+  box-shadow: $shadows;
+}
+
+// pseudo
+
+@mixin pseudo (
+  $loc: before,
+  $content: "",
+  $pos: absolute,
+  $top: 0,
+  $bottom: 0,
+  $left: 0,
+  $right: 0
+) {
+  position: relative;
+  &::#{$loc} {
+    content: $content;
+    position: $pos;
+    top: $top;
+    bottom: $bottom;
+    left: $left;
+    right: $right;
+    @content;
+  }
+}
+
+// a tag
+
+@mixin alink($link, $visit, $hover, $active) {
+  a {
+      color: $link;
+      &visited {
+        color: $visit;
+      }
+      &hover {
+        color: $hover;
+      }
+      &active {
+        color: $active;
+      }
+    }
+}

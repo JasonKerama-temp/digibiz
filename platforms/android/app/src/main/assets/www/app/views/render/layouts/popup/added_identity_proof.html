@@ -1,0 +1,53 @@
+<script id="added-identity-proof-template" type="text/x-handlebars-template ">
+    <div class="business-add-identity-proof-wrapper">
+        <div class="business-add-identity-proof-type-container">
+            <div class="business-add-identity-proof-type-sub-container">
+                <span class="custom-dropdown-heading">Select ID Type</span>
+                    <div id="business-add-identity-proof-type-select-dropdown" class="wrapper-dropdown cursor-pointer" tabindex="1">
+                    {{#if id_proof}}
+                        <span class="disabled selected-dropdown selected-value-business-identity-proof-type" name="business_id_type" data-value="{{id_proof.id_proof_type}}">
+                        {{#ifcond id_proof.id_proof_type '==' 'aadhar-card'}}Aadhar Card{{/ifcond}}
+                        {{#ifcond id_proof.id_proof_type '==' 'driving-license'}}Driving License{{/ifcond}}
+                        {{#ifcond id_proof.id_proof_type '==' 'election-card'}}Election Card{{/ifcond}}
+                        </span>                                                
+                    {{/if}}
+                        <ul class="custom-dropdown">             
+                            <li class="business_id_type" data-value="aadhar-card">Aadhar Card</li>
+                            <li class="business_id_type" data-value="driving-license">Driving License</li>
+                            <li class="business_id_type" data-value="election-card">Election Card</li>
+                        </ul>
+                    </div>
+            </div>
+            <a class="waves-effect waves-light btn add-identity-proof-btn cursor-pointer"><i class="material-icons">add</i></a>
+        </div>                                            
+        <div class="business-add-identity-proof-multimedia-wrapper multimedia-append-container" data-id="identity-proof-load-btn">
+        <div class="grid uploaded-multimedia-files" data-type="file">
+<div class="thumbnail-wrapper">
+<a class="">
+  <div class="thumbnail"></div>
+</a>                     
+</div>
+<div class="file-details ellipsify" data-image-id="{{id_proof.id_proof_multimedia.thumbnail}}">
+<div class="file-name">
+  <a class="thumb-title">{{id_proof.id_proof_multimedia.name}}</a>
+</div>  
+<div class="file-size">
+<div class="thumb-meta">
+  <span class="thumb-info">{{id_proof.id_proof_multimedia.size}}</span>
+  <span class="thumb-info">{{#filesize id_proof.id_proof_multimedia.size}}{{/filesize}}</span>
+</div>
+</div>  
+<div class="file-caption">
+  <a class="thumb-caption">{{id_proof.id_proof_multimedia.caption}}</a>
+</div>                   
+</div>
+<div class="file-selected-remove-btn hide">
+<i class="material-icons">cancel</i>
+</div>
+{{#ifcond id_proof.id_proof_multimedia.download '==' 'true'}}
+<div class="more_vert_option_business_documents" id="more_vert_option_business_documents">
+  <i class="material-icons">more_vert</i>
+</div>
+{{/ifcond}}
+</div>
+</script>

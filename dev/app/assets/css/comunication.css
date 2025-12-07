@@ -1,0 +1,354 @@
+[data-darkmode=off] {
+  --primaryButtonColor: 40, 234, 154;
+  --primaryButtonHoverColor: 85, 183, 88;
+  --secondryButtonColor: 192, 191, 191;
+  --secondryButtonHoverColor: 211, 211, 211;
+  --businessPrimaryColor: 52, 52, 52;
+  --employeePrimaryColor: 0, 127, 174;
+  --customerPrimaryColor: 50, 180, 81;
+  --prospectPrimaryColor: 241, 90, 35;
+  --employeeBtnPrimaryColor: 0, 127, 174;
+  --customerBtnPrimaryColor: 50, 180, 81;
+  --prospectBtnPrimaryColor: 101, 18, 18;
+  --notificationPrimaryColor: 255, 136, 0;
+  --error: 255, 25, 0;
+  --bodyBg: 14, 77, 69;
+  --tabMenuBg: 14, 77, 69;
+  --inputBorder: 158, 158, 158;
+  --tabbtn: 140, 140, 140;
+  --btnBackground: 255, 255, 255;
+  --whiteTranslucent: 255, 255, 255;
+  --whiteTextColor: 255, 255, 255;
+  --blackTextColor: 0, 0, 0;
+  --complimentoryColor: 43, 187, 173;
+  --linkColor: 0, 67, 255;
+  --readmore: 244, 67, 54;
+  --tabactivebtn: 244, 67, 54;
+  --cardBackgroundHover: 253, 253, 253;
+  --modalFooterMainBtn: 3, 155, 229;
+  --sidebarColor: 255, 255, 255;
+  --fileBg: 255, 255, 255;
+  --navigationBg: 250, 250, 250;
+  --fileFocusBg: 237, 246, 253;
+  --iconGradientlight: 144, 144, 144;
+  --iconGradientDark: 150, 150, 150;
+  --btnHoverColor: 200, 200, 200;
+  --infoFocus: 230, 230, 230;
+  --blackTranslucent10: 0, 0, 0;
+  --profileBg: 80, 80, 80;
+  --lightPrimaryColor: 247, 239, 248;
+  --actionSheetOverlay: 0, 0, 0;
+  --appBarTextColor: 247, 247, 247;
+  --viewerHeaderBg: 20, 20, 20;
+  --assetViewerColor: 0, 0, 0;
+  --subContent: 60, 60, 60;
+  --checkboxSelected: 45, 232, 161;
+  --profileDisplayHeader: 235, 235, 235;
+  --borderColor: 158, 158, 158;
+  --borderfocusColor: 38, 166, 154;
+  --popUpText: 255, 255, 255;
+  --primaryColor: 255, 255, 255;
+  --mainContainerBackground: 9, 51, 47;
+  --card-list-bg: 14, 77, 69;
+  --textColor: 35, 35, 35;
+  --tabbtnColor: 35, 35, 35;
+  --list-bg: 14, 77, 69;
+  --iconColor: 35, 35, 35;
+  --primaryHeadLineColor: 28, 165, 215;
+  --titleBandBg: 255, 255, 255;
+  --headerFontColor: 25, 25, 25;
+  --cardBackground: 14, 77, 69;
+  --mainHeaderTextColor: 50, 50, 50;
+  --sideBarBody: 255, 255, 255;
+  --textColorTheme: 50, 50, 50;
+  --greyColor: 255, 255, 255;
+  --qrcode: 88, 88, 88;
+  --disabledText: 0, 0, 0;
+  --dropdownBg: 240, 240, 240;
+  --dropdownHover: 230, 230, 230;
+  --searchbarBgColor: 44, 134, 111;
+  --employeeBtnSecondryColor: 27, 114, 147;
+  --customerBtnSecondryColor: 57, 114, 69;
+  --prospectBtnSecondryColor: 159, 44, 2;
+  --modalBg: 14, 77, 69;
+  --modalTitle: 255, 255, 255;
+  --modalBodyText: 255, 255, 255;
+  --actionsheetBg: 14, 77, 69;
+  --popupbgColor: 9, 51, 47;
+  --fabBtn: 0, 255, 195;
+  --lightGreen: 149, 249, 191;
+  --tabWrapper: 180, 180, 180;
+  --previewBg: 255, 252, 255;
+  --employeeCarda: 255, 250, 250;
+  --employeeCardb: 255, 247, 249;
+  --employeeCardc: 255, 253, 246;
+  --employeeCardd: 251, 255, 236;
+  --employeeCarde: 253, 255, 247;
+  --employeeCardf: 255, 247, 249;
+  --employeeCardg: 255, 250, 246;
+  --employeeCardh: 255, 248, 246;
+  --employeeCardi: 255, 250, 254;
+  --employeeCardj: 255, 247, 254;
+  --employeeCardk: 246, 252, 255;
+  --employeeCardl: 252, 255, 252;
+  --employeeCardm: 255, 249, 244;
+  --employeeCardn: 248, 253, 255;
+  --employeeCardo: 242, 245, 255;
+  --employeeCardp: 244, 247, 255;
+  --employeeCardq: 255, 249, 244;
+  --employeeCardr: 255, 249, 241;
+  --employeeCards: 255, 248, 248;
+  --employeeCardt: 255, 251, 248;
+  --employeeCardu: 255, 250, 246;
+  --employeeCardv: 255, 246, 243;
+  --employeeCardw: 245, 248, 245;
+  --employeeCardx: 255, 246, 247;
+  --employeeCardy: 255, 246, 240;
+  --employeeCardz: 215, 248, 246;
+  --active: 0, 128, 0;
+  --inactive: 160, 160, 160;
+  --tabcontainer: 250, 250, 250;
+  --hubsliderbg: 14, 77, 69;
+  --hubappbtn: 41, 158, 127;
+  --accountConfirmBg: 160, 244, 217;
+  --focused: 40, 234, 154;
+  --completed: 127, 194, 184;
+  --topBtm: 68, 121, 108;
+  --btnIcnColor: 211, 246, 237;
+}
+
+[data-darkmode=on] {
+  --primaryButtonColor: 79, 172, 82;
+  --primaryButtonHoverColor: 85, 183, 88;
+  --secondryButtonColor: 192, 191, 191;
+  --secondryButtonHoverColor: 211, 211, 211;
+  --businessPrimaryColor: 52, 52, 52;
+  --employeePrimaryColor: 0, 127, 174;
+  --customerPrimaryColor: 50, 180, 81;
+  --prospectPrimaryColor: 241, 90, 35;
+  --employeeBtnPrimaryColor: 0, 127, 174;
+  --customerBtnPrimaryColor: 50, 180, 81;
+  --prospectBtnPrimaryColor: 101, 18, 18;
+  --notificationPrimaryColor: 255, 136, 0;
+  --bodyBg: 250, 250, 250;
+  --inputBorder: 158, 158, 158;
+  --tabbtn: 140, 140, 140;
+  --btnBackground: 255, 255, 255;
+  --whiteTranslucent: 255, 255, 255;
+  --whiteTextColor: 255, 255, 255;
+  --blackTextColor: 0, 0, 0;
+  --complimentoryColor: 43, 187, 173;
+  --linkColor: 0, 67, 255;
+  --readmore: 244, 67, 54;
+  --tabactivebtn: 244, 67, 54;
+  --cardBackgroundHover: 253, 253, 253;
+  --modalFooterMainBtn: 3, 155, 229;
+  --sidebarColor: 255, 255, 255;
+  --fileBg: 255, 255, 255;
+  --navigationBg: 250, 250, 250;
+  --fileFocusBg: 237, 246, 253;
+  --iconGradientlight: 144, 144, 144;
+  --iconGradientDark: 150, 150, 150;
+  --btnHoverColor: 200, 200, 200;
+  --infoFocus: 230, 230, 230;
+  --blackTranslucent10: 0, 0, 0;
+  --profileBg: 80, 80, 80;
+  --lightPrimaryColor: 247, 239, 248;
+  --actionSheetOverlay: 0, 0, 0;
+  --appBarTextColor: 247, 247, 247;
+  --viewerHeaderBg: 20, 20, 20;
+  --assetViewerColor: 0, 0, 0;
+  --subContent: 60, 60, 60;
+  --checkboxSelected: 45, 232, 161;
+  --profileDisplayHeader: 235, 235, 235;
+  --error: 255, 25, 0;
+  --primaryColor: 32, 32, 32;
+  --mainContainerBackground: 18, 18, 18;
+  --card-list-bg: 30, 30, 30;
+  --textColor: 255, 255, 255;
+  --tabbtnColor: 255, 255, 255;
+  --list-bg: 25, 25, 25;
+  --iconColor: 255, 255, 255;
+  --primaryHeadLineColor: 55, 55, 55;
+  --titleBandBg: 55, 55, 55;
+  --headerFontColor: 250, 250, 250;
+  --cardBackground: 30, 30, 30;
+  --mainHeaderTextColor: 250, 250, 250;
+  --sideBarBody: 20, 20, 20;
+  --textColorTheme: 250, 250, 250;
+  --greyColor: 50, 50, 50;
+  --qrcode: 255, 255, 255;
+  --disabledText: 160, 160, 160;
+  --dropdownBg: 80, 80, 80;
+  --dropdownHover: 100, 100, 100;
+  --searchbarBgColor: 55, 55, 55;
+  --employeeBtnSecondryColor: 40, 65, 74;
+  --customerBtnSecondryColor: 32, 60, 38;
+  --prospectBtnSecondryColor: 74, 41, 29;
+  --modalBg: 55, 55, 55;
+  --modalTitle: 230, 230, 230;
+  --modalBodyText: 210, 210, 210;
+  --actionsheetBg: 50, 50, 50;
+  --popupbgColor: 18, 18, 18;
+  --fabBtn: 0, 255, 195;
+  --borderColor: 158, 158, 158;
+  --borderfocusColor: 38, 166, 154;
+  --popUpText: 255, 255, 255;
+  --tabWrapper: 30, 30, 30;
+  --previewBg: 50, 50, 50;
+  --employeeCarda: 66, 54, 55;
+  --employeeCardb: 74, 57, 61;
+  --employeeCardc: 80, 75, 60;
+  --employeeCardd: 69, 72, 55;
+  --employeeCarde: 54, 56, 47;
+  --employeeCardf: 76, 64, 67;
+  --employeeCardg: 86, 79, 74;
+  --employeeCardh: 72, 67, 66;
+  --employeeCardi: 78, 68, 76;
+  --employeeCardj: 62, 55, 61;
+  --employeeCardk: 54, 58, 60;
+  --employeeCardl: 48, 56, 52;
+  --employeeCardm: 68, 60, 53;
+  --employeeCardn: 60, 67, 70;
+  --employeeCardo: 52, 55, 62;
+  --employeeCardp: 60, 63, 72;
+  --employeeCardq: 72, 66, 60;
+  --employeeCardr: 70, 61, 51;
+  --employeeCards: 64, 48, 48;
+  --employeeCardt: 68, 56, 48;
+  --employeeCardu: 60, 51, 44;
+  --employeeCardv: 76, 68, 65;
+  --employeeCardw: 68, 55, 49;
+  --employeeCardx: 72, 59, 60;
+  --employeeCardy: 62, 53, 45;
+  --employeeCardz: 66, 51, 47;
+  --active: 0, 128, 0;
+  --inactive: 160, 160, 160;
+  --tabcontainer: 30, 30, 30;
+  --hubsliderbg: 160, 244, 217;
+  --accountConfirmBg: 160, 244, 217;
+  --hubappbtn: 0, 110, 120;
+  --darkbg: 9, 51, 47;
+}
+
+.communication-group-moderator-members-container .communication-group-moderator-members-list:has(.os-content > div),
+.communication-group-moderator-members-container .communication-group-employee-members-list:has(.os-content > div),
+.communication-group-moderator-members-container .communication-group-collaborator-members-list:has(.os-content > div),
+.communication-group-moderator-members-container .communication-group-customer-members-list:has(.os-content > div),
+.communication-group-moderator-members-container .customer-group-members-list:has(.os-content > div),
+.communication-group-moderator-members-container .collaborator-group-moderator-list:has(.os-content > div),
+.communication-group-moderator-members-container .collaborator-group-members-list:has(.os-content > div),
+.communication-group-members-container .communication-group-moderator-members-list:has(.os-content > div),
+.communication-group-members-container .communication-group-employee-members-list:has(.os-content > div),
+.communication-group-members-container .communication-group-collaborator-members-list:has(.os-content > div),
+.communication-group-members-container .communication-group-customer-members-list:has(.os-content > div),
+.communication-group-members-container .customer-group-members-list:has(.os-content > div),
+.communication-group-members-container .collaborator-group-moderator-list:has(.os-content > div),
+.communication-group-members-container .collaborator-group-members-list:has(.os-content > div),
+.collaborator-group-moderator-container .communication-group-moderator-members-list:has(.os-content > div),
+.collaborator-group-moderator-container .communication-group-employee-members-list:has(.os-content > div),
+.collaborator-group-moderator-container .communication-group-collaborator-members-list:has(.os-content > div),
+.collaborator-group-moderator-container .communication-group-customer-members-list:has(.os-content > div),
+.collaborator-group-moderator-container .customer-group-members-list:has(.os-content > div),
+.collaborator-group-moderator-container .collaborator-group-moderator-list:has(.os-content > div),
+.collaborator-group-moderator-container .collaborator-group-members-list:has(.os-content > div),
+.customer-group-members-container .communication-group-moderator-members-list:has(.os-content > div),
+.customer-group-members-container .communication-group-employee-members-list:has(.os-content > div),
+.customer-group-members-container .communication-group-collaborator-members-list:has(.os-content > div),
+.customer-group-members-container .communication-group-customer-members-list:has(.os-content > div),
+.customer-group-members-container .customer-group-members-list:has(.os-content > div),
+.customer-group-members-container .collaborator-group-moderator-list:has(.os-content > div),
+.customer-group-members-container .collaborator-group-members-list:has(.os-content > div),
+.collaborator-group-members-container .communication-group-moderator-members-list:has(.os-content > div),
+.collaborator-group-members-container .communication-group-employee-members-list:has(.os-content > div),
+.collaborator-group-members-container .communication-group-collaborator-members-list:has(.os-content > div),
+.collaborator-group-members-container .communication-group-customer-members-list:has(.os-content > div),
+.collaborator-group-members-container .customer-group-members-list:has(.os-content > div),
+.collaborator-group-members-container .collaborator-group-moderator-list:has(.os-content > div),
+.collaborator-group-members-container .collaborator-group-members-list:has(.os-content > div) {
+  min-height: 80px;
+  max-height: 350px;
+  height: 100%;
+}
+.communication-group-moderator-members-container .communication-group-moderator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.communication-group-moderator-members-container .communication-group-employee-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.communication-group-moderator-members-container .communication-group-collaborator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.communication-group-moderator-members-container .communication-group-customer-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.communication-group-moderator-members-container .customer-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.communication-group-moderator-members-container .collaborator-group-moderator-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.communication-group-moderator-members-container .collaborator-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.communication-group-members-container .communication-group-moderator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.communication-group-members-container .communication-group-employee-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.communication-group-members-container .communication-group-collaborator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.communication-group-members-container .communication-group-customer-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.communication-group-members-container .customer-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.communication-group-members-container .collaborator-group-moderator-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.communication-group-members-container .collaborator-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.collaborator-group-moderator-container .communication-group-moderator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.collaborator-group-moderator-container .communication-group-employee-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.collaborator-group-moderator-container .communication-group-collaborator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.collaborator-group-moderator-container .communication-group-customer-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.collaborator-group-moderator-container .customer-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.collaborator-group-moderator-container .collaborator-group-moderator-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.collaborator-group-moderator-container .collaborator-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.customer-group-members-container .communication-group-moderator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.customer-group-members-container .communication-group-employee-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.customer-group-members-container .communication-group-collaborator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.customer-group-members-container .communication-group-customer-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.customer-group-members-container .customer-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.customer-group-members-container .collaborator-group-moderator-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.customer-group-members-container .collaborator-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.collaborator-group-members-container .communication-group-moderator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.collaborator-group-members-container .communication-group-employee-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.collaborator-group-members-container .communication-group-collaborator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.collaborator-group-members-container .communication-group-customer-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.collaborator-group-members-container .customer-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.collaborator-group-members-container .collaborator-group-moderator-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading,
+.collaborator-group-members-container .collaborator-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-secondary-heading {
+  font-size: 0.75rem !important;
+}
+.communication-group-moderator-members-container .communication-group-moderator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.communication-group-moderator-members-container .communication-group-employee-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.communication-group-moderator-members-container .communication-group-collaborator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.communication-group-moderator-members-container .communication-group-customer-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.communication-group-moderator-members-container .customer-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.communication-group-moderator-members-container .collaborator-group-moderator-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.communication-group-moderator-members-container .collaborator-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.communication-group-members-container .communication-group-moderator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.communication-group-members-container .communication-group-employee-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.communication-group-members-container .communication-group-collaborator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.communication-group-members-container .communication-group-customer-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.communication-group-members-container .customer-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.communication-group-members-container .collaborator-group-moderator-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.communication-group-members-container .collaborator-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.collaborator-group-moderator-container .communication-group-moderator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.collaborator-group-moderator-container .communication-group-employee-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.collaborator-group-moderator-container .communication-group-collaborator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.collaborator-group-moderator-container .communication-group-customer-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.collaborator-group-moderator-container .customer-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.collaborator-group-moderator-container .collaborator-group-moderator-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.collaborator-group-moderator-container .collaborator-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.customer-group-members-container .communication-group-moderator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.customer-group-members-container .communication-group-employee-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.customer-group-members-container .communication-group-collaborator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.customer-group-members-container .communication-group-customer-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.customer-group-members-container .customer-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.customer-group-members-container .collaborator-group-moderator-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.customer-group-members-container .collaborator-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.collaborator-group-members-container .communication-group-moderator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.collaborator-group-members-container .communication-group-employee-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.collaborator-group-members-container .communication-group-collaborator-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.collaborator-group-members-container .communication-group-customer-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.collaborator-group-members-container .customer-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.collaborator-group-members-container .collaborator-group-moderator-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading,
+.collaborator-group-members-container .collaborator-group-members-list .communication-group-moderator-member-wrapper .moderator-data-container .wrapper-tertiary-heading {
+  font-size: 0.7rem !important;
+}
+
+.communication-groups-identifier-based-customer-contact-wrapper {
+  background-color: rgba(var(--card-list-bg), 1);
+  margin-bottom: 1px;
+}
+.communication-groups-identifier-based-customer-contact-wrapper .communication-groups-identifier-based-contact-data-wrapper .customer-contact-details-wrapper .wrapper-secondary-heading {
+  font-size: 0.7rem;
+}

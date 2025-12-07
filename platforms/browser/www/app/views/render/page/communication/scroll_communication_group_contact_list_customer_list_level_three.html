@@ -1,0 +1,53 @@
+<script id="scroll-communication-group-contact-list-customer-list-level-three-data-template" type="text/x-handlebars-template">
+    {{#if communication_group_contact_list_customer_list_level_three_data}}
+    {{#each communication_group_contact_list_customer_list_level_three_data}}
+        <div class="communication-groups-identifier-based-customer-contact-wrapper communication-group-customer-contact-select-btn-checkbox-click-wrapper" data-id="{{this.id}}" {{#if this.primaryCustomerData}}data-parent-customer-id="{{this.customer_id}}"{{/if}}>
+            <div class="profile-pic-info-wrapper"> 
+
+                <div class="profile-pic-container p-{{#if this.display_name}}{{#firstletter this.display_name}}{{/firstletter}}{{else}}{{#if this.name.first}}{{#firstletter this.name.first}}{{/firstletter}}{{/if}}{{/if}}">
+                    {{#if this.identity_picture}}
+                        {{#if this.primaryCustomerData}}
+                            <img src="{{#digibiz_api_url}}{{/digibiz_api_url}}/api/associate_customers/getAssociateCustomerIdentityPicture?id={{this.id}}&device_id={{@root.device_id}}&image_id={{this.identity_picture.thumbnail}}"
+                            class="avatar-image"  alt="avatar"> 
+                        {{else}}
+                            <img src="{{#digibiz_api_url}}{{/digibiz_api_url}}/api/customers/getCustomerIdentityPicture?id={{this.id}}&device_id={{@root.device_id}}&image_id={{this.identity_picture.thumbnail}}"
+                            class="avatar-image"  alt="avatar"> 
+                        {{/if}}                            
+                    {{else}}
+                        <span class="persona">{{#if this.display_name}}{{#firstletter this.display_name}}{{/firstletter}}{{else}}{{#if this.name.first}}{{#firstletter this.name.first}}{{/firstletter}}{{/if}}{{/if}}</span>
+                    {{/if}}
+                    <div class="checkbox-conatiner">                        
+                        <label for="communication_{{this.id}}">
+                            <input type="checkbox" class="filled-in cursor-pointer communication-group-customer-contact-select-btn" id="communication_{{this.id}}" data-id="{{this.id}}" data-role-type="{{this.role.type}}" data-role-id="{{this.role.id}}" data-role-business-id="{{this.role.business_id}}" {{#if this.primaryCustomerData}}data-type="associate_customer" data-more-info="{{#if this.identifierName}}{{this.identifierName}}{{/if}}{{#if this.primaryCustomerData}}&nbsp;|&nbsp;{{this.primaryCustomerData.identifier_name}}&nbsp;|&nbsp;{{#if this.primaryCustomerData.display_name}}{{this.primaryCustomerData.display_name}}{{else}}{{this.primaryCustomerData.name.first}}{{/if}}{{/if}}" {{else}}data-type="customer" data-more-info="{{#if this.identifier_name}}{{this.identifier_name}}{{/if}}{{#if this.label}}&nbsp;|&nbsp;{{this.label}}{{/if}}"{{/if}}/>
+                            <i class="material-icons">done</i>
+                        </label>
+                    </div>
+                </div>                                   
+
+                <div class="communication-groups-identifier-based-contact-data-wrapper ellipsify">
+                    <div class="customer-contact-details-wrapper">
+                    <div class="customer-contact-name wrapper-primary-heading"><span class="truncate">{{#if this.display_name}}{{this.display_name}}{{else}}{{this.name.first}}&nbsp;{{this.name.last}}{{/if}}</span></div>                        
+                    {{#if this.role}}
+                    {{#if this.role.business_name}}
+                        <div class="customer-role-business-name wrapper-secondary-heading"><span class="truncate">{{this.role.business_name}}</span></div>
+                    {{/if}}
+                    {{/if}}
+                    {{#if this.label}}
+                        <div class="customer-label wrapper-secondary-heading"><span class="truncate">Label: {{this.label}}</span></div>
+                    {{/if}}
+                    {{#if this.primaryCustomerData}}
+                        <div class="associate-customer-info wrapper-secondary-heading"><span class="truncate">{{this.IdentifierName}} - {{#if this.primaryCustomerData.display_name}}{{this.primaryCustomerData.display_name}}{{else}}{{this.primaryCustomerData.name.first}}&nbsp;{{this.primaryCustomerData.name.last}}{{/if}}</span></div>
+                    {{/if}}
+                    </div>
+                    <!-- <div class="check-contact">
+                        <input type="checkbox" class="filled-in cursor-pointer communication-group-customer-contact-select-btn" id="communication_{{this.id}}" data-id="{{this.id}}" {{#if this.primaryCustomerData}}data-type="associate_customer"{{else}}data-type="customer"{{/if}}/>
+                        <label for="communication_{{this.id}}"></label>
+                    </div> -->
+                </div>
+            </div>                            
+        </div>
+        {{/each}}
+        {{else}}
+        <div class="end_data">End of listing</div>    
+    {{/if}}
+</script>

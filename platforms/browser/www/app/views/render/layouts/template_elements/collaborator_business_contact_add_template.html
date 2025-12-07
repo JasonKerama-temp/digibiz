@@ -1,0 +1,13 @@
+<script id="collaborator-group-business-contact-add-template" type="text/x-handlebars-template">
+    <div class="collaborator-contact-selection-list-container" data-contact-id="{{collaboratorContact.id}}" data-business-id="{{collaboratorContact.business_id}}">
+        <div class="contact-profile-container profile-pic-container p-{{business_data.imageLetter}}">
+            <img src="{{business_data.display_picture.avtarUrl}}" class="chat-avatar-image">
+            <span class="persona">{{business_data.imageLetter}}</span>
+        </div>
+        <div class="contact-name-wrapper ellipsify">{{#if business_data.name}}{{business_data.name}}{{/if}}</div>
+         <p>
+            <input type="checkbox" class="filled-in contact-select-btn" id="{{collaboratorContact.id}}" data-id="{{collaboratorContact.id}}" data-business-id="{{collaboratorContact.business_id}}" />
+            <label for="{{collaboratorContact.id}}"></label>
+        </p>
+    </div>
+</script>

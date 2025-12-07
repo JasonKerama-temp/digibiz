@@ -1,0 +1,16 @@
+<script id="communication-group-group-list-customer-group-add-template" type="text/x-handlebars-template">
+<div class="group-selection-wrapper" data-group-id="{{group_data.id}}" data-group-type="customer" data-status="{{group_data.status.status}}">
+    <div class="customer-custom-group-profile-pic-info-wrapper">
+        <div class="customer-group-display-pic profile-pic-container p-{{group_data.imageLetter}}">
+        <img class="group_img profile-pic" src="{{group_data.group_image.avtarUrl}}" data-group-id="{{group_data.id}}"/>
+        <span class="persona">{{group_data.imageLetter}}</span>
+        </div>
+        <div class="customer-group-data-wrapper ellipsify">
+            <div class="customer-group-name"><span class="truncate">{{group_data.name}}</span></div>
+            <div class="customer-group-status status--{{group_data.status.status}}">{{group_data.status.status}}</div>
+        </div>
+    </div>   
+    <input type="checkbox" class="filled-in cursor-pointer communication-group-create-customer-group-selected" id="filled-in-box-{{group_data.id}}" />
+    <label for="filled-in-box-{{group_data.id}}"></label>              
+</div>
+</script>

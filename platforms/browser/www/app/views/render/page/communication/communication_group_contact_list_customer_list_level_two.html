@@ -1,0 +1,22 @@
+<script id="communication-group-contact-list-customer-list-level-two-data-template" type="text/x-handlebars-template">
+                {{#if communication_group_contact_list_customer_list_level_two_data}}
+                <div class="communication-group-identifier-based-customer-contact-items-list-contentbox custom-accordionsss">        
+                {{#each communication_group_contact_list_customer_list_level_two_data}}                
+                <div class="communication-groups-identifier-based-customer-contacts-item-wrapper user-conatiner accordion-itemmm">
+                    <div class="accordion-titleee cursor-pointer" data-tab="{{this.id}}" data-type="contact_item" data-associate-customer-identifier-id="{{this.data.1.identifier_id}}">                
+                        <div class="contact-items-data-wrapper ellipsify">
+                            <div class="contact-item-name wrapper-primary-heading"><span class="truncate">{{this.name}}</span></div>             
+                        </div>     
+                        <span class="material-icons">expand_more</span>
+                    </div>
+        
+                    <div class="accordion-contenttt" id="{{this.id}}" data-content-type="contact_item">
+                        
+                    </div> 
+                </div>
+        {{/each}}
+    </div>
+    {{else}}
+    <div class="no_data">No data found</div>
+    {{/if}}
+</script>

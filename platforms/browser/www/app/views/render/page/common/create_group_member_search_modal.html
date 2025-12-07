@@ -1,0 +1,115 @@
+<script id="create-group-member-search-template" type="text/x-handlebars-template">
+<div class="employee-selection-member-list">
+    <div id="employee-selection-member-list-container">
+        {{#if data}}
+        {{#each data}}
+        {{#ifcond type '==' "employee_list"}}
+        <div
+            class="employee-selection-list-container employee-select-btn-wrapper {{#if this.selected}} selected-row {{/if}}">
+            <div class="contact-profile-container profile-pic-container p-{{imageLetter}}"
+                data-dj-unique-employee-id="{{this.dj_unique_employee_id}}" data-employee-id="{{this.dj_unique_employee_id}}">
+                {{#if identity_picture}}
+                <img src="{{this.identity_picture.avtarUrl}}" class="chat-avatar-image">
+                {{else}}
+                <span class="persona">{{imageLetter}}</span>
+                {{/if}}
+                <div class="checkbox-conatiner">
+                    <label for="{{this.dj_unique_employee_id}}">
+                        <input type="checkbox" name="selectedmembers[]" class="filled-in contactlists cursor-pointer"
+                            id="{{this.dj_unique_employee_id}}"
+                            data-dj-unique-employee-id="{{this.dj_unique_employee_id}}" {{#if this.selected}}
+                            checked="checked" {{/if}} />
+                        <i class="material-icons">done</i>
+                    </label>
+                </div>
+            </div>
+            <div class="contact-name-wrapper wrapper-primary-heading ellipsify">{{this.name}}</div>
+          
+        </div>
+        {{else}}
+        {{#ifcond type '==' "customer"}}
+        <div
+        class="employee-selection-list-container employee-select-btn-wrapper {{#if this.selected}} selected-row {{/if}}">
+        <div class="contact-profile-container profile-pic-container p-{{imageLetter}}"
+             data-id="{{this.id}}" data-type="{{this.type}}" data-identifier-id="{{this.identifier_id}}" data-role_id="{{role_id}}" data-role_business_id="{{role_business_id}}" data-role_business_name="{{role_business_name}}"
+             data-main_identifier="{{main_identifier}}" data-parent_customer_id="{{parent_customer_id}}" data-associate_customter_info="{{associate_customter_info}}">
+            {{#if identity_picture}}
+            <img src="{{this.identity_picture.avtarUrl}}" class="chat-avatar-image">
+            {{else}}
+            <span class="persona">{{imageLetter}}</span>
+            {{/if}}
+            <div class="checkbox-conatiner">
+                <label for="{{this.id}}">
+                    <input type="checkbox" name="selectedmembers[]" class="filled-in contactlists cursor-pointer"
+                        id="{{this.id}}"
+                        data-id="{{this.id}}" data-type="{{this.type}}" data-identifier-id="{{this.identifier_id}}" {{#if this.selected}}
+                        checked="checked" {{/if}} />
+                    <i class="material-icons">done</i>
+                </label>
+            </div>
+        </div>
+        
+        <div>
+            <div class="contact-name-wrapper wrapper-primary-heading ellipsify">{{this.name}}</div>
+            <!-- <span class="truncate selected-member-name" for="selected-{{customer_id}}">{{name}}</span> -->
+            <span class="truncate selected-member-role-business-name wrapper-secondary-heading" for="selected-{{customer_id}}">{{role_business_name}}</span>
+            <span class="truncate selected-member-info wrapper-secondary-heading" for="selected-{{customer_id}}">{{main_identifier}}{{#if label}}-{{label}}{{/if}}</span>
+        </div>
+    </div>
+    {{else}}
+    {{#ifcond type '==' "associate_customer"}}
+    <div
+    class="employee-selection-list-container employee-select-btn-wrapper {{#if this.selected}} selected-row {{/if}}">
+    <div class="contact-profile-container profile-pic-container p-{{imageLetter}}"
+    data-id="{{this.id}}" data-type="{{this.type}}" data-identifier-id="{{this.identifier_id}}" data-role_id="{{role_id}}" data-role_business_id="{{role_business_id}}" data-role_business_name="{{role_business_name}}"
+    data-main_identifier="{{main_identifier}}" data-parent_customer_id="{{parent_customer_id}}" data-associate_customter_info="{{associate_customter_info}}">
+        {{#if identity_picture}}
+        <img src="{{this.identity_picture.avtarUrl}}" class="chat-avatar-image">
+        {{else}}
+        <span class="persona">{{imageLetter}}</span>
+        {{/if}}
+        <div class="checkbox-conatiner">
+            <label for="{{this.id}}">
+                <input type="checkbox" name="selectedmembers[]" class="filled-in contactlists cursor-pointer"
+                    id="{{this.id}}"
+                    data-id="{{this.id}}" data-type="{{this.type}}" data-identifier-id="{{this.identifier_id}}" {{#if this.selected}}
+                    checked="checked" {{/if}} />
+                <i class="material-icons">done</i>
+            </label>
+        </div>
+    </div>    
+    <div>
+        <div class="contact-name-wrapper wrapper-primary-heading ellipsify">{{this.name}}</div>
+        <!-- <span class="truncate selected-member-name" for="selected-{{customer_id}}">{{name}}</span> -->
+        <span class="truncate selected-member-role-business-name wrapper-secondary-heading" for="selected-{{customer_id}}">{{role_business_name}}</span>
+        <span class="truncate selected-member-info wrapper-secondary-heading" for="selected-{{customer_id}}">{{associate_customter_info}} - {{main_identifier}}</span>
+    </div>
+</div>
+    {{else}}
+        <div class="standard-employee-group-selection-wrapper standard-employee-group-select-checkbox-click-wrapper">
+                <div class="contact-profile-container profile-pic-container p-{{imageLetter}}" data-id="{{this.id}}">
+                        <img src="{{this.display_picture.avtarUrl}}" class="chat-avatar-image">
+                        <span class="persona">{{imageLetter}}</span>
+                        <div class="checkbox-conatiner">                                
+                            <label for="{{this.id}}">
+                                <input type="checkbox" class="filled-in standard-employee-group-select" id="{{this.id}}" data-id="{{this.id}}" />
+                                <i class="material-icons">done</i>
+                            </label>
+                        </div>
+                </div>
+                <div class="standard-group-name wrapper-primary-heading ellipsify">{{#if this.name}}{{this.name}}{{/if}}</div>
+                
+            </div>
+        {{/ifcond}}
+        {{/ifcond}}
+        {{/ifcond}}
+        {{/each}}
+        {{else}}
+            <div class="no-data">No data found</div>
+        {{/if}}
+    </div>
+</div>
+
+
+
+</script>

@@ -1,0 +1,21 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box !important;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -moz-touch-callout: none;
+    -ms-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    word-break: break-word;
+    margin-bottom: 0px;
+    margin: 0;
+    outline: 0;
+}

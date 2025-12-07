@@ -1,0 +1,28 @@
+<script id="filemanager-activity-wrapper-template" type="text/x-handlebars-template">
+    <div class="filemanager-activity-wrapper">
+        <div class="select-action-header action-bar">
+            <div class="select-action-header-wrapper ellipsify">
+                <div class="action-bar-btn">
+                    <a class="custome-header-icons waves-effect waves-light"></a>
+                </div>
+                <div class="action-header ellipsify" data-relative="{{relative_name}}">{{relative_name}}</div>
+            </div>
+          
+        </div>
+        <div class="stacked-filemanager-container">
+            <div class="grid-view-container">
+                <div class="navigation-button-container">
+                    <ul class="quick-navigation-btn-wrapper hide">
+                        <li class="copy-asset"><span class="material-icons">content_copy</span></li>
+                    </ul>
+                     
+                      <div class="list-grid-toggle">
+                        <div class="icon"></div>
+                        <span class="label">List</span>
+                      </div>
+                </div>
+                  <ul class="upload-grid-view-wrapper view-grid" id="assets-list-wrapper_{{real_name}}"></ul>
+            </div>
+        </div>
+    </div>
+</script>

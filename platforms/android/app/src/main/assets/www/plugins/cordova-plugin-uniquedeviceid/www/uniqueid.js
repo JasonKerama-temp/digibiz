@@ -1,0 +1,1 @@
+cordova.define("cordova-plugin-uniquedeviceid.UniqueDeviceID",(function(e,c,i){e("cordova/exec");i.exports={get:function(e,c){cordova.exec(e,c,"UniqueDeviceID","get",[])}}}));

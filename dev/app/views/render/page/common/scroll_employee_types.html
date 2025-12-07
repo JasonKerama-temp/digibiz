@@ -1,0 +1,14 @@
+<script id="scroll-employee-types-template" type="text/x-handlebars-template">
+    {{#if employee_types}}
+    {{#each employee_types}}
+    <div class="employee-type-wrapper common-listing-wrapper" data-employee-type-id="{{this.id}}">
+        <div class="employee-type-container">
+            <div class="employee_type_name wrapper-primary-heading">{{this.type}}</div>
+        </div>
+        <div class="more-menu-wrapper show-action-employee-type-data"><i class="material-icons">more_vert</i></div>
+    </div>
+    {{/each}}
+    {{else}}
+    <div class="end_data">End of listing</div>
+    {{/if}}
+</script>

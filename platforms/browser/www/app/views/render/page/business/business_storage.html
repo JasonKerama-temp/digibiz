@@ -1,0 +1,158 @@
+<script id="business-storage-template" type="text/x-handlebars-template">
+    <div class="business-storage-selection-main-container">
+        <div class="business-storage-selection-container">  
+
+            <div class="maincontainer">
+                <div class="storage-flex container-overflow">
+                        <!--map trigger-->
+                        <!-- <div class="storage-map-header-wrapper">
+                            <div class="storage-map-open"><i class="material-icons">insert_chart</i></div>
+                            <div class="storage-info-expand"><i class="material-icons">info</i></div>
+                        </div> -->
+                        <div class="cloud-storage-container">
+                            <div class="cloud-storage-wrapper">
+                                {{#if storage_list}}
+                                {{#each storage_list}}
+                                <div class="cloud-storage-account" data-storage="{{this.name}}">
+                                    <div class="cloud-storage-account-logo"></div>
+                                    <div class="cloud-storage-account-title"><span>{{this.name}}</span></div>
+                                    <div class="cloud-storage-account-buttons">
+                                        <button class="setdefault-account-btn btn-flat {{#ifcond ../active_storage '===' this.name}}hide{{/ifcond}}" data-storage="{{this.name}}">Set as Default</button>
+                                        <button class="show-account-btn show-active-account {{#ifcond this.name '===' 'DJ'}}hide{{/ifcond}}">Account</button>
+                                    </div>                            
+                                </div>
+                                {{/each}}
+                                {{/if}}
+                                {{#if addStorage}}
+                                <div class="cloud-storage-account add-storage-account">
+                                        <i class="material-icons">add</i>
+                                </div>
+                                {{/if}}
+                            </div>
+                        </div>
+                        <!-- <div class="cloud-storage-container">
+                            <div class="dj-storage-wrapper">
+                                <div class="dj-btn-container">
+                                    <div data-storage="DJ" {{#ifcond storage '===' "DJ"}} class="card hoverable z-depth-2 card-custom active" {{else}} class="card hoverable z-depth-2 card-custom not-active"{{/ifcond}}>                                    
+                                        <div class="active-selected-icn"></div>
+                                        <div class="card-content">
+                                            <div class="card-dj-logo responsive-img"></div>
+                                            <div class="card-action no-pad center-align">
+                                                <div class="cloud-drive-name">
+                                                    <span class="drive-name">Digital Jeevi</span> 
+                                                    {{#ifcond storage '==' 'DJ'}}
+                                                    <a class="btn activate-storage disabled" data-storage="DJ">Activated</a>
+                                                    {{else}}
+                                                    <a class="btn activate-storage" data-storage="DJ">Activate</a>
+                                                    {{/ifcond}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="total-storage-used-wrap"><span>Total Usage: {{stats.Drives.DJ}}</span></div>
+                                    </div>
+                                </div>
+                                <div class="dropbox-wrapper">
+                                    <div  data-storage="DropBox" {{#ifcond storage '===' "DropBox"}} class="card hoverable z-depth-2 card-custom active" {{else}} class="card hoverable z-depth-2 card-custom not-active" {{/ifcond}}> 
+                                        <div class="active-selected-icn"></div>
+                                        <div class="card-content">
+                                            <div class="card-dropbox-logo responsive-img"></div>
+                                            <div class="card-action no-pad center-align">
+                                                <div class="cloud-drive-name">
+                                                    <span class="drive-name">DropBox</span>
+                                                    {{#ifcond storage '==' 'DropBox'}}
+                                                        {{#ifcond storage_token.tokenStatus '==' 'active'}}
+                                                            <a class="btn activate-storage disabled" data-storage="DropBox">Activated</a>
+                                                        {{else}}
+                                                            <a class="btn activate-storage" data-storage="DropBox">Reactivate</a>
+                                                        {{/ifcond}}
+                                                    {{else}}
+                                                    <a class="btn activate-storage" data-storage="DropBox">Activate</a>
+                                                    {{/ifcond}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="total-storage-used-wrap"><span>Total Usage: {{stats.Drives.DropBox}}</span></div>
+                                    </div>
+                                </div>
+                                <div class="gdrive-wrapper">                                
+                                    <div data-storage="GoogleDrive" {{#ifcond storage '===' "GoogleDrive"}} class="card hoverable z-depth-2 card-custom active" {{else}} class="card hoverable z-depth-2 card-custom not-active" {{/ifcond}}>
+                                        <div class="active-selected-icn"></div>
+                                        <div class="card-content">
+                                            <div class="card-google-logo responsive-img"></div>
+                                            <div class="card-action no-pad center-align">
+                                                <div class="cloud-drive-name">
+                                                    <span class="drive-name">Google Drive</span>                                                
+                                                    {{#ifcond storage '===' "GoogleDrive"}} 
+                                                        {{#ifcond storage_token.tokenStatus '==' 'active'}}
+                                                            <a class="btn show-active-account" data-storage="GoogleDrive">Active Account</a>
+                                                        {{else}}
+                                                            <a class="btn activate-storage" data-storage="GoogleDrive">Reactivate</a>
+                                                        {{/ifcond}}
+                                                    {{else}} 
+                                                    <a class="btn activate-storage" data-storage="GoogleDrive">Activate</a>
+                                                    {{/ifcond}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="total-storage-used-wrap"><span>Total Usage: {{stats.Drives.GoogleDrive}}</span></div>
+                                    </div>
+                                </div>
+                                <div class="monedrive-wrapper">                                 
+                                    <div data-storage="OneDrive" {{#ifcond storage '===' "OneDrive"}} class="card hoverable z-depth-2 card-custom active" {{else}} class="card hoverable z-depth-2 card-custom not-active" {{/ifcond}}>
+                                        <div class="active-selected-icn"></div> 
+                                        <div class="card-content">
+                                            <div class="card-microsoft-logo responsive-img"></div>
+                                            <div class="card-action no-pad center-align">
+                                                <div class="cloud-drive-name">
+                                                    <span class="drive-name">Microsoft Onedrive</span>
+                                                    {{#ifcond storage '===' "OneDrive"}} 
+                                                        {{#ifcond storage_token.tokenStatus '==' 'active'}}
+                                                            <a class="btn activate-storage disabled" data-storage="OneDrive">Activated</a>
+                                                        {{else}}
+                                                            <a class="btn activate-storage" data-storage="OneDrive">Reactivate</a>
+                                                        {{/ifcond}}
+                                                    {{else}}
+                                                        <a class="btn activate-storage" data-storage="OneDrive">Activate</a>
+                                                    {{/ifcond}}                                      
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="total-storage-used-wrap"><span>Total Usage: {{stats.Drives.OneDrive}}</span></div>
+                                    </div>
+                                </div>
+                            </div>                            
+                            <div class="cloud-option-container">
+                            </div>  
+                        </div> -->
+                        <div class="no-pad storage-info-wrapper hide">
+                                <div class="storage-info-close-btn"><i class="material-icons">highlight_off</i></div>
+                                <div class="storage-info z-depth-5">
+                                    <ol>
+                                        <div class="storage-info-header">Storage Setup</div>
+                                        <li><div class="storageinfo_drive">On registration, <b>Digital Jeevi</b> drive is set as the default file manager and storage system.</div></li>
+                                        <li>
+                                            <div class="storageinfo_drive_heading">
+                                                <b>Activate Cloud Drives</b>
+                                            </div>
+                                            <div class="storageinfo_drive storage_sub">
+                                                Jeevi can activate the DJ file manager set-up by clicking and validating the access credentials across any one or all of Google Drive, Microsoft Onedrive and Dropbox cloud storage Drives.
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="storageinfo_drive_heading">
+                                            <b>Set-up Default Drive</b> 
+                                            </div>
+                                            <div class="storageinfo_drive storage_sub_sec">
+                                                Jeevi should select any one of the activated drives as âDEFAULT DRIVEâ  to enable realtime storage and access of all assets, across all platform actvities
+                                            </div>
+                                            <div class="storageinfo_drive storage_sub_sec">Jeevi can change the DEFALUT DRIVE preference at any point of time by.</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                        </div>
+                </div>
+            </div>                                             
+            
+        </div> 
+    </div>
+</script>

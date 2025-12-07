@@ -1,0 +1,278 @@
+@use "../abstracts" as cloudstorage;
+#filemanger_container_toggle {
+    position: fixed;
+    top: 60px;
+    right: 0;
+    z-index: 1001 !important;
+    width: 100%;
+    min-height: calc(100% - 60px);
+    max-height: calc(100% - 60px);
+    opacity: 0;
+    transition: all 220ms ease-in-out;
+    will-change: transform;
+    transform: translate3d(120%, 0, 0);
+    &.active {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+    .grid-view-container {
+        position: fixed;
+        @include cloudstorage.boxshadow(-2px 0 20px -10px rgba(var(--cardBoxshadow),.8));
+        @include cloudstorage.var(background-color,sidebarColor, 1);
+        overflow-y: auto;
+        max-width: 520px;
+        height: 100%;
+        width: 100%;
+        right: 0;
+        &::before {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            content: "";
+            @include cloudstorage.var(background-color,sidebarColor, 1);
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        &.edit-mode {
+            .thumb-overlay {
+                display: flex;
+            }
+        }
+        .filemanager-navigation-button-container {
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        @include cloudstorage.border-direction('bottom', 1px, solid,navigationBg,.8);
+        @include cloudstorage.var(background-color,navigationBg, .95);
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        @include cloudstorage.var(color,textColor, 1);
+        > * {
+            height: 40px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+        }
+        .arrow-back-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            span.material-icons {
+                vertical-align: middle;
+            }
+        }
+        .file-manager-footer {
+            margin-left: auto;
+            margin-right: 5px;
+            cursor: pointer;
+            button {
+                @include cloudstorage.bd-radius(20px);
+                font-size: .8rem;
+                height: 25px;
+                line-height: 25px;
+                background-color: #168eea;
+                padding: 0 15px;
+                cursor: pointer;
+                &.disable {
+                    opacity: .3;
+                    pointer-events: none;
+                }
+            }
+            &.hide {
+                + .close-btn-cloud {
+                    margin-left: auto;
+                }
+            }
+        }
+        .close-btn-cloud {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .filemanager-navigation-button-container {
+            button#attach_file_btn.disable {
+                opacity: .3;
+            }
+        }
+        }
+        .search-wrapper {
+        @include cloudstorage.var(background-color,searchbarBgColor, 1);
+        position: sticky;
+        z-index: 1;
+        form.expand-search-wrap {
+            display: flex;
+            align-items: center;
+            position: relative;
+            .search-icn {
+                width: 40px;
+                position: absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                @include cloudstorage.var(color,textColor, .8);
+                }
+                input[type="search"]:not(.browser-default) {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    font-size: 1rem;
+                    border: none;
+                    margin-bottom: unset;
+                    padding: 0 10px 0 40px;
+                }
+            }
+        }
+    }
+}
+.upload-grid-view-wrapper {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    padding: 15px !important;
+    flex: 1 1 0px;
+    &.view-grid {
+        > li {
+            position: relative;
+            float: left;
+            flex: 1;
+            min-width: 130px;
+            max-width: 130px;
+            min-height: 100px;
+            max-height: 107px;
+            margin: 6px;
+            padding: 1px 2px;
+            @include cloudstorage.var(background-color,fileBg,1);
+            @include cloudstorage.boxshadow(0, 0, 1px, 1px, rgba(var(--textColor),.15));
+            cursor: pointer;
+            border-radius: 5px;
+            .thumbnail-wrapper {
+                position: relative;
+                margin: 2px;
+                flex: 0 0 36px;
+                a {
+                    @include cloudstorage.var(color,textColor,1);
+                    .thumbnail {
+                        display: inline-block;
+                        width: 100%;
+                        text-align: center;
+                        line-height: 80px;
+                        @include cloudstorage.var(background-color,fileFocusBg,1);
+                        vertical-align: top;
+                        overflow: hidden;
+                        border-radius: 5px;
+                      }
+                }
+                .thumb-overlay {
+                    display: none;
+                    background-color: rgba(150,150,150,.5);
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    transition: background-color 200ms ease-in-out;
+                    border-radius: 5px;
+                    label {
+                        width: 100%;
+                        &.custom-controls {
+                            input[type="checkbox"] {
+                                &:checked, &:not(:checked) {
+                                    opacity: unset;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &[data-type="folder"] {
+                .thumbnail {
+                    line-height: 80px;
+                    &::after {
+                        content: "\e2c7";
+                        background: -webkit-gradient(linear, left top, left bottom, from(#ffd086), to(#ffa500));
+                        background-clip: border-box;
+                        background-clip: border-box;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        font-family: "Material Icons";
+                        font-size: 50px;
+                        color: #5c6365;
+                    }
+                    &::after {
+                        font-size: 50px;    
+                    }
+                }
+            }
+            &[data-type="file"] {
+                .thumbnail {
+                    line-height: 80px;
+                    &::after {
+                        content: "\e873";
+                        // background: -webkit-gradient(linear, left top, left bottom, from(#ffd086), to(#ffa500));
+                        background: -webkit-gradient(linear, left top, left bottom, from(rgba(var(--iconGradientlight),0.52)), to(rgba(var(--iconGradientDark),1)));
+                        background-clip: border-box;
+                        background-clip: border-box;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        font-family: "Material Icons";
+                        font-size: 50px;
+                        color: #5c6365;
+                    }
+                    &::after {
+                        font-size: 50px;    
+                    }
+                }
+            }
+            .file-details {
+                position: absolute;
+                width: 100%;
+                left: 0;
+                bottom: 0;
+                height: 40px;
+                @include cloudstorage.var(background-color, blackTextColor,.6);
+                @include cloudstorage.var(color, whiteTextColor,1);
+                justify-content: center;
+                .thumb-title {
+                    width: 100%;
+                    font-size: .85rem;
+                    font-weight: 500;
+                    padding: 2px 10px 0;
+                    display: block;
+                    text-decoration: none;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    @include cloudstorage.var(color, whiteTextColor,1);
+                  }
+                  .thumb-meta {
+                    padding: 0 10px 0 10px;
+                    @include cloudstorage.var(color, whiteTextColor,1);
+                    font-size: 13px;
+                    padding: 2px 7px 0 10px;
+                    display: block;
+                  }
+            }
+            &.active {
+                background: #5f6265;
+            }
+            &.grid {
+                &:hover {
+                    .thumb-overlay {
+                        display: flex;
+                    }
+                }
+            }
+        }
+    }
+}

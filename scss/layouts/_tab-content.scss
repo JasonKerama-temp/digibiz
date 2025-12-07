@@ -1,0 +1,401 @@
+@use "../abstracts" as tabcontent;
+
+.active-employee-list-container,
+.pending-employee-list-container,
+.alumini-employee-list-container,
+.active-super-admin-list-container,
+.pending-super-admin-list-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    margin-bottom: 1px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.content-wrapper div:not([class]) {
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-weight: normal;
+    font-size: .7rem;
+    @include tabcontent.var(color, btnIcnColor, .7);
+}
+
+.employee-creation-list-contentbox,
+.active-super-admin-list-contentbox,
+.pending-super-admin-list-contentbox {
+    width: 100%;
+    height: 100%;
+}
+
+.employee-active-page-btn-wrap {
+    display: flex;
+}
+
+.employee-wrapper,
+.pending-employee-wrapper,
+.module-admin-management-wrapper,
+.pending-super-admin-wrapper,
+.employee-group-wrapper {
+    display: flex;
+    min-height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    @include tabcontent.var(background-color, hubsliderbg, .4);
+    @include tabcontent.var(color, headerFontColor, 1);
+    margin-bottom: 2px;
+}
+
+.voiceit_private_page_search_container {
+    width: 160px;
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: auto;
+    span {
+        width: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.filterbtn, &.informationbtn, &.communication-activity-logs {
+            color: #7fc2b8;
+        }
+    }
+
+
+    .searchbtn~.expand-search-wrap.active {
+        height: 35px;
+    }
+}
+.collaborator-contact-list-notification-details-title-band {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 1px;
+    @include tabcontent.var(background-color, hubsliderbg, .4);
+    @include tabcontent.boxshadow(0 1px 4px 1px rgba(0,0,0,.3));
+    &:has(> span) {
+        flex-flow: unset;
+        align-items: center;
+        > span {
+            &:not([class]) {
+                @include tabcontent.var(color, whiteTextColor, .9);
+            }
+            &.searchbtn {
+                margin-left: auto;
+            }
+        }        
+
+    }
+}
+.listing-tabs-wrapper {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 1px;
+    @include tabcontent.var(background-color, hubsliderbg, .4);
+    @include tabcontent.boxshadow(0 1px 4px 1px rgba(0,0,0,.3));
+    .main-tab-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+
+        ul.maintab {
+            display: flex;
+            align-items: center;
+            font-size: .9rem;
+            height: 40px;
+            margin: 0;
+            display: flex;
+            width: 100%;
+            z-index: 1;
+
+            li {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                max-width: 170px;
+                position: relative;
+                overflow: hidden;
+                @include tabcontent.minbreakpoint(500px) {
+                    flex: 1;
+                    width: 100%;
+                }
+                a {
+                    width: 100%;
+                    height: 100%;
+                    padding: 0 10px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                    flex-wrap: wrap;
+                    // padding-bottom: 6px;
+                    @include tabcontent.var(color, whiteTextColor, .8);
+                    border-bottom: 2px solid transparent;
+                    cursor: pointer;
+                    pointer-events: auto;
+                    font-size: .75rem;
+                    span {
+                        flex: 0 0 100%;
+                        display: flex;
+                        justify-content: center;
+                        &[class$=-count] {
+                            font-size: .6rem;
+                        }
+                    }
+                }
+
+                span.slider {
+                    --tabTextColor: 255, 255, 255;
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    height: 4px;
+                    @include tabcontent.var(background-color, textColor, 1);
+                    -webkit-transition: all 0.5s;
+                    transition: all 0.5s;
+                    transform: translateY(100%);
+                }
+
+                &.active a {
+                    @include tabcontent.var(color, whiteTextColor, 1);
+                    @include tabcontent.var(background-color, focused, .7);
+                    font-weight: 600;
+                }
+
+                &.active span.slider {
+                    transform: translateY(0%);
+                    content: "";
+                    font-weight: 600;
+                    @include tabcontent.var(background-color, focused, 1);
+                }
+            }
+        }
+    }
+    + .tab-content-container {
+        height: calc(100% - 40px);
+        .tab-content {
+            &:not(.active) {
+                display: none;
+            }
+            &.active {
+                display: flex;
+                height: 100%;
+            }
+        }
+    }
+}
+
+.profile-pic-info-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    overflow: hidden;
+    @include tabcontent.var(color, whiteTextColor, .6);
+    height: 100%;
+
+    .profile-pic-container {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        flex: 0 0 40px;
+        @include tabcontent.bd-radius(50%);
+        background-color: grey;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        // margin-right: 10px;
+        span.persona {
+            font-size: .89rem;
+            font-weight: 600;
+            @include tabcontent.var(color, whiteTextColor, 1);
+        }
+    }
+
+    +.btn-wrap {
+        padding: 0 4px;
+        position: absolute;
+        top: 10px;
+        right: 0px;
+        display: flex;
+        white-space: nowrap;
+
+        .more-menu-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 40px;
+            width: 40px;
+            height: 25px;
+            cursor: pointer;
+            pointer-events: auto;
+            margin-left: auto;
+            // @include tabcontent.var(color, headerFontColor, .7);
+            // color: #7fc2b8;
+            @include tabcontent.var(color, whiteTextColor, .97);
+        }
+
+        .more-menu-wrapper#activate-employee-group-btn {
+            @include tabcontent.var(color, blackTextColor, 1);
+            @include tabcontent.var(background-color, focused, 1);
+            padding: 8px 30px;
+            @include tabcontent.bd-radius(20px);
+            font-weight: 500;
+        }
+    }
+}
+
+.wrapper-primary-heading {
+    font-size: .9rem;
+    font-weight: 500;
+    @include tabcontent.var(color, whiteTextColor, 1);
+}
+
+.profile-pic-container {
+    + div {
+        padding: 0 14px;
+        &.notification-info-wrapper {
+            .business-notification-type-wrapper {
+                .notification-heading {
+                    @include tabcontent.var(color, whiteTextColor, 1);
+                    font-size: .9rem;
+                }
+            }
+            .misc-info-container {
+                .misc-info {
+                    .accept_reject_wrap {
+                        margin-top: 8px;
+                        button {
+                            height: 26px;
+                            line-height: 26px;
+                        }
+                    }
+                }
+            }
+        }
+        &.survey-list-surveyname-wrapper {
+            .app-name {
+                span {
+                    &.truncate {
+                        @include tabcontent.var(color, whiteTextColor, 1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.wrapper-secondary-heading {
+    font-size: .7rem;
+    font-weight: 300;
+    @include tabcontent.var(color, whiteTextColor, .9);
+}
+
+.wrapper-tertiary-heading {
+    font-size: .75rem;
+    font-weight: 300;
+    @include tabcontent.var(color, whiteTextColor, .9);
+    display: flex;
+    align-items: center;
+
+    &.active>span {
+        width: 8px;
+        height: 8px;
+        margin: 0 4px;
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            @include tabcontent.bd-radius(50%);
+            @include tabcontent.var(background-color, active, 1);
+        }
+    }
+
+    &.inactive>span {
+        width: 8px;
+        height: 8px;
+        margin: 0 4px;
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            @include tabcontent.bd-radius(50%);
+            @include tabcontent.var(background-color, inactive, 1);
+        }
+    }
+}
+
+.tab-content {
+    display: none;
+
+    &.active {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        animation: tabSlide 200ms forwards;
+    }
+
+    >div {
+        width: 100%;
+    }
+}
+
+#customer-employee-role-icon {
+    height: 18px;
+    width: 100%;
+    max-height: 18px;
+    margin-top: 12px;
+    width: unset;
+    font-size: .7rem;
+    margin-left: unset;
+    color: #95f9bf;
+    i {
+        font-size: 14px;
+        margin-bottom: 2px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+div#employee-group-moderator-members-list {
+    &:not(:empty) {
+        min-height: 100px;
+        max-height: 250px;
+        height: 100%;
+    }
+}
+#collaborator-group-owner-business-employees-list {
+    &:has(:not(.member-listing-wrapper)) {
+        min-height: 100px;
+        max-height: 250px;
+        height: 100%;
+    }
+}
+#collaborator-group-members-list {
+    &:has(:not(.member-listing-wrapper)) {
+        min-height: 100px;
+        max-height: 250px;
+        height: 100%;
+    }
+}

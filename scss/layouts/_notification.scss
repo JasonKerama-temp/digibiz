@@ -1,0 +1,181 @@
+@use "../abstracts" as notification;
+.notifications_menu_slider {
+    position: fixed;
+    top: 0px;
+    z-index: 999;
+    transform: translate3d(320px, 0, 0);
+    transition: all 220ms ease-in-out;
+    right: 0px;
+    width: 320px;
+    max-width: 300px;
+    height: 100%;
+    opacity: 0;
+    will-change: transform;
+        &.active{
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        &::before {
+            position: absolute;
+            background-size: cover;
+            height: 100%;
+            width: 100%;
+            content: "";
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            @include notification.var(background-color, hubsliderbg,.1);
+            box-shadow: -2 0 10px rgba(6, 21, 50, 0.98) !important;
+        }
+        .sidebar-slider-header {
+            .alert-title {
+                @include notification.var(color, whiteTextColor,.1);
+            }
+            #alert-settings-toggle {
+                margin-left: auto;
+                @include notification.var(color, whiteTextColor,.1);
+            }
+        }
+        .right-profile-toggle {
+            height: 100% !important;
+            position: relative !important;
+            .sidebar-slider-wrapper {
+                // @include notification.var(background-color, primaryColor,1);                    
+                position: sticky;
+                &::before {
+                    content: "";
+                    // @include notification.var(background-color, primaryColor,1);
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    pointer-events: none;
+                }
+                .asset-slider-header {
+                    display: flex;
+                    align-items: center;
+                    @include notification.var(background-color, primaryColor,1);
+                    @include notification.var(color, whiteTextColor,1);
+                    padding: 10px;
+                    height: 60px;
+                    position: relative;
+                    span.material-icons {
+                        @include notification.var(color, whiteTextColor, 1);
+                        margin-left: auto;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .notification-alert {
+                display: block;
+                padding: 2px 0px !important;
+                height: calc(100% - 100px);
+                margin: 0;
+                position: relative;
+                color: #ffffff !important;
+                .dropdown-wrapper {
+                    display: flex;
+                    align-items: center;
+                    font-size: .8rem;
+                    .wrapper-dropdown {
+                        position: relative;
+                        min-width: 100px;
+                        max-width: 130px;
+                        padding: 5px;
+                        border-bottom: 1px solid transparent;
+                        cursor: pointer;
+                        outline: none;
+                        height: 30px;
+                        margin-left: 5px;
+                        z-index: 9;
+                        &::after {
+                            content: "";
+                            width: 0;
+                            height: 0;
+                            position: absolute;
+                            pointer-events: none;
+                            right: 5px;
+                            top: 50%;
+                            margin-top: -3px;
+                            border-width: 6px 6px 0 6px;
+                            border-style: solid;
+                            border-color: rgba(var(--inputBorder), 1) transparent;
+                        }
+                    }
+                    .clear-all-wrapper {
+                        margin-left: auto;
+                        margin-right: 15px;
+                    }
+                }
+                li.alert-item {
+                    list-style-type: none;
+                    height: auto;
+                    width: 100%;
+                    @include notification.var(background-color, greyColor,1);
+                    @include notification.var(color, textColor,1);
+                    box-shadow: 0 0 10px rgba(255, 255, 255, .1) inset;
+                    margin-bottom: 3px;
+                    text-align: left;
+                    padding: 10px;
+                    cursor: pointer;
+                    transition: all 240ms ease-in-out;
+                    position: relative;
+                    font-size: .82rem;
+                    min-height: 68px;
+                    display: flex;
+                    align-items: center;
+                    > div:not([class]) {
+                        width: 10px;
+                        height: 10px;
+                        margin-right: 10px;
+                        @include notification.bd-radius(50%);
+                        margin-right: 10px;
+                    }
+                    div.alert-profile {
+                        width: 40px;
+                        height: 40px;
+                        flex: 0 0 40px;
+                        margin-right: 10px;
+                        @include notification.var(background-color, blackTextColor,.3);
+                        @include notification.var(color, whiteTextColor,1);
+                        @include notification.bd-radius(50%);
+                        position: relative;
+                        overflow: hidden;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    div.alert-title {
+                        display: flex;
+                        flex-flow: column;
+                        span {
+                            font-size: .7rem;
+                            @include notification.var(color, textColor,.7);
+                            margin-top: 10px;
+                        }
+                    }
+                }
+            }
+            .seehistory-wrapper {
+                display: flex;
+                height: 44px;
+                align-items: center;
+                .seehistory {
+                    @include notification.var(color, whiteTextColor,1);
+                    font-size: .85rem;
+                    margin-left: auto;
+                    margin-right: 10px;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    span.material-icons {
+                        @include notification.var(color, textColor,1);
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+}
+

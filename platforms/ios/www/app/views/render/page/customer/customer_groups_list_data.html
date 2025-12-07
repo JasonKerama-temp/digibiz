@@ -1,0 +1,22 @@
+<script id="customer-groups-list-data-template" type="text/x-handlebars-template">
+    <div class="customer-groups-list-contentbox">
+        {{#if customer_groups_list_data}}
+        {{#each customer_groups_list_data}}
+            <div class="customer-group-wrapper common-list-wrapper" data-id="{{this.id}}" data-type="{{this.group_type}}">
+                <div class="profile-pic-info-wrapper view-customer-group">
+                    <div class="profile-pic-container p-{{imageLetter}}">
+                        <img class="group_img profile-pic" src="{{this.group_image.avtarUrl}}" data-group-id="{{this.id}}"/>
+                        <span class="persona">{{imageLetter}}</span>
+                    </div>                 
+                    <div class="customer-group-data-wrapper ellipsify">
+                        <div class="customer-group-name wrapper-primary-heading"><span class="truncate">{{this.name}}</span></div>
+                        <div class="customer-group-status wrapper-secondary-heading status--{{this.status.status}}">{{this.status.status}}</div>
+                    </div>
+                </div>                 
+            </div>
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}              
+      </div>
+</script>

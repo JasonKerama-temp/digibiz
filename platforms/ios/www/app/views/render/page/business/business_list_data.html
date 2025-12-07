@@ -1,0 +1,45 @@
+<script id="business-owner-business-data-list-template" type="text/x-handlebars-template">
+    <div class="business-owner-business-list-contentbox card-grid">
+        {{#if business_owner_business_list_data}}
+        {{#each business_owner_business_list_data}}
+            <div class="business-wrapper {{imageLetter}}" data-business-id="{{this.id}}" data-status="{{this.status.status}}" data-socket-status="{{this.socket_enable_status}}">
+                <div class="status-type 1" data-status="{{this.status.status}}">{{#ifcond this.status.status '==' 'inactive'}}{{#firstletterCaps this.status.status}}{{/firstletterCaps}}{{/ifcond}}{{#ifcond this.status.status '==' 'pending'}}Draft{{/ifcond}}</div>
+                <div class="business-wrapper-container">
+                    <div class="profile-pic-info-wrapper">
+                        <div class="business-display-pic profile-pic-container p-{{imageLetter}} view-business-profile-pic cursor-pointer">
+                            <span class="persona">{{imageLetter}}</span>
+                            <!-- <img class="profile-pic" src="{{this.display_picture.avtarUrl}}" data-id="{{this.display_picture.thumbnail}}" />   -->
+                            <img class="profile-pic" src="{{display_picture.base64_thumbnail_content}}" data-id="{{this.display_picture.thumbnail}}" />    
+                                           
+                        </div>
+                        <div class="view-business cursor-pointer business-data-wrapper ellipsify" data-business-id="{{this.id}}">
+                            <div class="business-name wrapper-primary-heading"><span class="truncate">{{#firstletterCaps this.name}}{{/firstletterCaps}}</span></div>
+                            <div class="business-display-name wrapper-secondary-heading"><span class="truncate biz-display-name"><i class="material-icons">fact_check</i>&nbsp;{{this.display_name}}</span></div>
+                            <!-- {{#if this.status_line}}
+                            <div class="business-status-line wrapper-secondary-heading"><span class="biz-status-line">{{#firstletterCaps this.status_line}}{{/firstletterCaps}}</span></div>
+                            {{/if}} -->
+                            <!-- {{#ifcond this.status.status '==' 'pending'}}
+                            <div class="business-status wrapper-secondary-heading"><span class="truncate">Draft</span></div>
+                            {{/ifcond}}
+                            {{#ifcond this.status.status '==' 'inactive'}}
+                            <div class="business-status wrapper-secondary-heading"><span class="truncate">Inactive</span></div>
+                            {{/ifcond}} -->
+                            <!-- <div class="feedback-creator-name ellipsify">{{this.owner_name}}</div> -->
+                        </div>
+                    </div>
+                    <div class="view-business cursor-pointer business-secondary-data-wrapper">
+                        {{#if this.status_line}}
+                            <div class="business-status-line wrapper-secondary-heading"><span class="biz-status-line">{{#firstletterCaps this.status_line}}{{/firstletterCaps}}</span></div>
+                        {{/if}}
+                    </div>
+                </div>              
+            </div>
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}
+        <div class="fixed-action-btn create-survey-btn-wrapper">
+            <a class="btn-floating btn-save btn-large cursor-pointer" id="add-business-btn"><i class="material-icons">add</i></a>
+        </div>       
+      </div>
+</script>

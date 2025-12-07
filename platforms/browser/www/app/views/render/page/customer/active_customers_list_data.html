@@ -1,0 +1,51 @@
+<script id="active-customers-list-data-template" type="text/x-handlebars-template">
+    <div class="active-customers-list-contentbox scrollinit">
+        {{#if active_customers_list_data}}
+        {{#each active_customers_list_data}}
+            <div class="active-customer-wrapper common-list-wrapper" data-customer-id="{{this.id}}" data-status="{{this.status.status}}" data-identifier-id="{{this.identifier_id}}" data-socket-status="{{this.socket_enable_status}}">
+                <div class="profile-pic-info-wrapper ">
+                    <div class="customer-group-display-pic profile-pic-container p-{{imageLetter}} view-customer-profile-pic cursor-pointer">
+                        <img class="profile-pic" src="{{this.identity_picture.avtarUrl}}" data-id="{{this.identity_picture.thumbnail}}" data-customer-id="{{this.id}}" data-customer-type="customer"/>
+                        <span class="persona">{{imageLetter}}</span>
+                    </div>
+                    <div class="active-customer-data-wrapper customer-get-profile-information ellipsify">
+                        <div class="active-customer-name wrapper-primary-heading"><span class="truncate">{{this.name.first}}&nbsp;{{this.name.last}} {{#if collaborator_customer}}(CE){{/if}}</span></div>
+                        {{#if this.display_name}}
+                        <div class="active-customer-display-name wrapper-secondary-heading"><span class="truncate">{{this.display_name}}</span></div>    
+                        {{/if}}                    
+                        {{#if this.role}}
+                        {{#ifcond this.role.type '==' 'employee'}}
+                        {{#if this.role_business_name}}
+                        <div class="customer-label wrapper-secondary-heading"><span class="truncate">Employee: {{this.role_business_name}}</span></div>
+                        {{/if}}
+                        {{/ifcond}}
+                        {{/if}}
+                        {{#if this.label}}
+                        <div class="customer-label wrapper-secondary-heading"><span class="truncate">Label: {{this.label}}</span></div>
+                        {{/if}}
+                        {{#ifcond this.status.status '==' 'accepted'}}
+                        <div class="customer-status wrapper-secondary-heading status--accepted">Accepted</div>
+                        {{/ifcond}}
+                        {{#ifcond this.status.status '==' 'inactive'}}
+                        <div class="customer-status wrapper-secondary-heading status--inactive">Inactive</div>
+                        {{/ifcond}}
+                        {{#ifcond this.status.status '==' 'exited'}}
+                        <div class="customer-status wrapper-secondary-heading status--exited">Exited</div>
+                        {{/ifcond}}
+                    </div>
+                </div> 
+                {{#if collaborator_customer}}{{else}}
+                <div class="btn-wrap">   
+                    <div class="more-menu-wrapper show-action-active-customer-data" id="show-action-active-customer-data"><i class="material-icons">more_vert</i></div>
+                </div>      
+                {{/if}}          
+            </div>
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}
+        <!-- <div class="fixed-action-btn create-survey-btn-wrapper">
+            <a class="btn-floating black btn-save btn-large" id="add-customer-btn"><i class="material-icons">add</i></a>
+        </div>        -->
+      </div>
+</script>

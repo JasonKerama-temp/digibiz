@@ -1,0 +1,24 @@
+<script id="associate-customer-identifiers-data-list-template" type="text/x-handlebars-template">
+    <div class="associate-customer-identifiers-list-contentbox scrollinit">
+        {{#if associate_customer_identifiers_list_data}}
+        {{#each associate_customer_identifiers_list_data}}
+            <div class="associate-customer-identifier-wrapper common-listing-wrapper" data-id="{{this.id}}" data-status="{{this.status.status}}">                    
+            <div class="profile-pic-info-wrapper">                            
+              <div class="associate-customer-identifier-data-wrapper ellipsify">
+                <div class="wrapper-secondary-heading"><span class="truncate">Type: {{#ifcond this.type '==' 'associate_customer'}}Associate customer label{{/ifcond}}{{#ifcond this.type '==' 'primary_customer'}}Customer label{{/ifcond}}</span></div>
+                <div class="associate-customer-identifier-name wrapper-primary-heading"><span class="truncate">{{this.identifier}}</span></div>
+              </div>              
+            </div>  
+            <div class="btn-wrap">              
+             <div class="more-menu-wrapper show-action-associate-customer-identifier-data" id="show-action-associate-customer-identifier-data"><i class="material-icons">more_vert</i></div>
+            </div>
+          </div>                                  
+        {{/each}}
+        {{else}}
+            <div class="no_data">No Labels found</div>
+        {{/if}}
+        <!-- <div class="fixed-action-btn create-survey-btn-wrapper">
+            <a class="btn-floating black btn-save btn-large" id="associate_customer_identifier_add_button"><i class="material-icons">add</i></a>
+        </div>-->
+      </div>
+</script>

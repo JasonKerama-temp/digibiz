@@ -1,0 +1,180 @@
+@use "../abstracts" as cardList;
+
+.surveylist-container {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+}
+
+.business-owner-business-list-main-container,
+.employee-business-list-main-container {
+    position: relative;
+    flex: 1 1 0px;
+    width: 100%;
+    height: 100%;
+    // margin-top: 40px;
+    // overflow-y: auto;
+
+    .card-grid {
+        max-width: 800px;
+        margin: auto;
+    }
+}
+
+.card-grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-auto-rows: minmax(140px, auto);
+    padding: 10px;
+    > div:not(.fixed-action-btn) {
+        pointer-events: none;
+        min-height: 70px;
+        width: 100%;
+        display: flex;
+        // align-items: center;
+        position: relative;
+        flex-direction: column;
+        margin-bottom: 1px;
+        @include cardList.bd-radius();
+        @include cardList.var(background-color, hubappbtn, 1);
+        @include cardList.var(color, headerFontColor, 1);
+        backdrop-filter: blur(2em);
+
+        .profile-pic-info-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            overflow: hidden;
+            @include cardList.var(color, whiteTextColor, .6);
+            // height: 100%;
+            height: 80px;
+            margin-top: 25px;
+
+            .profile-pic-container {
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                min-height: 40px;
+                flex: 0 0 40px;
+                @include cardList.bd-radius(50%);
+                background-color: grey;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                // margin-right: 5px;
+                color: rgba(70, 70, 70, 0.8);
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    @include cardList.bd-radius(50%);
+                    position: absolute;
+                    z-index: 0;
+                }
+
+                .persona {
+                    color: white;
+                    font-size: .89rem;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+    &:has(.no_data) {
+        display: flex;
+        .no_data { 
+            @include cardList.var(color, whiteTextColor, .7);
+            @include cardList.var(background-color, hubappbtn, 0);
+        }
+    }
+}
+
+.business-data-wrapper {
+    .business-name {
+        flex: 1 1 auto;
+        min-height: 16px;
+        display: flex;
+        // color: rgba(var(--textColor), .8);
+        @include cardList.var(color, whiteTextColor, .8);
+    }
+
+    .business-display-name .material-icons {
+        font-size: 15px;
+    }
+
+    span.material-icons.business-display-name-info {
+        font-size: 18px;
+    }
+
+    >div {
+        // font-size: 0.9rem;
+        padding: unset;
+        width: 100%;
+        // margin-top: 10px;
+        margin: 5px;
+    }
+
+    .wrapper-primary-heading,
+    .customer-groups-identifier-name {
+        font-size: .9rem !important;
+        // color: rgba(var(--whiteTextColor)) !important;
+        @include cardList.var(color, whiteTextColor, .8);
+    }
+}
+
+
+.business-display-name-info-header-container {
+    padding: 5px;
+    margin-bottom: 15px;
+    font-size: 17px;
+}
+
+.business-display-name-info-body-container {
+    padding: 5px;
+    font-size: 14px;
+}
+
+.business-display-name-info-point {
+    padding: 5px;
+}
+
+.view-business {
+    width: 100%;
+}
+
+// .view-employee-business,
+// .view-customer-business {
+.employee-business-wrapper-container {
+    width: 100%;
+    flex: 1;
+
+    +.btn-wrap {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        display: flex;
+        align-items: center;
+
+        >div {
+            height: 40px;
+        }
+    }
+}
+
+.business-secondary-data-wrapper {
+    padding: 0 15px;
+    margin-bottom: 10px;
+}
+
+.business-customer-type,
+.business-identifier-name {
+    @include cardList.var(color, lightGreen, 1);
+    font-style: italic;
+}

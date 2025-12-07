@@ -1,0 +1,17 @@
+<script id="contact-items-list-data-template" type="text/x-handlebars-template">
+    <div class="contact-items-list-contentbox">
+        {{#if contacts_items_list_data}}
+        {{#each contacts_items_list_data}}
+            <div class="customer-contacts-item-wrapper" data-id="{{this.id}}">
+                <div class="profile-pic-info-wrapper">                    
+                    <div class="contact-items-data-wrapper ellipsify">
+                        <div class="contact-item-name wrapper-primary-heading"><span class="truncate">{{this.name}}</span></div>
+                    </div>
+                </div>                 
+            </div>
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}              
+      </div>
+</script>

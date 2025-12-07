@@ -1,0 +1,1 @@
+cordova.define("cordova-plugin-media-capture.MediaFileData",(function(i,t,e){e.exports=function(i,t,e,a,o){this.codecs=i||null,this.bitrate=t||0,this.height=e||0,this.width=a||0,this.duration=o||0}}));

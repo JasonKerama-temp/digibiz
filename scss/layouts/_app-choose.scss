@@ -1,0 +1,51 @@
+@use "../abstracts" as appChoose;
+
+.app-list-wrapper.apps-choose-business {
+    display: flex;
+    flex-flow: unset;
+    align-items: center;
+    width: 100%;
+    min-height: 70px;
+    margin-bottom: 1px;
+    position: relative;
+    border-bottom: 1px solid rgba(var(--textColor), 0.095);
+    @include appChoose.var(background-color,hubsliderbg,1);
+    .profile-pic-info-wrapper {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        overflow: hidden;
+        @include appChoose.var(color,whiteTextColor,.6);
+        height: 100%;
+    }
+}
+.apps-choose-business-management-list-main-wrapper {
+    width: 100%;
+}
+.material-icons.app_permission_settings_app_actions {
+    margin: 0px 20px;
+}
+.app_permission_settings_app_actions {
+    order: 1;
+    @include appChoose.var(color,whiteTextColor,.8);
+}
+.app-list-wrapper.apps-choose-business .checkbox-conatiner {
+    position: absolute;
+    left: 50px;
+    top: 38px;
+    opacity: .98;
+}
+.app-list-wrapper.apps-choose-business .checkbox-conatiner label::after {
+    @include appChoose.bd-radius(50%);
+    width: 18px;
+    height: 18px;
+    box-shadow: 0 0 0 3px rgba(var(--whiteTextColor),1);
+}
+.business-profile-display-control-main-wrapper {
+    width: 100%;
+}
+.apps-choose-business .checkbox-conatiner input[type="checkbox"].filled-in:disabled:checked+label:after {
+    background-color: #058904;
+    border-color: #949494;
+}

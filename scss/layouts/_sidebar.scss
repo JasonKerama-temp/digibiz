@@ -1,0 +1,237 @@
+@use "../abstracts" as sidebar;
+.slide-bar {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    max-width: 300px;
+    top: 0;
+    right: 0;
+    transform: translate3d(100%, 0, 0);
+    transition: all 250ms ease-in-out;
+    will-change: transform;
+    z-index: 1000;
+    &.active {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+    &::before {
+        position: absolute;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+        content: "";
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        @include sidebar.var(background-color, hubsliderbg,1);
+        box-shadow: -2 0 10px rgba(6, 21, 50, 0.98) !important;
+    }
+    div:not([class]) {
+        height: 100% !important;
+        position: relative !important;
+        .sidebar-slider-wrapper {
+            height: unset !important;
+            .asset-slider-header {
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                height: 60px;
+                @include sidebar.var(color, whiteTextColor,1);
+                position: relative;
+            }
+        }
+        .theme-switch-wrapper {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            align-items: center;
+            height: 60px;
+            border-bottom: 1px solid var(--infoFocus);
+            @include sidebar.var(color, textColor,.8);
+            em {
+                margin-left: 20px;
+                font-size: .85rem;
+            }
+            .theme-switch {
+                display: inline-block;
+                height: 20px;
+                position: relative;
+                width: 40px;
+                margin-left: auto;
+                margin-right: 10px;
+                .custom-slider {
+                    background-color: #ccc;
+                    bottom: 0;
+                    cursor: pointer;
+                    left: 0;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    transition: .4s;
+                    &.round {
+                        @include sidebar.bd-radius(34px);
+                    }
+                    &::before {
+                        color: rgba(0,0,0,.9);
+                        height: 20px;
+                        left: 2px;
+                        position: absolute;
+                        transition: .4s;
+                        width: 19px;
+                        font-family: "Material Icons";
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        @include sidebar.bd-radius(50%);
+                        @include sidebar.var(background-color,whiteTextColor,1);
+                    }
+                }
+                input:checked + .custom-slider {
+                    background-color: #4caf50;
+                }
+            }
+        }
+        .right-side-menu-scroll {
+            padding: 0 4px;
+            height: calc(100% - 122px);
+            overflow-y: auto;
+        }
+        .profile-metadata-container {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            .profile-metadata, .business-metadata {
+                display: flex;
+                flex-flow: row;
+                width: 100%;
+                transition: all 400ms ease-in-out;
+                margin: 5px 5px;
+                // background: rgba(10, 10, 10, 1);
+                .profile-image, .business-image {
+                    min-width: 55px;
+                    width: 55px;
+                    height: 55px;
+                    @include sidebar.bd-radius(50%);
+                    background-color: rgba(20, 20, 20, 0.09);
+                    @include sidebar.var(color,whiteTextColor,1);
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    span {
+                        width: 100%;
+                        height: 100%;
+                        position: relative;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .text-small-size {
+                            width: 90%;
+                            height: 90%;
+                            position: absolute;
+                        }
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(0, 0, 0, .1);
+                            margin: 0 auto;
+                            right: 0;
+                            @include sidebar.bd-radius(50%);
+                        }
+                    }
+                }
+                .profile-info-container, .business-info-container {
+                    height: auto;
+                    padding: 10px;
+                    flex: 1 0 auto;
+                    align-self: center;
+                    .font-style.header-name {
+                        font-size: .9rem;
+                        @include sidebar.var(color,whiteTextColor,.9);
+                        margin-top: 6px;
+                        margin-bottom: 6px;
+                    }
+                    .font-style.mobile_number {
+                        font-size: .7rem;
+                        @include sidebar.var(color,whiteTextColor,.7);
+                        position: relative;
+                    }
+                }
+            }
+        }
+        .profile-menu {
+            margin-top: 20px;
+            position: relative;
+            li {
+                list-style-type: none;
+                height: 45px;
+                line-height: 45px;
+                width: 100%;
+                margin-bottom: 3px;
+                text-align: left;
+                cursor: pointer;
+                pointer-events: auto;
+                transition: all 220ms ease-in-out;
+                a {
+                    padding: 0 10px;
+                    display: flex;
+                    align-items: center;
+                    @include sidebar.var(color,completed,1);
+                    @include sidebar.var(background-color,hubappbtn,.4);
+                    i.material-icons {
+                        margin-right: 15px;
+                    }
+                }
+            }
+        }
+        .welcome-name, .unique-name {
+            font-size: .7rem;
+            @include sidebar.var(color, textColor,1);
+            text-align: center;
+            margin-top: 10px;
+        }
+    }
+}
+
+body[role="business_owner"] .picker__date-display, 
+body[role="business_owner"] .sidebar-slider-wrapper {
+    // @include sidebar.var(background-color,businessPrimaryColor,1);
+    color: rgba(230, 230, 230, .9);
+}
+.sidebar-slider-wrapper {
+    // @include sidebar.var(background-color,businessPrimaryColor,1);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    .sidebar-slider-header {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        position: relative;
+    }
+}
+[platform="browser"] .sidebar-slider-header, [platform="desktop"] .sidebar-slider-header {
+    height: 60px;
+}
+[platform="Android"] .sidebar-slider-header, [platform="iOS"] .sidebar-slider-header {
+    height: 56px;
+}
+html[data-darkmode="off"] .theme-switch .custom-slider::before, html:not([data-darkmode]) .theme-switch .custom-slider::before {
+    content: "\e3ac";
+}
+html[data-darkmode="on"] .theme-switch .custom-slider::before {
+    content: "\e3a8";
+}
+input:checked+.custom-slider::before {
+    transform: translateX(18px);
+}
+.profile-page-menu li a {
+    display: flex!important;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.profile-page-menu li a i {
+    margin-right: 10px;
+}

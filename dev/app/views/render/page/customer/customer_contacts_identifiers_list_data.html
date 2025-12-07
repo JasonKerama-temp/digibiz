@@ -1,0 +1,17 @@
+<script id="customer-contacts-identifiers-list-data-template" type="text/x-handlebars-template">
+    <div class="customer-contacts-identifiers-list-contentbox">
+        {{#if customer_contacts_identifiers_list_data}}
+        {{#each customer_contacts_identifiers_list_data}}
+            <div {{#ifcond ../list_for '==' 'customer_contacts_module'}} class="customer-contacts-identifier-wrapper"{{/ifcond}} {{#ifcond ../list_for '==' 'customer_groups_module'}} class="customer-group-contacts-identifier-wrapper"{{/ifcond}} data-id="{{this.id}}">
+                <div class="profile-pic-info-wrapper">                    
+                    <div class="customer-contacts-identifier-data-wrapper ellipsify">
+                        <div class="customer-contacts-identifier-name wrapper-primary-heading"><span class="truncate">{{this.identifier}}</span></div>
+                    </div>
+                </div>                 
+            </div>
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}              
+      </div>
+</script>

@@ -1,0 +1,1792 @@
+@use "../abstracts"as component;
+/* profile container */
+
+.dot-indicator {
+  --primaryColor: 255, 0, 0;
+  @include component.var(background-color, primaryColor, 1);
+  width: 10px;
+  height: 10px;
+  @include component.bd-radius(50%);
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  z-index: 2;
+  /* box-shadow: 0 0 0 3pt white; */
+}
+
+.profile-pic-container {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  flex: 0 0 40px;
+  @include component.bd-radius(50%);
+  /* background-color: lightgrey; */
+  background-color: grey;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-right: 15px; */
+}
+
+.profile-pic-container img {
+  width: 100%;
+  height: 100%;
+  @include component.bd-radius(50%);
+  position: absolute;
+}
+
+/* profile-container wrapper component */
+
+/* modal ios */
+
+.modal-ovserlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  // background: rgba(0, 0, 0, 0.65);
+  @include component.var(background-color, blackTextColor, 0.65);
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  will-change: opacity;
+  z-index: 99;
+}
+
+.modal-iOS {
+  --min-width: 250px;
+  --width: auto;
+  --min-height: auto;
+  --height: auto;
+  --max-height: 90%;
+  --ios-text-color-rgb: 0, 0, 0;
+  --ios-btn-color: #3880ff;
+}
+
+.custom-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-iOS .custom-modal-container {
+  min-width: var(--min-width);
+  max-width: var(--max-width);
+  height: var(--height);
+  min-height: var(--min-height);
+  max-height: var(--max-height);
+  @include component.bd-radius();
+  @include component.var(background-color, modalBg, 1);
+  @include component.var(color, modalTitle, 1);
+  z-index: 990;
+  overflow: hidden;
+}
+
+.modal-iOS .modal-title {
+  -webkit-padding-start: 16px;
+  padding-inline-start: 16px;
+  -webkit-padding-end: 16px;
+  padding-inline-end: 16px;
+  padding-top: 12px;
+  padding-bottom: 7px;
+  text-align: center;
+}
+
+.modal-iOS .modal-title h2 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+  margin-top: 8px;
+  @include component.var(color, modalTitle, 1);
+}
+
+.modal-iOS .modal-body {
+  -webkit-padding-start: 16px;
+  padding-inline-start: 16px;
+  -webkit-padding-end: 16px;
+  padding-inline-end: 16px;
+  font-size: 13px;
+  padding-top: 0;
+  padding-bottom: 21px;
+  text-align: center;
+  @include component.var(color, modalBodyText, 1);
+}
+
+.modal-iOS .modal-btn-wrapper {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+}
+
+.modal-iOS .modal-btn-wrapper button {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  @include component.bd-radius(0);
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 50%;
+  height: 44px;
+  border-top: 0.55px solid rgba(var(--ios-text-color-rgb), 0.2);
+  border-right: 0.55px solid rgba(var(--ios-text-color-rgb), 0.2);
+  background-color: transparent;
+  color: var(--ios-btn-color);
+  font-size: 17px;
+  overflow: hidden;
+  outline: none;
+}
+
+button {
+  border: 0;
+  @include component.bd-radius();
+  font-family: inherit;
+  font-style: inherit;
+  font-variant: inherit;
+  line-height: 1;
+  text-transform: none;
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+
+/* modal android */
+
+.modal-Android,
+.modal-browser,
+.modal-desktop {
+  --min-width: 300px;
+  --width: auto;
+  --min-height: auto;
+  --height: auto;
+  --max-height: 90%;
+  --ios-btn-color: #3880ff;
+  --box-Shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+}
+
+.modal-Android .custom-modal-container,
+.modal-browser .custom-modal-container,
+.modal-desktop .custom-modal-container {
+  min-width: var(--min-width);
+  max-width: var(--max-width);
+  height: var(--height);
+  min-height: var(--min-height);
+  max-height: var(--max-height);
+  @include component.bd-radius(4px);
+  @include component.var(background-color, modalBg, 1);
+  z-index: 990;
+  overflow: hidden;
+  box-shadow: var(--box-Shadow);
+}
+
+.modal-Android .modal-title,
+.modal-browser .modal-title,
+.modal-desktop .modal-title {
+  -webkit-padding-start: 16px;
+  padding-inline-start: 16px;
+  -webkit-padding-end: 16px;
+  padding-inline-end: 16px;
+  padding-top: 12px;
+  padding-bottom: 7px;
+  text-align: start;
+  @include component.var(color, modalTitle, 1);
+}
+
+.modal-Android .modal-title h2,
+.modal-browser .modal-title h2,
+.modal-desktop .modal-title h2 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+  margin-top: 8px;
+  @include component.var(color, modalTitle, 1);
+}
+
+.modal-Android .modal-body,
+.modal-browser .modal-body,
+.modal-desktop .modal-body {
+  -webkit-padding-start: 16px;
+  padding-inline-start: 16px;
+  -webkit-padding-end: 16px;
+  padding-inline-end: 16px;
+  font-size: 13px;
+  padding-top: 0;
+  padding-bottom: 10px;
+  /*21px*/
+  text-align: start;
+  @include component.var(color, modalBodyText, 1);
+}
+
+.modal-Android .modal-btn-wrapper,
+.modal-browser .modal-btn-wrapper,
+.modal-desktop .modal-btn-wrapper {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  width: 100%;
+  color: var(--ios-btn-color);
+}
+
+.modal-Android .modal-btn-wrapper button,
+.modal-browser .modal-btn-wrapper button,
+.modal-desktop .modal-btn-wrapper button {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  @include component.bd-radius(0);
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 30%;
+  max-width: 40%;
+  height: 44px;
+  border-top: 0.55px solid rgba(var(--ios-text-color-rgb), 0.2);
+  border-right: 0.55px solid rgba(var(--ios-text-color-rgb), 0.2);
+  background-color: transparent;
+  // color: var(--ios-btn-color) !important;
+  @include component.var(color, completed, 1);
+  font-size: 14px;
+  overflow: hidden;
+  outline: none;
+  text-transform: uppercase;
+}
+
+button {
+  border: 0;
+  @include component.bd-radius(0);
+  font-family: inherit;
+  font-style: inherit;
+  font-variant: inherit;
+  line-height: 1;
+  text-transform: none;
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+
+.modal-ovserlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  @include component.var(background-color, blackTextColor, 0.65);
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  will-change: opacity;
+  z-index: 99;
+}
+
+/* modal popup components */
+
+.back-drop {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  @include component.var(background-color, blackTextColor, 0.65);
+  z-index: -1;
+  transition: all ease-out 180ms;
+}
+
+.modal-popup-iOS {
+  --width: 100%;
+  --height: 100%;
+  --min-width: auto;
+  --max-width: auto;
+  --min-height: auto;
+  --max-height: auto;
+  --background: var(--background-color, #fff);
+  --min-header-height: 56px;
+  --bold-font: 600;
+  --text-align: center;
+}
+
+.modal-popup-Android {
+  --width: 100%;
+  --height: 100%;
+  --min-width: auto;
+  --max-width: auto;
+  --min-height: auto;
+  --max-height: auto;
+  --background: var(--background-color, #fff);
+  --min-header-height: 56px;
+  --bold-font: 600;
+  --text-align: left;
+}
+
+/* iOS starts */
+
+.modal-popup-iOS.custom-modal-popup {
+  height: var(--height);
+  width: var(--width);
+  overflow: hidden;
+  position: fixed;
+  display: none;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  transition: all ease-out 150ms;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-popup-iOS .custom-modal-wrapper {
+  display: flex;
+  flex-flow: column;
+  width: var(--width);
+  height: var(--height);
+  @include component.var(background-color, popupbgColor, 1);
+  //   &::before {
+  //     content: "";
+  //     position: absolute;
+  //     bottom: 0;
+  //     top: 0;
+  //     width: 100%;
+  //     background: -webkit-gradient(linear, left bottom, left top, color-stop(-5%, rgba(0, 0, 0, 0.7)), color-stop(30%, rgba(0, 0, 0, 0)));
+  //     background: linear-gradient(360deg, rgba(0, 0, 0, 0.7) -5%, rgba(0, 0, 0, 0) 30%);
+  // }
+}
+
+[platform="iOS"] .modal-popup-iOS .modal-popup-header-wrapper {
+  padding-top: constant(safe-area-inset-top);
+  padding-top: env(safe-area-inset-top);
+}
+
+.modal-popup-iOS .modal-popup-header {
+  position: relative;
+  width: 100%;
+  height: var(--min-header-height);
+  @include component.var(background-color, cardBackground, 0.9);
+  @include component.var(color, whiteTextColor, 1);
+  display: flex;
+  align-items: center;
+}
+
+.modal-popup-iOS .modal-popup-header::after {
+  left: 0;
+  bottom: 0px;
+  position: absolute;
+  width: 100%;
+  box-shadow: 0 0 2px 1px rgba(1, 0, 0, 0.2);
+  content: "";
+}
+
+.modal-popup-iOS .modal-popup-body {
+  position: relative;
+  display: flex;
+  height: calc(var(--height) - var(--min-header-height));
+}
+
+.modal-popup-iOS .modal-popup-body .modal-popup-content {
+  flex: 1;
+  width: var(--width);
+  height: calc(100% - 55px);
+  overflow-y: auto;
+  padding: 0 5px;
+  @include component.var(color, modalBodyText, 1);
+  &:has(.os-host) {
+    overflow-y: unset;
+  }
+}
+
+.modal-popup-iOS .modal-popup-body .modal-popup-content .maincontainer {
+  height: 100%;
+}
+
+.modal-popup-iOS .modal-popup-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 0;
+  @include component.bd-radius-bottom(0 0 2px 2px);
+  padding: 4px 6px;
+  height: 56px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  @include component.var(background-color, tabMenuBg, 1);
+}
+
+.modal-popup-iOS .modal-popup-body .modal-popup-content .contact-list {
+  width: var(--width);
+  height: var(--height);
+}
+
+.modal-popup-iOS .modal-toolbar-container {
+  flex: 2 0 0;
+  text-align: var(--text-align);
+  padding: 0 10px;
+  box-sizing: border-box;
+  font-weight: var(--bold-font);
+  font-size: 1rem;
+}
+
+.modal-popup-iOS .close-btn-wrapper {
+  position: absolute;
+  right: 10px;
+  width: 75px;
+  flex: 0 0 75px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* iOS ends */
+
+/* Android Starts */
+
+.modal-popup-Android.custom-modal-popup {
+  height: var(--height);
+  width: var(--width);
+  overflow: hidden;
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  transition: all ease-out 150ms;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-popup-Android .custom-modal-wrapper {
+  display: flex;
+  flex-flow: column;
+  width: var(--width);
+  height: var(--height);
+  @include component.var(background-color, popupbgColor, 1);
+  //   &::before {
+  //     content: "";
+  //     position: absolute;
+  //     bottom: 0;
+  //     top: 0;
+  //     width: 100%;
+  //     background: -webkit-gradient(linear, left bottom, left top, color-stop(-5%, rgba(0, 0, 0, 0.7)), color-stop(30%, rgba(0, 0, 0, 0)));
+  //     background: linear-gradient(360deg, rgba(0, 0, 0, 0.7) -5%, rgba(0, 0, 0, 0) 30%);
+  // }
+}
+
+.modal-popup-Android .modal-popup-header {
+  position: relative;
+  width: 100%;
+  height: var(--min-header-height);
+  @include component.var(background-color, cardBackground, 0.9);
+  @include component.var(color, whiteTextColor, 1);
+  display: flex;
+  align-items: center;
+}
+
+.modal-popup-Android .modal-popup-header::after {
+  left: 0;
+  bottom: 0px;
+  position: absolute;
+  width: 100%;
+  box-shadow: 0 0 2px 1px rgba(1, 0, 0, 0.2);
+  content: "";
+}
+
+.modal-popup-Android .modal-popup-body {
+  position: relative;
+  display: flex;
+  height: calc(var(--height) - var(--min-header-height));
+}
+
+.modal-popup-Android .modal-popup-body .modal-popup-content {
+  flex: 1;
+  width: var(--width);
+  height: calc(100% - 55px);
+  overflow-y: auto;
+  padding: 0 5px;
+  @include component.var(color, modalBodyText, 1);
+  &:has(.os-host) {
+    overflow-y: unset;
+  }
+}
+
+.modal-popup-Android .modal-popup-body .modal-popup-content .maincontainer {
+  height: 100%;
+}
+
+.modal-popup-Android .modal-popup-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 0;
+  @include component.bd-radius-bottom(0 0 2px 2px);
+  padding: 4px 6px;
+  height: 56px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  @include component.var(background-color, tabMenuBg, 1);
+  box-shadow: 0 -1px 10px -5px rgba(var(--cardBoxshadow), 0.5);
+}
+
+.modal-popup-Android .modal-popup-body .modal-popup-content .contact-list {
+  width: var(--width);
+  height: var(--height);
+}
+
+.modal-popup-Android .modal-toolbar-container {
+  flex: 2 0 0;
+  text-align: var(--text-align);
+  line-height: var(--height);
+  padding: 0 10px;
+  box-sizing: border-box;
+  font-weight: var(--bold-font);
+  font-size: 1rem;
+}
+
+.modal-popup-Android .close-btn-wrapper {
+  position: absolute;
+  right: 10px;
+  width: 75px;
+  flex: 0 0 75px;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+/* android ends */
+
+/* browser starts */
+
+.modal-popup-browser,
+.modal-popup-desktop {
+  --width: 100%;
+  --height: 100%;
+  --min-width: auto;
+  --max-width: auto;
+  --min-height: auto;
+  --max-height: auto;
+  --background: var(--background-color, #fff);
+  --min-header-height: 56px;
+  --bold-font: 600;
+  --text-align: left;
+}
+
+.modal-popup-browser .custom-modal-wrapper,
+.modal-popup-desktop .custom-modal-wrapper {
+  display: flex;
+  flex-flow: column;
+  width: 80%;
+  height: 90%;
+  @include component.var(background-color, popupbgColor, 1);
+  @include component.bd-radius();
+  max-height: 524px;
+  max-width: 750px;
+  //   &::before {
+  //     content: "";
+  //     position: absolute;
+  //     bottom: 0;
+  //     top: 0;
+  //     width: 100%;
+  //     background: -webkit-gradient(linear, left bottom, left top, color-stop(-5%, rgba(0, 0, 0, 0.7)), color-stop(30%, rgba(0, 0, 0, 0)));
+  //     background: linear-gradient(360deg, rgba(0, 0, 0, 0.7) -5%, rgba(0, 0, 0, 0) 30%);
+  // }
+}
+
+.modal-popup-browser .custom-modal-wrapper.cropper-wrapper,
+.modal-popup-desktop .custom-modal-wrapper.cropper-wrapper {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  /* height: unset; */
+  @include component.var(background-color, popupbgColor, 1);
+  @include component.bd-radius();
+  max-height: unset;
+  max-width: 400px;
+}
+
+/* .modal-popup-browser .custom-modal-wrapper.cropper-wrapper .modal-popup-footer {
+    display: contents!important;
+  } */
+
+.modal-popup-browser .custom-modal-wrapper.cropper-wrapper .modal-popup-footer .btn-flat {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  /* color: rgba(var(--whiteTextColor), 1); */
+  @include component.var(color, completed, 1);
+}
+
+.modal-popup-browser.custom-modal-popup,
+.modal-popup-desktop.custom-modal-popup {
+  height: var(--height);
+  width: var(--width);
+  overflow: hidden;
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 998;
+  transition: all ease-out 150ms;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-popup-browser .modal-popup-header,
+.modal-popup-desktop .modal-popup-header {
+  position: relative;
+  width: 100%;
+  height: var(--min-header-height);
+  @include component.var(background-color, cardBackground, 0.9);
+  @include component.var(color, whiteTextColor, 1);
+  display: flex;
+  align-items: center;
+}
+
+.modal-popup-browser .modal-popup-header::after,
+.modal-popup-desktop .modal-popup-header::after {
+  left: 0;
+  bottom: 0px;
+  position: absolute;
+  width: 100%;
+  box-shadow: 0 0 2px 1px rgba(1, 0, 0, 0.2);
+  content: "";
+}
+
+.modal-popup-browser .modal-popup-body,
+.modal-popup-desktop .modal-popup-body {
+  position: relative;
+  display: flex;
+  height: calc(var(--height) - var(--min-header-height));
+}
+
+.modal-popup-browser .custom-modal-wrapper.cropper-wrapper .modal-popup-content,
+.modal-popup-desktop .custom-modal-wrapper.cropper-wrapper .modal-popup-content {
+  overflow-x: hidden;
+}
+
+.modal-popup-browser .modal-toolbar-container,
+.modal-popup-desktop .modal-toolbar-container {
+  flex: 2 0 0;
+  text-align: var(--text-align);
+  padding: 0 20px;
+  font-size: 1.1rem;
+}
+
+.modal-popup-browser .close-btn-wrapper,
+.modal-popup-desktop .close-btn-wrapper {
+  position: absolute;
+  right: 10px;
+  top: unset;
+  flex: 0 1 0;
+  cursor: pointer;
+  height: 40px;
+  width: unset;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.modal-popup-browser .modal-popup-content,
+.modal-popup-desktop .modal-popup-content {
+  flex: 1;
+  /* overflow-y: auto; */
+  /* overflow-x: hidden; */
+  padding: 0 5px;
+  @include component.var(color, modalBodyText, 1);
+  position: relative;
+}
+
+.modal-popup-browser.fixed-footer .modal-popup-content,
+.modal-popup-desktop.fixed-footer .modal-popup-content {
+  height: calc(100% - 55px);
+}
+
+.modal-popup-browser .modal-popup-content .maincontainer,
+.modal-popup-desktop .modal-popup-content .maincontainer {
+  height: 100%;
+}
+#get-roles-list-main-container {
+  height: 100%;
+  #get-roles-list-wrapper {
+    height: calc(100% - 50px);
+    .search-user-list {
+      height: 100%;
+      .search-user-list-data {
+        height: 100%;
+        .user-conatiner-roles-list {
+          margin-bottom: 1px;
+          padding: 10px;
+          @include component.var(background-color, card-list-bg, 1);
+        }
+      }
+    }
+  }
+}
+/* .custom-modal-popup.fixed-footer .modal-popup-content {
+    height: calc(100% - 50px);
+  } */
+
+.modal-popup-browser .modal-popup-footer,
+.modal-popup-desktop .modal-popup-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 0;
+  @include component.bd-radius-bottom(0 0 2px 2px);
+  padding: 4px 6px;
+  height: 56px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  @include component.var(background-color, tabMenuBg, 1);
+}
+
+.modal-popup-browser .modal-popup-footer button,
+.modal-popup-desktop .modal-popup-footer button {
+  margin-right: 5px;
+}
+
+/* browser ends */
+
+/* modal popup components */
+
+/* action-sheet start */
+
+.action-sheet-iOS {
+  --width: 100%;
+  --height: 100%;
+  --min-height: auto;
+  --min-width: auto;
+  --fontBold: 600;
+  --textAlign: center;
+  --textColor: 56, 128, 255;
+  --headerFont: 0.9rem;
+  --activeColor: #f04141;
+}
+
+.action-sheet-Android {
+  --width: 100%;
+  --height: 100%;
+  --min-height: auto;
+  --min-width: auto;
+}
+
+.action-sheet-browser,
+.action-sheet-desktop {
+  --width: 100%;
+  --height: 100%;
+  --min-height: auto;
+  --min-width: auto;
+}
+
+.action-sheet-Android.action-sheet-container,
+.action-sheet-iOS.action-sheet-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  height: var(--height);
+  max-height: var(--height);
+  @include component.var(background-color, actionSheetOverlay, 0.3);
+  z-index: 1000;
+}
+
+.action-sheet-Android .action-sheet ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  /* border-radius: 13px; */
+  margin-bottom: 0px;
+}
+
+
+
+.action-sheet-Android .action-sheet ul li {
+  -webkit-padding-start: 18px;
+  padding-inline-start: 18px;
+  -webkit-padding-end: 18px;
+  padding-inline-end: 18px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  height: 60px;
+  box-sizing: border-box;
+  @include component.var(background-color, actionsheetBg, 1);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.action-sheet-Android .action-sheet ul li a {
+  width: var(--width);
+  display: block;
+}
+
+.action-sheet-Android .action-sheet ul li:last-child a {
+  @include component.var(color, whiteTextColor, 0.6);
+}
+
+.action-sheet-Android .action-sheet ul li:not([class]) {
+  height: 56px;
+  line-height: 56px;
+  @include component.var(background-color, actionsheetBg, 1);
+  display: flex;
+  align-items: center;
+}
+
+/* actionsheet type 2 */
+
+.action-sheet-container.action-sheet-Android[data-type="create"] .action-sheet ul {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  min-height: 150px;
+  @include component.var(background-color, actionsheetBg, 1);
+  align-self: flex-start;
+  padding: 20px 0 0;
+}
+
+.action-sheet-container.action-sheet-Android[data-type="create"] .action-sheet li:first-child {
+  display: none;
+}
+
+.action-sheet-container.action-sheet-Android[data-type="create"] .action-sheet li {
+  flex: 1 1 0;
+  font-size: 0.85rem;
+  min-height: 100px;
+  max-height: 180px;
+  height: 100%;
+  @include component.var(color, textColor, 1);
+  display: flex;
+  flex-flow: column;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.action-sheet-container.action-sheet-Android[data-type="create"] .action-sheet li:last-child {
+  width: 100%;
+  flex: none;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: unset;
+  @include component.var(color, textColor, 1);
+  font-size: 0.95rem;
+  position: relative;
+}
+
+.action-sheet-container.action-sheet-Android[data-type="create"] .action-sheet li>a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-flow: column;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 8px;
+  position: relative;
+  @include component.bd-radius(50%);
+  overflow: hidden;
+}
+
+.action-sheet-container.action-sheet-Android[data-type="create"] .action-sheet li>a>i {
+  width: 60px;
+  height: 60px;
+}
+
+.action-sheet-container.action-sheet-Android[data-type="create"] .action-sheet li>a>i.actionsheet-custom-icn {
+  width: 50px;
+  height: 50px !important;
+  @include component.bd-radius(50%);
+  background-color: var(--slickIconContainer) !important;
+  position: relative;
+}
+
+.action-sheet-container.action-sheet-Android[data-type="create"] .action-sheet li>a>i.actionsheet-custom-icn::before {
+  position: absolute;
+  font-family: "Material Icons";
+  font-size: 24px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  @include component.var(color, whiteTextColor, 1);
+}
+
+.action-sheet-container.action-sheet-Android[data-type="create"] .action-sheet li>a>i.actionsheet-custom-icn.folder::before {
+  content: "\e2cc";
+}
+
+.action-sheet-container.action-sheet-Android[data-type="create"] .action-sheet li>a>i.actionsheet-custom-icn.assignment::before {
+  content: "\e85d";
+}
+
+.action-sheet-container.action-sheet-Android[data-type="create"] .action-sheet li>a>i.actionsheet-custom-icn.with-encryption::before {
+  /* background: url(../images/encrypt.svg)no-repeat center center /25px 25px; */
+  content: "\e2c6";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.action-sheet-container.action-sheet-Android[data-type="create"] .action-sheet li>a>i.actionsheet-custom-icn.withOut-encryption::before {
+  /* background: url(../images/without-encrypt.svg)no-repeat center center /25px 25px; */
+  content: "\e2c6";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.action-sheet-container.action-sheet-Android[data-type="create"] .action-sheet li>a>span {
+  height: 40px;
+  font-size: 0.7rem;
+}
+
+/* actionsheet android type2 ends */
+
+.action-sheet-iOS .action-sheet {
+  margin: 0 10px;
+}
+
+.action-sheet-iOS .action-sheet ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  @include component.bd-radius(13px);
+  margin-bottom: 0px;
+}
+
+.action-sheet-iOS .action-sheet ul li:first-child {
+  @include component.bd-radius-top();
+  font-size: var(--headerFont);
+  text-align: var(--textAlign);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px !important;
+}
+
+.action-sheet-iOS .action-sheet ul li.active {
+  color: var(--activeColor);
+}
+
+.action-sheet-iOS .action-sheet ul li:nth-last-child(2) {
+  @include component.bd-radius-bottom();
+  margin-bottom: 10px;
+}
+
+.action-sheet-iOS .action-sheet ul li {
+  -webkit-padding-start: 18px;
+  padding-inline-start: 18px;
+  -webkit-padding-end: 18px;
+  padding-inline-end: 18px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  box-sizing: border-box;
+  @include component.var(background-color, actionsheetBg, 0.7);
+  @include component.var(color, textColor, 1);
+  text-align: var(--textAlign);
+  display: flex;
+  align-items: center;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.action-sheet-iOS .action-sheet ul li:last-child {
+  @include component.bd-radius();
+  margin-bottom: 10px;
+  font-weight: var(--fontBold);
+  @include component.var(background-color, actionsheetBg, 1);
+}
+
+.action-sheet-iOS .action-sheet ul li:last-child a {
+  @include component.var(color, whiteTextColor, 0.6);
+}
+
+.action-sheet-iOS .action-sheet ul li a {
+  cursor: pointer;
+  width: var(--width);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  @include component.bd-radius(50%);
+  overflow: hidden;
+}
+
+.action-sheet-iOS .action-sheet ul li {
+  height: 56px;
+  line-height: 56px;
+  @include component.var(background-color, actionsheetBg, 1);
+}
+
+.action-sheet-iOS .action-sheet ul li:hover {
+  @include component.var(background-color, actionsheetBg, 0.6);
+}
+
+.action-sheet-iOS .action-sheet ul li:first-child:hover {
+  @include component.var(background-color, actionsheetBg, 0.7);
+}
+
+.action-sheet-iOS .action-sheet ul li:last-child:hover {
+  @include component.var(background-color, actionsheetBg, 1);
+}
+
+.action-sheet-browser.action-sheet-container,
+.action-sheet-desktop.action-sheet-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  -ms-flex-pack: end;
+  justify-content: center;
+  align-items: center;
+  height: var(--height);
+  max-height: var(--height);
+  @include component.var(background-color, actionSheetOverlay, 0.3);
+}
+
+.action-sheet-browser .action-sheet,
+.action-sheet-desktop .action-sheet {
+  margin: 0 10px;
+  min-width: 200px;
+}
+
+.action-sheet-browser .action-sheet ul,
+.action-sheet-desktop .action-sheet ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  @include component.bd-radius(13px);
+  margin-bottom: 0px;
+}
+
+.action-sheet-browser .action-sheet ul li,
+.action-sheet-desktop .action-sheet ul li {
+  cursor: pointer;
+}
+
+.action-sheet-browser .action-sheet ul li:first-child,
+.action-sheet-desktop .action-sheet ul li:first-child {
+  // color: rgba(140, 140, 140, 0.99);
+  /* border-radius: var(--borderRadiusTop); */
+  font-size: var(--headerFont);
+  text-align: var(--textAlign);
+  border-bottom: 1px solid rgba(140, 140, 140, 0.15);
+  display: flex;
+  align-items: center;
+  cursor: default;
+}
+
+.action-sheet-browser .action-sheet ul li.active,
+.action-sheet-desktop .action-sheet ul li.active {
+  color: var(--activeColor);
+}
+
+/* .action-sheet-browser .action-sheet ul li:nth-last-child(2),
+    .action-sheet-desktop .action-sheet ul li:nth-last-child(2){
+      border-radius: var(--borderRadiusBottom);
+    }  */
+
+.action-sheet-browser .action-sheet ul li:last-child,
+.action-sheet-desktop .action-sheet ul li:last-child {
+  @include component.bd-radius(4px);
+  margin-bottom: 10px;
+  font-weight: var(--fontBold);
+  @include component.var(color, whiteTextColor, 0.6);
+}
+
+.action-sheet-browser .action-sheet ul li:not(:first-child):hover,
+.action-sheet-desktop .action-sheet ul li:not(:first-child):hover {
+  @include component.var(background-color, actionsheetBg, 1);
+}
+
+.action-sheet-browser .action-sheet ul li,
+.action-sheet-desktop .action-sheet ul li {
+  -webkit-padding-start: 18px;
+  padding-inline-start: 18px;
+  -webkit-padding-end: 18px;
+  padding-inline-end: 18px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 14px;
+  box-sizing: border-box;
+  /* background-color: rgba(255, 255, 255, 1); */
+  text-align: var(--textAlign);
+  @include component.var(color, whiteTextColor, 1);
+  display: flex;
+  align-items: center;
+}
+
+.action-sheet-browser .action-sheet ul li a .action-sheet-desktop .action-sheet ul li a {
+  cursor: pointer;
+  width: var(--width);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-sheet-browser .action-sheet ul li,
+.action-sheet-desktop .action-sheet ul li {
+  height: 42px;
+  line-height: 42px;
+  @include component.var(background-color, actionsheetBg, 1);
+}
+
+/* action-sheet end */
+
+/* activity wrapper styling */
+
+[platform="Android"] .app-activity-container,
+[platform="iOS"] .app-activity-container {
+  display: contents;
+}
+
+[platform="Android"] .activity-wrapper,
+[platform="iOS"] .activity-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+[platform="Android"] .action-bar,
+[platform="iOS"] .action-bar {
+  height: 56px;
+  width: 100%;
+  display: flex;
+  @include component.var(background-color, primaryColor, 1);
+}
+
+[platform="Android"] .stacked-filemanager-container,
+[platform="iOS"] .stacked-filemanager-container {
+  @include component.var(background-color, whiteTextColor, 1);
+  height: 100%;
+}
+
+[platform="Android"] .stacked-filemanager-container>div,
+[platform="iOS"] .stacked-filemanager-container>div {
+  height: 100%;
+  display: block !important;
+}
+
+[platform="Android"] .stacked-filemanager-container>div ul,
+[platform="iOS"] .stacked-filemanager-container>div ul {
+  margin: 0;
+}
+
+[platform="Android"] .stacked-filemanager-container>div ul li,
+[platform="iOS"] .stacked-filemanager-container>div ul li {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+[platform="Android"] .stacked-filemanager-container>div ul li a,
+[platform="iOS"] .stacked-filemanager-container>div ul li a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+[platform="Android"] .stacked-filemanager-container>div ul li a i,
+[platform="iOS"] .stacked-filemanager-container>div ul li a i {
+  margin-right: 10px;
+}
+
+[platform="Android"] .select-action-header-wrapper,
+[platform="iOS"] .select-action-header-wrapper {
+  width: 100%;
+}
+
+[platform="Android"] .activity-action-header,
+[platform="iOS"] .activity-action-header {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  @include component.var(color, whiteTextColor, 1);
+}
+
+/* dragable action sheet starts*/
+
+.dragable-actionsheet-container {
+  display: contents;
+}
+
+.dragable-actionsheet-container .dragable-actionsheet {
+  @include component.var(background-color, titleBandBg, 1);
+  width: calc(100% - 20px);
+  height: 100%;
+  bottom: 0;
+  position: fixed;
+  @include component.bd-radius-top(13px 13px 0 0);
+  box-shadow: 0 -5px 20px -10px rgba(150, 150, 150, 0.5);
+  margin: 0 auto;
+  right: 0;
+  left: 0;
+  display: -webkit-box;
+  display: flex;
+  flex-flow: column;
+  -webkit-box-align: center;
+  align-items: center;
+  z-index: 997;
+  transform: translateY(350px);
+}
+
+.dragable-actionsheet-container .dragable-actionsheet .material-icons {
+  height: 20px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: row-resize;
+}
+
+.draggable-content-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+[platform="Android"] .logs-filter-wrapper,
+[platform="iOS"] .logs-filter-wrapper {
+  flex-flow: column;
+}
+
+[platform="Android"] .logs-filter-added-filter-wrapper,
+[platform="iOS"] .logs-filter-added-filter-wrapper {
+  order: 1;
+  width: 100%;
+}
+
+[platform="Android"] .logs-filter-action-buttons,
+[platform="iOS"] .logs-filter-action-buttons {
+  display: flex;
+}
+
+[platform="Android"] .datepicker-wrapper i,
+[platform="iOS"] .datepicker-wrapper i {
+  top: 20px;
+}
+
+[platform="Android"] .logs-filter-added-filter-wrapper .filter-log-row,
+[platform="iOS"] .logs-filter-added-filter-wrapper .filter-log-row {
+  height: 4rem;
+}
+
+[platform="Android"] .card-list-filter-section,
+[platform="iOS"] .card-list-filter-section {
+  width: 100%;
+}
+
+[platform="Android"] #logs-filter-add-dropdown.wrapper-dropdown,
+[platform="iOS"] #logs-filter-add-dropdown.wrapper-dropdown {
+  align-self: unset;
+}
+
+[platform="Android"] .filter-wrapper,
+[platform="iOS"] .filter-wrapper {
+  height: 50px;
+}
+
+/* dragable action sheet end */
+
+/* accordion styling */
+
+.custom-accordions .accordion-item,
+.custom-accordionsss .accordion-itemmm {
+  /* background-color: #f9f9f9; */
+  margin-bottom: 1px;
+  /* border: 1px solid #ddd; */
+  @include component.bd-radius(5px);
+  display: flex;
+  flex-flow: column;
+  align-items: unset;
+  justify-content: center;
+  min-height: 60px;
+  height: unset;
+}
+
+.custom-accordions .accordion-title,
+.custom-accordionsss .accordion-titleee {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  /* flex: 1 1 0px; */
+  padding: 5px;
+}
+
+.custom-accordions .accordion-title span.material-icons,
+.custom-accordionsss .accordion-titleee span.material-icons {
+  transition: transform 200ms ease-in-out;
+}
+
+.custom-accordions .accordion-title.active-title span.material-icons,
+.custom-accordionsss .accordion-titleee.active-title span.material-icons {
+  transform: rotate(180deg);
+}
+
+.custom-accordions .accordion-title .share-contact-detail,
+.custom-accordionsss .accordion-titleee .share-contact-detail {
+  display: flex;
+  flex-flow: column;
+}
+
+.custom-accordions .accordion-title .share-contact-detail .post-title,
+.custom-accordionsss .accordion-titleee .share-contact-detail .post-title {
+  font-size: .7rem !important;
+  margin-top: 5px;
+  white-space: pre-wrap;
+}
+
+.custom-accordions .accordion-content,
+.custom-accordionsss .accordion-contenttt {
+  display: none;
+  line-height: 1.7;
+  padding: 1px;
+  /* background-color: #fdfdfd; */
+  @include component.bd-radius-bottom(0 0 5px 5px);
+  &:has(.os-content > div) {
+    height: 100%;
+    min-height: 80px;
+    max-height: 440px;
+  }
+}
+
+.recommended-to-wrapper,
+.recommended-to-name {
+  display: flex;
+}
+
+.recommended-to-name>div:nth-of-type(1) {
+  font-size: .8rem;
+  color: rgba(160, 160, 160, 1);
+}
+
+.recommended-to-wrapper {
+  align-items: center;
+  height: 50px;
+}
+
+.recommended-to-name {
+  flex-flow: column;
+}
+
+/* toggle switch */
+
+.toggle-switch {
+  display: inline-block;
+  height: 20px;
+  position: relative;
+  width: 40px;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.toggle-switch input {
+  display: none;
+}
+
+.custom-slider,
+.toggle-slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.custom-slider::before,
+.toggle-slider::before {
+  background-color: #fff;
+  content: "";
+  height: 20px;
+  left: 2px;
+  position: absolute;
+  transition: .4s;
+  width: 19px;
+}
+
+input:checked+.custom-slider,
+input:checked+.toggle-slider {
+  background-color: #4caf50;
+}
+
+input:checked+.custom-slider::before,
+input:checked+.toggle-slider::before {
+  transform: translateX(18px);
+}
+
+.custom-slider.round,
+.toggle-slider.round {
+  @include component.bd-radius(34px);
+}
+
+.custom-slider.round::before,
+.toggle-slider.round::before {
+  @include component.bd-radius(50%);
+}
+
+.toggle-label {
+  margin: 0 8px;
+  font-size: .75rem;
+  display: flex;
+  align-items: center;
+}
+
+.accordion-titleee {
+  background-color: rgba(var(--card-list-bg), 1);
+}
+
+.image-crop-container {
+  height: 100%;
+}
+
+.alert-box-modal .custom-modal-container {
+  max-width: 320px;
+}
+
+.modal-popup-content .expand-search-wrap.active {
+  height: 40px;
+}
+
+.btn-flat {
+  @include component.var(color, completed, 1);
+}
+
+.contenteditable-input-field {
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 1.6rem;
+  margin-top: 1.3rem;
+
+  label {
+    @include component.var(color, labelColor, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    font-size: 1rem;
+    cursor: text;
+    -webkit-transition: -webkit-transform .2s ease-out;
+    transition: -webkit-transform .2s ease-out;
+    transition: transform .2s ease-out;
+    transition: transform .2s ease-out, -webkit-transform .2s ease-out;
+    -webkit-transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
+    text-align: initial;
+    -webkit-transform: translateY(12px);
+    transform: translateY(12px);
+    pointer-events: none;
+  }
+
+  .content-editable-input {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    border: none;
+    @include component.border-direction('bottom', 1px, solid, borderColor, 1);
+    @include component.bd-radius(0);
+    @include component.var(color, popUpText, 1);
+    outline: none;
+    min-height: 2.4rem;
+    max-height: 3.9rem;
+    overflow-y: auto;
+    width: 100%;
+    font-size: 1rem;
+    margin: 0 0 15px 0;
+    padding: 0;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: all 0.3s;
+
+    &[readonly] {
+      @include component.border-direction('bottom', 1px, solid, borderColor, 0);
+
+      ~span.error_note {
+        display: none;
+      }
+    }
+
+    &:focus {
+      @include component.border-direction('bottom', 1px, solid, borderfocusColor, 1);
+      @include component.boxshadow(0 1px 0 0 rgb(38 166 154));
+
+      ~label {
+        @include component.var(color, borderfocusColor, 1);
+        -webkit-transform: translateY(-14px) scale(0.8);
+        transform: translateY(-14px) scale(0.8);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+      }
+    }
+
+    &:not(:empty)~label {
+      transform: translateY(-14px) scale(0.8);
+      transform-origin: 0 0;
+    }
+  }
+
+  span.error_note {
+    font-size: 0.75rem;
+    color: red;
+    position: absolute;
+    bottom: -1px;
+  }
+
+  span.character_counter {
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    height: 15px !important;
+    font-size: 0.7rem !important;
+  }
+}
+
+[type="checkbox"] {
+  &.disabled {
+    +label {
+      @include component.var(color, textColor, 1);
+    }
+  }
+
+  &:not(.disabled) {
+    +label {
+      @include component.var(color, textColor, 1);
+    }
+  }
+
+  &:not(:checked),
+  &:checked {
+    position: absolute !important;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &.filled-in {
+    &:not(:checked) {
+      +label {
+        &::before {
+          content: "";
+          left: 0;
+          position: absolute;
+          -webkit-transition: border 0.25s, background-color 0.25s, width 0.2s 0.1s, height 0.2s 0.1s, top 0.2s 0.1s, left 0.2s 0.1s;
+          transition: border 0.25s, background-color 0.25s, width 0.2s 0.1s, height 0.2s 0.1s, top 0.2s 0.1s, left 0.2s 0.1s;
+          z-index: 1;
+
+          border: 2px solid rgba(var(--checkboxBoder), 0);
+        }
+
+        &::after {
+          content: "";
+          top: 50%;
+          left: 0;
+          position: absolute;
+          transform: translate(0, -50%);
+          -webkit-transition: border 0.25s, background-color 0.25s, width 0.2s 0.1s, height 0.2s 0.1s, top 0.2s 0.1s, left 0.2s 0.1s;
+          transition: border 0.25s, background-color 0.25s, width 0.2s 0.1s, height 0.2s 0.1s, top 0.2s 0.1s, left 0.2s 0.1s;
+          z-index: 1;
+          border: 2px solid rgba(var(--whiteTextColor), 0.3);
+          @include component.bd-radius(50%);
+        }
+      }
+    }
+
+    &:checked {
+      +label {
+        &::before {
+          top: 50%;
+          left: 0px;
+          width: 8px;
+          height: 13px;
+          border-top: 2px solid transparent;
+          border-left: 2px solid transparent;
+          border-right: 2px solid #fff;
+          border-bottom: 2px solid #fff;
+          -webkit-transform: translate(0, -70%) rotateZ(37deg);
+          transform: translate(0, -70%) rotateZ(37deg);
+          -webkit-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
+        }
+
+        &::after {
+          top: 50%;
+          left: 0px;
+          transform: translate(0, -50%);
+          width: 20px;
+          height: 20px;
+          border: 2px solid rgba(var(--whiteTextColor), 0.3);
+          // @include component.var(background-color, primaryColor, 1);
+          z-index: 0;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+
+[type="radio"] {
+  &.disabled {
+    +label {
+      @include component.var(color, textColor, 1);
+    }
+  }
+
+  &:not(.disabled) {
+    +label {
+      @include component.var(color, textColor, 1);
+    }
+  }
+
+  &:not(:checked),
+  &:checked {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    font-size: 1rem;
+    -webkit-transition: .28s ease;
+    transition: .28s ease;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  &.with-gap {
+    &:not(:checked) {
+      +label {
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          margin: 4px;
+          width: 16px;
+          height: 16px;
+          z-index: 0;
+          -webkit-transition: .28s ease;
+          transition: .28s ease;
+          border: 2px solid #26a69a;
+        }
+
+        &::after {
+
+          border: 2px solid #26a69a;
+          z-index: 1;
+        }
+
+        +span {
+          @include component.var(color, textColor, 1);
+        }
+      }
+    }
+
+    &:checked {
+      +label {
+        &::before {
+          content: '';
+          position: absolute;
+          // left: 0;
+          // top: 0;
+          margin: 4px;
+          width: 16px;
+          height: 16px;
+          z-index: 0;
+          -webkit-transition: .28s ease;
+          transition: .28s ease;
+          border: 2px solid #26a69a;
+        }
+
+        &::after {
+          transform: scale(0.5);
+          background-color: #26a69a;
+        }
+
+        +span {
+          @include component.var(color, textColor, 1);
+        }
+      }
+    }
+  }
+}
+
+.btn, .btn-flat, .btn-large {
+  &:not(.btn-floating) {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    @include component.bd-radius(20px);
+  }
+}

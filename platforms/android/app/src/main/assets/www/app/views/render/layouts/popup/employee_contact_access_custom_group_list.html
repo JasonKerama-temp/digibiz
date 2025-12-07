@@ -1,0 +1,28 @@
+<script id="employee-contact-access-custom-group-list-template" type="text/x-handlebars-template">
+    <div class="employee-contact-access-custom-group-list-main-container"> 
+        {{#if activeCustomGroupEmployeeList}}  
+        {{#each activeCustomGroupEmployeeList}}
+        <div class="employee-custom-group-wrapper employee-contact-access-custom-group-list-data" data-group-id="{{this.id}}" data-type="custom" data-status="{{this.status.status}}" data-group-from="{{this.custom_group_from}}">
+            <div class="employee-custom-group-profile-pic-info-wrapper">
+                <div class="employee-group-display-pic profile-pic-container p-{{#firstletter this.name}} {{/firstletter}}">
+                    <img class="group_img profile-pic" src="{{this.group_image.avtarUrl}}" data-group-id="{{this.id}}"/>
+                    <span class="persona">{{#firstletter this.name}} {{/firstletter}}</span>
+                    <div class="checkbox-conatiner">                        
+                        <label for="filled-in-box-{{this.id}}">
+                            <input type="checkbox" class="filled-in custom-group-selected cursor-pointer" id="filled-in-box-{{this.id}}"/>
+                            <i class="material-icons">done</i>
+                        </label>
+                    </div>
+                </div>
+                <div class="employee-group-data-wrapper ellipsify">
+                    <div class="employee-group-name wrapper-primary-heading"><span class="truncate">{{this.name}}</span></div>
+                    <!-- <div class="employee-group-status"><span class="truncate">Status: {{this.status.status}}</span></div> -->
+                </div>
+            </div>   
+            <!-- <input type="checkbox" class="filled-in custom-group-selected" id="filled-in-box-{{this.id}}" />
+            <label for="filled-in-box-{{this.id}}"></label>               -->
+        </div>
+        {{/each}}
+        {{/if}}                            
+    </div>
+</script>

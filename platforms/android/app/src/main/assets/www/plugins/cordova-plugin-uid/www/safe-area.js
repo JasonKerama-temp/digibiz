@@ -1,0 +1,1 @@
+cordova.define("cordova-plugin-uid.SafeArea",(function(e,a,o){let r=e("cordova");o.exports={getSafeArea:function(e,a){r.exec(e,a,"SafeArea","getSafeArea",[])}}}));

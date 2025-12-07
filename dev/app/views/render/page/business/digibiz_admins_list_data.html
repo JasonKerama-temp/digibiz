@@ -1,0 +1,46 @@
+<script id="digibiz-admin-list-template" type="text/x-handlebars-template">
+    <div id="digibiz-admin-list-wrapper" class="digibiz-admin-list-contentbox scrollinit">
+        {{#if dataList}}
+        {{#each dataList}}
+        {{#ifcond this.admin_type '==' 'creator'}}
+        <div class="employee-wrapper" data-id="{{this.id}}" data-account-id="{{this.owner_data.account_id}}" data-status="{{this.status.status}}">                    
+            <div class="profile-pic-info-wrapper">
+                <div class="employee-identity-pic profile-pic-container p-{{imageLetter}}">
+                    <span class="persona">{{imageLetter}}</span>
+                    <img class="profile-pic" src="{{this.owner_data.creator_data.profile_display.avtarUrl}}" />
+                </div>            
+              <div class="employee-data-wrapper ellipsify">
+                <div class="employee-name wrapper-primary-heading"><span class="truncate">{{this.owner_data.creator_data.name.first}}&nbsp;{{this.owner_data.creator_data.name.last}}</span></div>
+                <div class="admin-type wrapper-secondary-heading"><span class="truncate">Type: Creator</span></div>
+            </div>              
+            </div>  
+            <div class="btn-wrap">              
+             <div class="more-menu-wrapper" id="digibiz-admin-revoke-btn"><i class="material-icons">rotate_left</i></div>
+            </div>
+          </div>
+        {{else}}
+        <div class="employee-wrapper" data-id="{{this.id}}" data-account-id="{{this.owner_data.account_id}}" data-employee-id="{{this.owner_data.employee_id}}" data-status="{{this.status.status}}">                    
+            <div class="profile-pic-info-wrapper">
+                <div class="employee-identity-pic profile-pic-container p-{{imageLetter}}">
+                    <span class="persona">{{imageLetter}}</span>
+                    <img class="profile-pic" src="{{this.owner_data.employee_data.identity_picture.avtarUrl}}" />
+                </div>            
+              <div class="employee-data-wrapper ellipsify">
+                <div class="employee-name"><span class="truncate">{{#if this.owner_data.employee_data.display_name}}{{this.owner_data.employee_data.display_name}}{{else}}{{this.owner_data.employee_data.name.first}}&nbsp;{{this.owner_data.employee_data.name.last}}{{/if}}</span></div>
+                <div class="admin-type"><span class="truncate">Type: Digibiz Admin</span></div>
+            </div>              
+            </div>  
+            <div class="btn-wrap">              
+             <div class="more-menu-wrapper" id="digibiz-admin-revoke-btn"><i class="material-icons">rotate_left</i></div>
+            </div>
+          </div>  
+          {{/ifcond}}                              
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}
+    </div>
+  <div class="fixed-action-btn create-survey-btn-wrapper">
+    <a class="btn-floating btn-save btn-large" id="digibiz_admin_add_button"><i class="material-icons">add</i></a>
+  </div>    
+  </script>

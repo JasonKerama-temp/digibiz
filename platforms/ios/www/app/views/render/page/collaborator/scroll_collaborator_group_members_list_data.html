@@ -1,0 +1,28 @@
+<script id="scroll-collaborator-group-members-list-template" type="text/x-handlebars-template">
+    {{#if group_members_data}}
+    {{#each group_members_data}}                                       
+    <div class="collaborator-group-business-member-wrapper" data-id="{{this.id}}" data-type="{{this.type}}" data-business-id="{{this.member.business_id}}" data-status="{{this.status.status}}">
+        <div class="profile-pic-info-wrapper">
+            <div class="profile-pic-container p-{{this.imageLetter}}">
+                <img src="{{this.display_picture.avtarUrl}}" class="chat-avatar-image">
+                <span class="persona">{{this.imageLetter}}</span>
+            </div>
+            <div class="business-member-data-wrapper ellipsify">
+                <span class="collaborator-group-business-member-name">{{#if this.business_name}}{{this.business_name}}{{/if}}</span>
+                <span class="collaborator-group-business-member-status status--{{this.status.status}}">{{this.status.status}}</span>
+            </div>
+        </div>
+        <div class="btn-wrap">    
+            {{#ifcond this.status.status '==' 'active'}}  
+            {{#ifcond ../group_data.status.status '==' 'inactive'}}    
+            {{else}}      
+            <div class="more-menu-wrapper" id="collaborator_group_business_member_actions"><i class="material-icons">more_vert</i></div>
+            {{/ifcond}}
+            {{/ifcond}}                    
+        </div>              
+    </div>
+    {{/each}}
+    {{else}}
+    <div class="end_data">End of listing</div>
+    {{/if}}
+</script>

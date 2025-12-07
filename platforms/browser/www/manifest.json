@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Digibiz",
+  "short_name": "Digibiz",
+  "version": "com.digitaljeevi.staging.business",
+  "author": "Simran H R",
+  "icons": [],
+  "start_url": "index.html",
+  "theme_color": "#b5f9e4"
+}

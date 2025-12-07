@@ -1,0 +1,1 @@
+cordova.define("cordova-plugin-camera.CameraPopoverOptions",(function(i,o,r){var t=i("./Camera");r.exports=function(i,o,r,e,h,a,p){this.x=i||0,this.y=o||32,this.width=r||320,this.height=e||480,this.arrowDir=h||t.PopoverArrowDirection.ARROW_ANY,this.popoverWidth=a||0,this.popoverHeight=p||0}}));

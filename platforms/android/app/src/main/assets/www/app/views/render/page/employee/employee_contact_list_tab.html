@@ -1,0 +1,35 @@
+<script id="employees-contact-list-tab-template" type="text/x-handlebars-template">
+    <div class="content-wrapper">
+        <div class="survey-list-container">
+            <div class="surveylist-container">
+                <div class="listing-tabs-wrapper">
+                  <div class="main-tab-wrapper">
+                    <ul class="maintab list-tabs">
+                        <li class="tab active" data-id="all_employees"><a class="all-employee-list-tab">All</a><span class="slider"></li>
+                        <li class="tab" data-id="department_wise"><a class="department-wise-list-tab" >Department Wise</a><span class="slider"></li>
+                        <!-- <li class="slider"></li> -->
+                    </ul>
+                    <div class="voiceit_private_page_search_container">
+                      <span class="searchbtn waves-effect"><i class="material-icons">search</i></span>
+                      <div class="expand-search-wrap">
+                        <input class="expand-search-input" type="search" placeholder="Search" autocomplete="off"/>
+                        <span class="searchclosebtn"><i class="material-icons hide">close</i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-content-container">
+                    <div class="tab-content active swiper-slide" id="all_employees">                             
+                                  <div class="all-employees-contact-list-container">
+                                  <div id="all-employees-contact-list-data-container"></div>
+                                </div>                            
+                    </div>
+                    <div class="tab-content swiper-slide" id="department_wise">                           
+                                <div class="department-wise-employees-list-container">
+                                <div id="department-wise-employees-list-data-container"></div>
+                              </div>                           
+                    </div>                    
+                </div>
+        </div>
+    </div>
+</script>

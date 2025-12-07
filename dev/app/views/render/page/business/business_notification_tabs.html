@@ -1,0 +1,39 @@
+<script id="business-notification-tabs-template" type="text/x-handlebars-template">
+    <div class="content-wrapper">
+        <div class="survey-list-container">
+            <div class="surveylist-container">
+                <div class="listing-tabs-wrapper">
+                  <div class="main-tab-wrapper">
+                    <ul class="maintab list-tabs">
+                        <li class="tab active" data-id="business_notification"><a class="business-notification-tab">Business</a><span class="slider"></li>
+                        <li class="tab" data-id="group_business_notification"><a class="group-business-notification-tab">Group</a><span class="slider"></li>
+                        <!-- <li class="slider"></li> -->
+                    </ul>
+                    <div class="voiceit_private_page_search_container">
+                      <span class="business-notification-activity-logs waves-effect"><i class="material-icons">local_activity</i></span>
+                      <span class="searchbtn waves-effect"><i class="material-icons">search</i></span>
+                      <div class="expand-search-wrap">
+                        <input class="expand-search-input" type="search" placeholder="Search" autocomplete="off"/>
+                        <span class="searchclosebtn"><i class="material-icons hide">close</i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-content-container">
+                    <div class="tab-content active swiper-slide" id="business_notification">                             
+                          <div class="active-collaborator-list-container">
+                <div id="business-notifications-list-wrapper"></div>
+                              <!-- <div id="active-collaborator-list-data-container"></div> -->
+                          </div>                            
+                    </div>
+                    <div class="tab-content swiper-slide" id="group_business_notification">                           
+                        <div class="pending-collaborator-list-container">
+                <div id="group-business-notifications-list-wrapper"></div>
+
+                            <!-- <div id="pending-collaborator-list-data-container"></div> -->
+                        </div>                           
+                    </div>                    
+                </div>
+        </div>
+    </div>
+</script>

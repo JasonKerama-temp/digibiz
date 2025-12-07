@@ -1,0 +1,29 @@
+<script id="choose-customer-identifier-list-template" type="text/x-handlebars-template">
+    {{#if data}}
+    <div class="choose-customer-identifier-list-container">
+    {{#each data}}
+    <div class="choose-customer-identifier-box" data-identifier-id="{{this.id}}">
+        <!-- <div class="customer-identifier-radio-btn-conatiner">        
+            <input name="customer_identifier_radio_btn" type="radio" class="customer_identifier_radio_btn">            
+        </div> -->
+        <div class="choose-customer-identifier-box-container">        
+            <div class="choose-customer-identifier-wrapper">
+                <p>
+                    <input name="group1" type="radio" id="{{this.id}}" />
+                    <label class="customer_identifier_radio_btn" for="{{this.id}}">{{this.identifier}}</label>
+                </p>   
+                <!-- <div class="identity-pic-info-wrapper">         
+                    <div class="choose-customer-identifier-type-wrapper">
+                  
+                        <div class="choose-customer-identifier-name">{{this.identifier}}</div>                      
+                    </div>                                    
+                </div>                              -->
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    </div>
+    {{else}}
+    <div>No Identifiers found</div>
+    {{/if}}
+</script>

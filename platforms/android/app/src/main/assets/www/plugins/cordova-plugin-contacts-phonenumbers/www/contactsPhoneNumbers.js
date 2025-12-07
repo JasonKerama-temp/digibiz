@@ -1,0 +1,1 @@
+cordova.define("cordova-plugin-contacts-phonenumbers.contactsPhoneNumbers",(function(o,c,e){var n=o("cordova/argscheck"),s=o("cordova/exec"),t={list:function(o,c){n.checkArgs("fF","contactsPhoneNumbers.list",arguments),s(o,c,"ContactsPhoneNumbers","list",[])}};e.exports=t}));

@@ -1,0 +1,13 @@
+<script id="collaborator-group-employee-member-add-template" type="text/x-handlebars-template">
+    <div class="tooltipped collaborator-group-employee-member-wrapper member-listing-wrapper" data-dj-unique-employee-id="{{employee.dj_unique_employee_id}}">
+    <div class="file-select">
+        <input type="checkbox" name="selectedmembers[]" class="contactlists filled-in collaborator-group-owner-business-employee-member" value="{{employee.dj_unique_employee_id}}" id="selected-{{employee.dj_unique_employee_id}}" checked=""><i class="material-icons">done</i>
+        <div class="profile-text group-profile-text text-small-size">
+            <span>{{employee.imageLetter}}</span> 
+        </div>
+    </div>
+    <div class="filemanager-file-wrapper">
+        <span class="truncate" for="selected-{{employee.dj_unique_employee_id}}">{{employee.getName}}</span>
+    </div>
+    </div>
+</script>

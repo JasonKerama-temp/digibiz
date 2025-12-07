@@ -1,0 +1,177 @@
+<script id="employee-profile-template" type="text/x-handlebars-template">
+    <div class="employee-create-main-container">        
+        <div class="employee-create-main-wrapper">
+            <div class="employee-create-content-box-profile">  
+
+                <div class="employee-profile-data-section employee-profile-section-one">
+
+                    <div class="employee-profile-section-one-subsection">
+                        <div class="employee-display-picture-wrapper">
+                            <div class="multimedia-container">        
+                                <div class="multimedia_wrapper">
+                                <div class="identity-picture-wrapper profile-pic-container p-{{#firstletter EmployeeData.name.first}}{{/firstletter}} view-employee-profile-pic cursor-pointer">
+                                    {{#if EmployeeData.identity_picture.avtarUrl}}
+                                    <img class="attached-img" id="employee_identity_picture" src="{{EmployeeData.identity_picture.avtarUrl}}" data-id="{{EmployeeData.identity_picture.thumbnail}}" data-employee-id="{{EmployeeData.dj_unique_employee_id}}"/> 
+                                    {{else}}
+                                    <span class="persona">{{#firstletter EmployeeData.name.first}}{{/firstletter}}</span>
+                                    {{/if}}                           
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="employee-profile-data-info-box {{#if EmployeeData.display_name}}employee-display-name-present{{/if}}">                            
+                            <div class="employee-add-name-container">
+                                <div class="employee-name-content-box">
+                                    <div id="employee_name_profile">{{EmployeeData.name.first}}&nbsp;{{EmployeeData.name.last}}</div>
+                                    <span class="material-icons edit-employee-profile">
+                                        edit
+                                    </span>
+                                </div>                                    
+                            </div>
+                            {{#if EmployeeData.display_name}}
+                            <div class="employee-add-display-name-container">
+                                <div class="employee-display-name-content-box">
+                                    <div id="employee_display_name_profile">{{EmployeeData.display_name}}</div>
+                                </div>
+                            </div>   
+                            {{/if}}
+                            {{#if EmployeeData.mobile_number}}
+                            <div class="employee-add-phone-number-container">
+                                <div id="employee_phone_number_profile" class="employee-profile-data-value">
+                                    <i class="material-icons">contact_phone</i>
+                                    {{EmployeeData.mobile_number}}
+                                </div>
+                            </div>
+                            {{/if}}
+                            <!-- 
+                            {{#if EmployeeData.designation_name}}
+                            <div class="employee-add-designation-container">
+                                <div id="employee_designation_profile" class="employee-profile-data-value">
+                                    <i class="material-icons">branding_watermark</i>
+                                    {{EmployeeData.designation_name}}
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{#if EmployeeData.company_employee_id}}
+                            <div class="employee-add-company-employee-id-container">
+                                <div id="employee_company_employee_id_profile" class="employee-profile-data-value">
+                                    <i class="material-icons">perm_identity</i>
+                                    {{EmployeeData.company_employee_id}}
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{#if EmployeeData.mobile_number}}
+                            <div class="employee-add-phone-number-container">
+                                <div id="employee_phone_number_profile" class="employee-profile-data-value">
+                                    <i class="material-icons">contact_phone</i>
+                                    {{EmployeeData.mobile_number}}
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{#if EmployeeData.display_phone_number}}
+                            <div class="employee-add-display-phone-number-container">
+                                <div id="employee_display_phone_number_profile" class="employee-profile-data-value">
+                                    <i class="material-icons">phone_android</i>
+                                    {{EmployeeData.display_phone_number}}
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{#if EmployeeData.email}}
+                            <div class="employee-add-email-container">
+                                <div id="employee_email_profile" class="employee-profile-data-value">
+                                    <i class="material-icons">mail</i>
+                                    {{EmployeeData.email}}
+                                </div>
+                            </div>
+                            {{/if}} 
+                            {{#if EmployeeData.alternate_email}}
+                            <div class="employee-add-alternate-email-container">
+                                <div id="employee_alternate_email_profile" class="employee-profile-data-value">
+                                    <i class="material-icons">alternate_email</i>
+                                    {{EmployeeData.alternate_email}}
+                                </div>
+                            </div>
+                            {{/if}}                          -->
+                        </div>
+                    </div>
+
+                    <div class="employee-profile-section-one-subsection-two">
+                        {{#if EmployeeData.identity_video.avtarUrl}}
+                        <div class="employee-display-video-wrapper">
+                            <div class="identity-video-wrapper-box">
+                                <div class="image-container preview-clicked-multimedia">
+                                    <div class="image-wrapper">
+                                        <video controls controlsList="nodownload" src="{{EmployeeData.identity_video.avtarUrl}}" ></video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}}  
+                    </div>                                  
+
+                </div>
+
+                
+
+                <div class="employee-profile-data-section employee-profile-section-two">
+                    {{#if EmployeeData.type_name}}
+                    <div class="employee-add-type-container employee-profile-data-container">
+                        <div id="employee_type_profile_label" class="employee-profile-data-label">Employee Type</div>
+                        <div id="employee_type_profile_value" class="employee-profile-data-value">{{EmployeeData.type_name}}</div>
+                    </div>
+                    {{/if}}
+                    {{#if EmployeeData.category_name}}
+                    <div class="employee-add-category-container employee-profile-data-container">
+                        <div id="employee_category_profile_label" class="employee-profile-data-label">Employee Category</div>
+                        <div id="employee_category_profile_value" class="employee-profile-data-value">{{EmployeeData.category_name}}</div>
+                    </div>
+                    {{/if}}
+                    {{#if EmployeeData.designation_name}}
+                    <div class="employee-add-designation-container employee-profile-data-container">
+                        <div id="employee_designation_profile_label" class="employee-profile-data-label">Designation Name</div>
+                        <div id="employee_designation_profile_value" class="employee-profile-data-value">{{EmployeeData.designation_name}}</div>
+                    </div>
+                    {{/if}}
+                    {{#if EmployeeData.company_employee_id}}
+                    <div class="employee-add-company-employee-id-container employee-profile-data-container">
+                        <div id="employee_company_employee_id_profile_label" class="employee-profile-data-label">Company Employee ID</div>
+                        <div id="employee_company_employee_id_profile_value" class="employee-profile-data-value">{{EmployeeData.company_employee_id}}</div>
+                    </div>
+                    {{/if}}                    
+                    {{#if EmployeeData.display_phone_number}}
+                    <div class="employee-add-display-phone-number-container employee-profile-data-container">
+                        <div id="employee_display_phone_number_profile_label" class="employee-profile-data-label">Alternate Phone Number</div>
+                        <div id="employee_display_phone_number_profile_value" class="employee-profile-data-value">{{EmployeeData.display_phone_number}}</div>
+                    </div>
+                    {{/if}}
+                    {{#if EmployeeData.email}}
+                    <div class="employee-add-email-container employee-profile-data-container">
+                        <div id="employee_email_profile_label" class="employee-profile-data-label">Email</div>
+                        <div id="employee_email_profile_value" class="employee-profile-data-value">{{EmployeeData.email}}</div>
+                    </div>
+                    {{/if}} 
+                    {{#if EmployeeData.alternate_email}}
+                    <div class="employee-add-alternate-email-container employee-profile-data-container">
+                        <div id="employee_alternate_email_profile_label" class="employee-profile-data-label">Alternate Email</div>
+                        <div id="employee_alternate_email_profile_value" class="employee-profile-data-value">{{EmployeeData.alternate_email}}</div>
+                    </div>
+                    {{/if}}
+                    {{#if EmployeeData.date_of_birth}}
+                    <div class="employee-add-DOB-container employee-profile-data-container">
+                        <div id="employee_DOB_profile_label" class="employee-profile-data-label">Date of Birth</div>
+                        <div id="employee_DOB_profile_value" class="employee-profile-data-value">{{EmployeeData.date_of_birth}}</div>
+                    </div>
+                    {{/if}}
+                    {{#if EmployeeData.wedding_anniversary}}
+                    <div class="employee-add-wedding-anniversary-container employee-profile-data-container">
+                        <div id="employee_wedding_anniversary_profile_label" class="employee-profile-data-label">Wedding Anniversary</div>
+                        <div id="employee_wedding_anniversary_profile_value" class="employee-profile-data-value">{{EmployeeData.wedding_anniversary}}</div>
+                    </div>
+                    {{/if}}
+                </div>
+                    
+            </div>
+        </div>
+    </div>
+</script>

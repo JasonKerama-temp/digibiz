@@ -1,0 +1,21 @@
+<script id="employee-selection-list-template" type="text/x-handlebars-template">
+    {{#if EmployeeList}}
+    {{#each EmployeeList}}
+       <div class="employee-selection-list-container employee-select-btn-wrapper {{#if this.selected}} selected-row {{/if}}">
+           <div class="contact-profile-container profile-pic-container p-{{imageLetter}}" data-dj-unique-employee-id="{{this.dj_unique_employee_id}}">
+                   <img src="{{this.identity_picture.avtarUrl}}" class="chat-avatar-image">
+                   <span class="persona">{{imageLetter}}</span>
+                   <div class="checkbox-conatiner">                        
+                       <label for="{{this.dj_unique_employee_id}}">
+                           <input type="checkbox" class="filled-in employee-select-btn cursor-pointer" id="{{this.dj_unique_employee_id}}" data-dj-unique-employee-id="{{this.dj_unique_employee_id}}" data-account-id="{{this.account_id}}" {{#if this.selected}} checked="checked" {{/if}}/>
+                           <i class="material-icons">done</i>
+                       </label>
+                   </div>
+           </div>
+           <div class="contact-name-wrapper wrapper-primary-heading ellipsify">{{#if this.display_name}}{{this.display_name}}{{else}}{{this.name.first}}&nbsp;{{this.name.last}}{{/if}}</div>
+       </div>
+    {{/each}}
+   {{else}}
+       <div class="no-data">No Employees found</div>
+   {{/if}}      
+</script>

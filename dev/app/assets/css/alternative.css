@@ -1,0 +1,101 @@
+.hub-btn-back {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(5, 5, 5, .3);
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 2;
+}
+
+
+.choose-customer-identifier-box {
+    position: relative;
+    width: 100%;
+    display: flex;
+}
+
+.customer-identifier-radio-btn-conatiner {
+    margin-top: 25px;
+    width: 30px;
+    height: auto;
+}
+
+.customer_identifier_radio_btn {
+    position: absolute !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+}
+
+.choose-customer-identifier-box-container {
+    display: flex;
+    position: relative;
+    background-color: rgba(var(--card-list-bg), 1);
+    width: 100%;
+}
+
+.choose-customer-identifier-wrapper {
+    width: 100%;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(var(--card-list-bg), 1);
+    border-bottom: 1px solid rgba(var(--textColor), 0.095);
+    color: rgba(var(--headerFontColor), 1);
+}
+
+
+.choose-customer-identifier-type-wrapper {
+    flex: 1;
+    margin-left: 5px;
+    display: flex;
+    flex-flow: column;
+}
+
+[platform="Android"] .choose-customer-identifier-type-wrapper,
+[platform="iOS"] .choose-customer-identifier-type-wrapper {
+    order: 3 !important;
+    margin-left: 20px !important;
+}
+
+
+.choose-customer-identifier-name {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(170, 170, 170, .3);
+    background-color: rgba(var(--contentbody), .5);
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    resize: vertical;
+    height: auto;
+}
+
+.choose-customer-identifier-name:focus {
+    border: 1px solid #9e9e9e;
+    background-color: rgba(var(--contentbody), .5);
+}
+
+[platform="browser"] .identity-pic-info-wrapper,
+[platform="desktop"] .identity-pic-info-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+    overflow: hidden;
+}
+
+[platform="Android"] .identity-pic-info-wrapper,
+[platform="iOS"] .identity-pic-info-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 5px 5px;
+    overflow: hidden;
+    position: relative;
+}

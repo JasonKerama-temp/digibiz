@@ -1,0 +1,60 @@
+<script id="moderator-selection-list-template" type="text/x-handlebars-template">
+    <div class="employee-selection-member-list"> 
+        {{#ifcond page_for '==' 'contact_list_moderator'}}       
+            {{#if membersList}}
+             {{#each membersList}}
+                <div class="employee-selection-list-container">
+                    <div class="contact-profile-container profile-pic-container p-{{imageLetter}}" data-id="{{this.member.id}}" data-account-id="{{this.member.account_id}}" data-type="{{this.member.type}}" {{#ifcond this.member.type '==' 'customer'}} data-customer-type="{{this.member.customer_type}}" data-identifier-id="{{this.member.identifier_id}}" {{#ifcond this.member.customer_type '==' 'associate_customer'}} data-parent-customer-id="{{this.member.parent_customer_id}}" data-parent-customer-identifier-id="{{this.parent_customer_identifier_id}}" {{/ifcond}} {{/ifcond}}
+                    data-more_info="{{more_info}}" data-associate_customter_info="{{associate_customter_info}}" data-role_business_name="{{role_business_name}}">
+                            <img src="{{this.identity_picture.avtarUrl}}" class="chat-avatar-image">
+                            <span class="persona">{{imageLetter}}</span>
+                    </div>
+                    <div class="contact-detail-wrapper">
+                        {{#ifcond member.type '==' "employee"}}
+                        <div class="contact-name-wrapper ellipsify wrapper-primary-heading">{{#if this.member_display_name}}{{this.member_display_name}}{{else}}{{this.member_name.first}}&nbsp;{{this.member_name.last}}{{/if}}</div>
+                        {{else}}
+                        {{#ifcond member.type '==' "customer"}}
+                        <div class="contact-name-wrapper ellipsify wrapper-primary-heading">{{#if this.member_display_name}}{{this.member_display_name}}{{else}}{{this.member_name.first}}&nbsp;{{this.member_name.last}}{{/if}}</div>
+                        <span class="communication-group-member-type wrapper-secondary-heading">{{#if associate_customter_info}}-{{associate_customter_info}}{{else}}{{#if more_info}}{{more_info}}{{/if}}{{/if}}</span>
+                        {{else}}
+                        <div class="contact-name-wrapper ellipsify wrapper-primary-heading">{{#if this.member_display_name}}{{this.member_display_name}}{{else}}{{this.member_name.first}}&nbsp;{{this.member_name.last}}{{/if}}</div>
+                        <span class="communication-group-member-type wrapper-secondary-heading">{{#if associate_customter_info}}-{{associate_customter_info}}{{/if}}</span>
+                        {{/ifcond}}
+                       {{/ifcond}}
+                       {{#if role_business_name}}
+                       <span class="communication-group-member-type wrapper-secondary-heading">{{role_business_name}}</span>
+                      {{/if}}
+                        <span class="communication-group-member-type wrapper-secondary-heading">{{this.member.type}}</span>
+                    </div>
+                     <p>
+                        <input type="checkbox" class="filled-in cursor-pointer communication-group-moderator-select-btn" id="{{this.member.id}}" data-id="{{this.member.id}}" {{#if this.selected}} checked="checked" {{/if}} />
+                        <label for="{{this.member.id}}"></label>
+                    </p>
+                </div>
+           {{/each}}
+           {{else}}
+           <div class="no-data">No Members found</div>
+         {{/if}}  
+         {{/ifcond}}      
+         {{#ifcond page_for '==' 'group_list_moderator'}} 
+         {{#if dataList}}
+             {{#each dataList}}
+                <div class="employee-selection-list-container">
+                    <div class="contact-profile-container profile-pic-container p-{{imageLetter}}" data-id="{{this.member.id}}" data-type="{{this.member.type}}">
+                            <img src="{{this.identity_picture.avtarUrl}}" class="chat-avatar-image">
+                            <span class="persona">{{imageLetter}}</span>
+                    </div>
+                    <div class="contact-name-wrapper ellipsify wrapper-primary-heading">{{#if this.member_name}}{{this.member_name}}{{/if}}</div>
+                    <!-- <span class="communication-group-member-type">{{this.member.type}}</span> -->
+                     <p>
+                        <input type="radio" name="communication-group-create-group-list-moderator-select" class="filled-in communication-group-create-group-list-moderator-selecbtn" id="{{this.member.id}}" data-id="{{this.member.id}}" {{#if this.selected}} checked="checked" {{/if}}/>
+                        <label for="{{this.member.id}}"></label>
+                    </p>
+                </div>
+           {{/each}}
+           {{else}}
+           <div class="no-data">No Members found</div>
+         {{/if}}  
+         {{/ifcond}}  
+    </div>    
+</script>

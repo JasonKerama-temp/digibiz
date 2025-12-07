@@ -1,0 +1,31 @@
+<script id="custom-employees-groups-list-data-template" type="text/x-handlebars-template">
+    <div class="custom-employees-groups-list-contentbox scrollinit">
+        {{#if custom_employees_groups_list_data}}
+        {{#each custom_employees_groups_list_data}}
+            <div class="employee-group-wrapper" data-group-id="{{this.id}}" data-type="custom" data-socket_enable_status="{{this.socket_enable_status}}" data-status="{{this.status.status}}" data-created_status="{{this.create_status}}" data-group-from="{{this.custom_group_from}}">
+                <div class="profile-pic-info-wrapper view-employee-group cursor-pointer">
+                    <div class="employee-group-display-pic profile-pic-container p-{{imageLetter}}">
+                    <img class="profile-pic" src="{{this.group_image.avtarUrl}}" />
+                    <span class="persona">{{imageLetter}}</span>
+                    </div>
+                    <div class="employee-group-data-wrapper ellipsify">
+                        <div class="employee-group-name wrapper-primary-heading"><span class="truncate">{{this.name}}</span></div>
+                        <div class="employee-group-status wrapper-secondary-heading status--{{this.status.status}}">{{this.status.status}}</div>
+                    </div>
+                </div>
+                <div class="btn-wrap">    
+                    {{#ifcond this.status.status '==' 'draft'}}
+                    <div class="more-menu-wrapper {{#ifcond create_status '==' 'completed'}}{{else}}hide{{/ifcond}}" id="activate-employee-group-btn">Activate</div>
+                    
+                    {{/ifcond}}                 
+                </div>
+            </div>
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}   
+    </div>
+    <div class="fixed-action-btn create-survey-btn-wrapper">
+        <a class="btn-floating btn-save btn-large cursor-pointer" id="add-custom-employee-group-btn"><i class="material-icons">add</i></a>
+    </div>
+</script>

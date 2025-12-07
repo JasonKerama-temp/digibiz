@@ -1,0 +1,17 @@
+<script id="action-sheet-layout-template" type="text/x-handlebars-template">
+    <div class="action-sheet-container action-sheet-{{action_platform}}" id="{{action_id}}">
+        <div class="action-sheet">
+            <ul>
+            {{#if action_title}}
+                <!-- <li class="action-sheet-title ">{{action_title}}</li>                 -->
+            {{/if}}
+            {{#if action_btn}}
+                {{#each action_btn}}
+                <li {{#if this.attr}}{{#each this.attr}} {{this.name}}={{this.value}} {{/each}}{{/if}}><a>{{this.name}}</a></li>
+                {{/each}}
+            {{/if}}
+                <!-- <li class="action-sheet-cancel-btn waves-effect cursor-pointer"><a>Cancel</a></li> -->
+            </ul>
+        </div>
+    </div>
+</script>

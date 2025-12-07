@@ -1,0 +1,33 @@
+<script id="collaborator-add-search-list-template" type="text/x-handlebars-template">
+    <div class="collaborator-add-search-business-list-contentbox">
+        {{#if business_list}}
+        {{#each business_list}}
+        <div class="collaborator-contact-wrapper 22" data-id="{{this.id}}">
+            <div class="profile-pic-info-wrapper colloborator-add-search-business-btn">  
+                <div class="collaborator-business-display-pic profile-pic-container p-{{this.imageLetter}}">
+                    <span class="persona">{{this.imageLetter}}</span>
+                    <img class="profile-pic" src="{{this.display_picture.avtarUrl}}" />                    
+                    <div class="checkbox-conatiner">                        
+                        <label for="filled-in-box-{{this.id}}">
+                            <input type="checkbox" class="filled-in collaborator-add-search-business-select-btn cursor-pointer" id="filled-in-box-{{this.id}}"/>
+                            <i class="material-icons">done</i>
+                        </label>
+                    </div>
+                </div>                  
+                <div class="collaborator-contact-data-wrapper ellipsify">
+                    <div class="collaborator-contact-name wrapper-primary-heading"><span class="business-name truncate">{{#if this.display_name}}{{display_name}}{{else}}{{this.name}}{{/if}}</span></div>
+                </div>
+            </div>  
+            <div class="btn-wrap business-qr-contact-icon">              
+                <div class="more-menu-wrapper"><i class="material-icons">qr_code_scanner</i></div>
+            </div>               
+        </div>
+        {{/each}}
+        <div class="fixed-action-btn create-survey-btn-wrapper">
+            <a class="btn-floating btn-save btn-large cursor-pointer" id="notify-collaborator-contact" title="Request"><i class="material-icons">send</i></a>
+        </div>
+        {{else}}
+            <div class="no_data">No results found</div>
+        {{/if}}        
+      </div>
+</script>

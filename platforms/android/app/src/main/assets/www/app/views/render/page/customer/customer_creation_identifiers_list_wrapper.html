@@ -1,0 +1,9 @@
+<script id="customer-creation-identifiers-list-wrapper-template" type="text/x-handlebars-template">
+
+    {{#ifcond type '==' 'active_customers'}}
+    <div id="active-customer-creation-identifiers-list-wrapper"></div>
+    {{else}}
+    <div id="pending-customer-creation-identifiers-list-wrapper"></div>   
+    {{/ifcond}}
+    
+  </script>
