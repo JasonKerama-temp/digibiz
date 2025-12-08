@@ -4,7 +4,7 @@
     id="com.digitaljeevi.staging.testing" 
     ios-CFBundleVersion="3080" 
     version="1.0.0" 
-    xmlns="http://www.w3.org/ns/widgets" 
+    xmlns="http://www.w3.org/2000/svg" 
     xmlns:android="http://schemas.android.com/apk/res/android" 
     xmlns:cdv="http://cordova.apache.org/ns/1.0">
     
@@ -26,6 +26,10 @@
     <preference name="DisallowOverscroll" value="true"/>
     <preference name="AllowUntrustedCerts" value="true"/>
     <preference name="AndroidInsecureFileModeEnabled" value="true"/>
+    <preference name="InterceptRemoteRequests" value="all"/>
+    <preference name="allowFileAccessFromFileURLs" value="true"/>
+    <preference name="allowUniversalAccessFromFileURLs" value="true"/>
+    <preference name="AndroidPersistentFileLocation" value="Internal"/>
 
     <access origin="*"/>
     <allow-intent href="http://*/*"/>
@@ -35,7 +39,7 @@
     <allow-intent href="mailto:*"/>
     <allow-intent href="geo:*"/>
     <allow-intent href="djbusiness:*"/>
-
+    
     <platform name="android">
         <allow-intent href="market:*"/>
         <hook src="hooks/before_prepare/increment_build_number.js" type="before_build"/>
@@ -52,17 +56,15 @@
         <allow-intent href="itms:*"/>
         <allow-intent href="itms-apps:*"/>
         
-        <!-- Manual Signing Enforcement Hook -->
         <hook src="hooks/after_prepare/enforce_manual_signing.js" type="after_prepare" />
         
-        <!-- Build Automation Hooks -->
         <hook src="hooks/before_prepare/increment_build_number.js" type="before_build"/>
         <hook src="hooks/after_prepare/minify.js" type="after_build"/>
         
-        <!-- Deployment Target -->
-        <preference name="deployment-target" value="12.0" />
+        <preference name="deployment-target" value="13.0" /> 
         
-        <!-- Manual Code Signing Configuration for Both Debug and Release -->
+        <preference name="FIREBASE_CORE_VERSION" value="~> 10.15.0" /> 
+        
         <edit-config target="XCBuildConfiguration[name=Release]/CODE_SIGNING_STYLE" file="*-project.pbxproj" mode="overwrite">
             <string>Manual</string>
         </edit-config>
