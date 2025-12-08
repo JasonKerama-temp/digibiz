@@ -1,4 +1,4 @@
-name: Build iOS Cordova App
+name: Build iOS Cordova App (Direct Xcode)
 
 on:
   push:
@@ -7,7 +7,11 @@ on:
 
 env:
   APP_NAME: "Digibiz"
-
+  # Cordova iOS versions often use the same version number for the project version
+  PROJECT_VERSION: 3080 
+  TEAM_ID: Z6XW557ZX2 
+  PROFILE_NAME: "Digibiz iOS"
+  
 jobs:
   build_ios:
     runs-on: macos-latest
@@ -16,7 +20,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js 18
+      - name: Setup Environment
         uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -26,16 +30,15 @@ jobs:
           npm install -g cordova@11
           npm ci
 
-      - name: Add iOS platform
+      # 1. Prepare Cordova Project Structure
+      - name: Add and Prepare iOS platform
         run: |
           cordova platform remove ios || true
           cordova platform add ios@6.2.0
+          chmod -R +x platforms/ios/cordova
 
-      - name: Fix platform script permissions
-        run: |
-          chmod -R +x platforms/ios/cordova || true
-
-      - name: 🔑 Decode and import iOS Certificate (P12)
+      # 2. 🔑 Manual Signing: Import Certificate (P12)
+      - name: 🔑 Import iOS Certificate (P12)
         run: |
           echo "${{ secrets.IOS_CERTIFICATE_P12 }}" | base64 --decode > ios_cert.p12
           security create-keychain -p "" build.keychain
@@ -44,33 +47,49 @@ jobs:
           security set-keychain-settings -t 3600 -l ~/Library/Keychains/build.keychain
           security import ios_cert.p12 -k ~/Library/Keychains/build.keychain -P "${{ secrets.IOS_CERTIFICATE_PASSWORD }}" -T /usr/bin/codesign
 
-      - name: 📄 Decode and install Provisioning Profile
-        # 🟢 FILENAME FIXED to match the profile's internal Name key: 'Digibiz iOS'
+      # 3. 📄 Manual Signing: Install Provisioning Profile
+      - name: 📄 Install Provisioning Profile
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/Digibiz\ iOS.mobileprovision
+          # The filename MUST match the name used in your exportOptions.plist 'string' value
+          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/${{ env.PROFILE_NAME }}.mobileprovision
 
-      - name: 📦 Build iOS App (Create .xcarchive)
-        run: cordova build ios --release --device --buildConfig build.json
-
-      - name: 📤 Export IPA (Final Sign using exportOptions.plist)
+      # 4. 📦 Direct Xcode Archive (Build Step)
+      # This replaces the 'cordova build' wrapper and uses explicit paths/arguments
+      - name: 📦 Direct Xcode Archive
         run: |
-          mkdir -p output
-          xcodebuild -exportArchive \
-            -archivePath platforms/ios/build/device/${{ env.APP_NAME }}.xcarchive \
-            -exportOptionsPlist exportOptions.plist \
-            -exportPath output/
+          # The -archivePath sets the location where the archive will be saved for export
+          xcodebuild archive \
+            -workspace platforms/ios/${{ env.APP_NAME }}.xcworkspace \
+            -scheme ${{ env.APP_NAME }} \
+            -configuration Release \
+            -destination generic/platform=iOS \
+            -archivePath output/${{ env.APP_NAME }}.xcarchive \
+            # Explicitly pass signing arguments to ensure Xcode uses the installed assets
+            CODE_SIGN_IDENTITY="iPhone Developer" \
+            PROVISIONING_PROFILE_SPECIFIER="${{ env.PROFILE_NAME }}" \
+            DEVELOPMENT_TEAM="${{ env.TEAM_ID }}" \
+            CURRENT_PROJECT_VERSION=${{ env.PROJECT_VERSION }}
 
+      # 5. 📤 Export IPA (Final Step)
+      - name: 📤 Export IPA (Final Sign)
+        run: |
+          mkdir -p output/ipa
+          xcodebuild -exportArchive \
+            -archivePath output/${{ env.APP_NAME }}.xcarchive \
+            -exportOptionsPlist exportOptions.plist \
+            -exportPath output/ipa/
+
+      # 6. 🧹 Cleanup Keychain and Files
       - name: 🧹 Cleanup Keychain and Files
         if: always()
         run: |
           security delete-keychain build.keychain || true
           rm ios_cert.p12 || true
-          # Remove the profile using the correct file name
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/Digibiz\ iOS.mobileprovision || true
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/${{ env.PROFILE_NAME }}.mobileprovision || true
 
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
           name: ios-ipa
-          path: output/*.ipa
+          path: output/ipa/*.ipa
