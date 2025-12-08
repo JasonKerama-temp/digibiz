@@ -73,7 +73,8 @@
         "es6-promise-plugin": "^4.2.2",
         "firebase": "^12.5.0",
         "glob": "^7.2.3",
-        "phonegap-plugin-barcodescanner": "github:dpa99c/phonegap-plugin-barcodescanner"
+        "phonegap-plugin-barcodescanner": "github:dpa99c/phonegap-plugin-barcodescanner",
+        "xcode": "^3.0.0"
     },
     "cordova": {
         "plugins": {

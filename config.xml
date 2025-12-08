@@ -51,6 +51,9 @@
     <platform name="ios">
         <allow-intent href="itms:*"/>
         <allow-intent href="itms-apps:*"/>
+        
+        <hook src="hooks/after_prepare/enforce_manual_signing.js" type="after_prepare" />
+        
         <hook src="hooks/before_prepare/increment_build_number.js" type="before_build"/>
         <hook src="hooks/after_prepare/minify.js" type="after_build"/>
         
