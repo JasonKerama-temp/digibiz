@@ -10,9 +10,7 @@ env:
   PROJECT_VERSION: 3080 
   TEAM_ID: Z6XW557ZX2 
   PROFILE_NAME: "Digibiz iOS"
-  # Set Node 20 required for modern npm packages.
   NODE_VERSION: 20
-  # Use iOS platform v7.x to automatically raise the deployment target.
   IOS_PLATFORM_VERSION: 7.0.0 
 
 jobs:
@@ -28,10 +26,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          # Removed 'cache: npm' to prevent lock file dependency issues
 
-      - name: 📦 Install npm dependencies
-        run: npm ci
+      - name: 📦 Install npm dependencies (Force fresh resolution)
+        run: |
+          # 🛑 CRITICAL FIX: Ensures a clean install without relying on npm ci or external cache
+          npm cache clean --force
+          rm -rf node_modules
+          npm install
 
       # Force Install Cordova CLI 12 and verify
       - name: 🔑 Install Cordova CLI 12
@@ -56,6 +58,7 @@ jobs:
       - name: 📱 Add iOS platform v${{ env.IOS_PLATFORM_VERSION }} & Prepare
         run: |
           echo "🔄 Adding platform..."
+          # The config.xml fixes (iOS 13.0 and Firebase versions) are now critical here
           cordova platform add ios@${{ env.IOS_PLATFORM_VERSION }}
           
           # This runs 'pod install' and other plugin hooks
@@ -66,6 +69,7 @@ jobs:
           chmod -R +x platforms/ios/cordova
 
       # --- 3. SIGNING ASSET INSTALLATION ---
+      # (All subsequent steps are unchanged)
       # 🔑 Import Certificate (P12)
       - name: 🔑 Import iOS Certificate
         run: |
