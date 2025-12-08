@@ -1,4 +1,4 @@
-name: Build iOS Cordova App (Manual Signing)
+name: Build iOS Cordova App (Manual Signing - Fixed Versions)
 
 on:
   push:
@@ -10,7 +10,10 @@ env:
   PROJECT_VERSION: 3080 
   TEAM_ID: Z6XW557ZX2 
   PROFILE_NAME: "Digibiz iOS"
-  NODE_VERSION: 18
+  # 🟢 FIX 1: Change to Node 20 to satisfy modern Firebase plugin requirements (npm warn EBADENGINE)
+  NODE_VERSION: 20
+  # 🟢 FIX 3: Define a newer iOS platform version to resolve the iOS Deployment Target warning (e.g., 11.0 too old)
+  IOS_PLATFORM_VERSION: 7.0.0 
 
 jobs:
   build_ios:
@@ -20,7 +23,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      # 🟢 FIX 1: Setup Node.js v20
+      - name: Setup Node.js (v${{ env.NODE_VERSION }})
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
@@ -29,18 +33,32 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Cordova CLI
-        run: npm install -g cordova@11
+      # 🟢 FIX 2: Force Install Cordova CLI v12 (and verify)
+      - name: 🔑 Install Cordova CLI (Forced)
+        run: |
+          echo "Installing Cordova 12 globally with force..."
+          # Use --force to bypass cache and ensure the correct version installs
+          npm install -g cordova@12 --force
+          
+          echo "Verifying Cordova version..."
+          cordova -v
+          
+          # Check for the correct version and fail the build if it's wrong
+          if ! cordova -v | grep -q "12"; then
+            echo "❌ ERROR: Cordova 12 installation failed or wrong version is in PATH."
+            exit 1
+          fi
 
-      # Clean rebuild for manual signing
+      # 🟢 FIX 3: Prepare iOS platform (Use newer version)
       - name: Prepare iOS platform (Clean rebuild)
         run: |
           echo "🔄 Removing old iOS platform..."
           rm -rf platforms/ios || true
           rm -rf plugins || true
           
-          echo "📱 Adding iOS platform..."
-          cordova platform add ios@6.2.0
+          echo "📱 Adding iOS platform (version ${{ env.IOS_PLATFORM_VERSION }})..."
+          # Use the newer platform version to fix the deployment target warning and plugin compatibility
+          cordova platform add ios@${{ env.IOS_PLATFORM_VERSION }}
           
           echo "📦 Installing Cordova plugins..."
           cordova prepare ios
@@ -48,12 +66,11 @@ jobs:
           echo "✅ Setting execute permissions on cordova tools..."
           chmod -R +x platforms/ios/cordova
 
-      # 🔑 Import Certificate (P12)
+      # 🔑 Import Certificate (P12) - Unchanged, relies on secrets
       - name: 🔑 Import iOS Certificate
         run: |
           echo "📦 Preparing certificate for import..."
           
-          # Check if the secret is provided
           if [ -z "${{ secrets.IOS_CERTIFICATE_P12 }}" ]; then
             echo "⚠️  WARNING: IOS_CERTIFICATE_P12 secret is empty!"
             echo "     Proceeding without developer certificate (manual signing only)"
@@ -78,11 +95,7 @@ jobs:
             echo "✅ Importing certificate to keychain..."
             if security import ios_cert.p12 -k ~/Library/Keychains/build.keychain -P "${{ secrets.IOS_CERTIFICATE_PASSWORD }}" -T /usr/bin/codesign; then
               echo "✅ Certificate imported successfully"
-              
-              # Make the keychain the default
               security default-keychain -s ~/Library/Keychains/build.keychain
-              
-              # List the imported identities
               echo ""
               echo "📋 Imported identities:"
               security find-identity -v ~/Library/Keychains/build.keychain || true
@@ -91,43 +104,25 @@ jobs:
             fi
           fi
 
-      # 📄 Install Provisioning Profile
+      # 🟢 FIX 4: Install Provisioning Profile (Use base64 decode from secret)
       - name: 📄 Install Provisioning Profile
         run: |
           echo "📝 Setting up provisioning profiles directory..."
           mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
           
-          PROFILE_SOURCE="library/MobileDevice/Provisioning Profiles/Digibiz_iOS copy.mobileprovision"
           PROFILE_DEST="$HOME/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision"
-      
-          if [ ! -f "$PROFILE_SOURCE" ]; then
-            echo "❌ Source profile not found at: $PROFILE_SOURCE"
+          
+          echo "📥 Decoding profile from secret..."
+          # This uses the secret which was successful in your log (base64 decoding)
+          if ! echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > "$PROFILE_DEST" 2>/dev/null; then
+            echo "❌ Failed to decode provisioning profile"
             exit 1
-          fi
-          
-          echo "📋 Copying provisioning profile from repository..."
-          cp "$PROFILE_SOURCE" "$PROFILE_DEST"
-          
-          # Verify the profile was copied correctly
-          if [ ! -f "$PROFILE_DEST" ] || [ ! -s "$PROFILE_DEST" ]; then
-            echo "❌ Failed to copy provisioning profile"
-            exit 1
-          fi
-          
-          # Check if it's a valid plist file
-          if file "$PROFILE_DEST" | grep -q "bplist"; then
-            echo "✅ Valid binary plist provisioning profile detected"
-          elif file "$PROFILE_DEST" | grep -q "XML"; then
-            echo "✅ Valid XML provisioning profile detected"
-          else
-            echo "⚠️  Warning: Profile format may be unexpected"
-            file "$PROFILE_DEST"
           fi
           
           echo "✅ Provisioning profile installed at: $PROFILE_DEST"
           ls -lah "$PROFILE_DEST"
 
-      # 🔍 Verify Provisioning Profiles
+      # 🔍 Verify Provisioning Profiles - Unchanged
       - name: 🔍 Verify Provisioning Profiles
         run: |
           echo "📋 Listing all provisioning profiles..."
@@ -140,7 +135,6 @@ jobs:
             for profile in "$PROFILES_DIR"/*.mobileprovision; do
               if [ -f "$profile" ]; then
                 echo "  Profile: $(basename "$profile")"
-                # Extract UUID if possible
                 if command -v security &> /dev/null; then
                   security cms -D -i "$profile" 2>/dev/null | grep -A 1 "UUID" | head -2 || echo "  (Could not extract UUID)"
                 fi
@@ -150,13 +144,12 @@ jobs:
             echo "⚠️  Profiles directory not found"
           fi
 
-      # 🏗️ Build Archive with Manual Signing
+      # 🏗️ Build Archive with Manual Signing - Unchanged
       - name: 🏗️  Build Xcode Archive
         run: |
           echo "🔨 Building archive with manual signing..."
           mkdir -p output
           
-          # Export the keychain path for codesign to find the certificate
           export KEYCHAIN_PATH="$HOME/Library/Keychains/build.keychain"
           
           xcodebuild archive \
@@ -176,7 +169,7 @@ jobs:
           
           echo "✅ Archive created successfully"
 
-      # 📤 Export IPA
+      # 📤 Export IPA - Unchanged
       - name: 📤 Export IPA
         run: |
           echo "📦 Exporting IPA..."
@@ -191,7 +184,7 @@ jobs:
           echo "✅ IPA exported successfully"
           ls -lah output/ipa/
 
-      # 📊 Verify build artifacts
+      # 📊 Verify build artifacts - Unchanged
       - name: 📊 Verify Build Artifacts
         run: |
           echo "🔍 Checking for IPA file..."
@@ -203,7 +196,7 @@ jobs:
               exit 1
           fi
 
-      # 🧹 Cleanup (Always run)
+      # 🧹 Cleanup (Always run) - Unchanged
       - name: 🧹 Cleanup Sensitive Files
         if: always()
         run: |
@@ -213,7 +206,7 @@ jobs:
           rm -rf "$HOME/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision" || true
           echo "✅ Cleanup complete"
 
-      # 📤 Upload Artifacts
+      # 📤 Upload Artifacts - Unchanged
       - name: 📤 Upload IPA Artifact
         if: success()
         uses: actions/upload-artifact@v4
@@ -222,7 +215,7 @@ jobs:
           path: output/ipa/*.ipa
           retention-days: 30
 
-      # 📝 Upload Build Logs
+      # 📝 Upload Build Logs - Unchanged
       - name: 📝 Upload Build Logs
         if: failure()
         uses: actions/upload-artifact@v4
