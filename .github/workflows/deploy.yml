@@ -10,11 +10,10 @@ env:
   PROJECT_VERSION: 3080 
   TEAM_ID: Z6XW557ZX2 
   PROFILE_NAME: "Digibiz iOS"
-  # FIX: Set Node 20 required for modern npm packages.
+  # Set Node 20 required for modern npm packages.
   NODE_VERSION: 20
-  # FIX: Use iOS platform v7.x to automatically raise the deployment target.
+  # Use iOS platform v7.x to automatically raise the deployment target.
   IOS_PLATFORM_VERSION: 7.0.0 
-  # CRITICAL NOTE: The Xcode workspace file is named 'App.xcworkspace' due to project settings.
 
 jobs:
   build_ios:
@@ -34,7 +33,7 @@ jobs:
       - name: 📦 Install npm dependencies
         run: npm ci
 
-      # FIX: Force Install Cordova CLI 12 and verify
+      # Force Install Cordova CLI 12 and verify
       - name: 🔑 Install Cordova CLI 12
         run: |
           echo "Installing Cordova 12 globally..."
@@ -45,16 +44,22 @@ jobs:
             exit 1 
           fi
 
-      # --- 2. PLATFORM & PLUGIN PREP ---
-      - name: 📱 Clean & Add iOS platform v${{ env.IOS_PLATFORM_VERSION }}
+      # --- 2. PLATFORM & PLUGIN PREP (Includes Aggressive Cleanup) ---
+      - name: 🧹 Clean CocoaPods Cache and Project Directories
         run: |
-          echo "🔄 Cleaning and adding platform..."
+          # Aggressively delete the project-specific iOS folders
           rm -rf platforms/ios || true
           rm -rf plugins || true
+          # Delete the global CocoaPods cache to prevent stale dependency conflicts
+          rm -rf $HOME/Library/Caches/CocoaPods || true
           
+      - name: 📱 Add iOS platform v${{ env.IOS_PLATFORM_VERSION }} & Prepare
+        run: |
+          echo "🔄 Adding platform..."
           cordova platform add ios@${{ env.IOS_PLATFORM_VERSION }}
           
           # This runs 'pod install' and other plugin hooks
+          echo "🔄 Running Cordova prepare (and pod install)..."
           cordova prepare ios
           
           echo "✅ Setting permissions..."
@@ -94,7 +99,7 @@ jobs:
           mkdir -p output
           export KEYCHAIN_PATH="$HOME/Library/Keychains/build.keychain"
           
-          # CRITICAL FIX: TARGET 'App.xcworkspace'
+          # CRITICAL: Target 'App.xcworkspace'
           xcodebuild archive \
             -workspace "platforms/ios/App.xcworkspace" \
             -scheme "${{ env.APP_NAME }}" \

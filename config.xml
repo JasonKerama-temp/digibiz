@@ -63,6 +63,9 @@
         
         <preference name="deployment-target" value="13.0" /> 
         <preference name="FIREBASE_CORE_VERSION" value="~> 10.20.0" /> 
+        <preference name="FIREBASE_ANALYTICS_VERSION" value="~> 10.20.0" />
+        <preference name="FIREBASE_MESSAGING_VERSION" value="~> 10.20.0" />
+        <preference name="FIREBASE_INAPPMESSAGING_VERSION" value="~> 10.20.0" />
         
         <edit-config target="XCBuildConfiguration[name=Release]/CODE_SIGNING_STYLE" file="*-project.pbxproj" mode="overwrite">
             <string>Manual</string>
