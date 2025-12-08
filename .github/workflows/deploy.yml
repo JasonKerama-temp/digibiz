@@ -54,13 +54,20 @@ jobs:
           rm -rf plugins || true
           rm -rf $HOME/Library/Caches/CocoaPods || true
           
-      - name: 📱 Add iOS platform v${{ env.IOS_PLATFORM_VERSION }}
+      # 1. Add platform WITHOUT installing plugins (the default behavior)
+      - name: 📱 Add iOS platform (Plugin-Free)
         run: |
           echo "🔄 Adding platform..."
-          # 🛑 We must stop execution if the platform add fails
-          cordova platform add ios@${{ env.IOS_PLATFORM_VERSION }}
+          cordova platform add ios@${{ env.IOS_PLATFORM_VERSION }} --no-telemetry --verbose
           
-      - name: 📦 Install Plugins and Run Pod Install (Prepare)
+      # 2. Reinstall ALL plugins to force clean installation
+      - name: 🔌 Clean Reinstall All Plugins
+        run: |
+          echo "🔄 Running Cordova plugin reinstall..."
+          cordova plugin reinstall --no-telemetry --verbose
+          
+      # 3. Run Prepare (This runs pod install and necessary hooks)
+      - name: 📦 Run Pod Install (Prepare)
         run: |
           echo "🔄 Running Cordova prepare (and pod install)..."
           cordova prepare ios
