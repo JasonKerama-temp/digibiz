@@ -1,39 +1,65 @@
-name: Auto Deploy on Push
+name: Build iOS Cordova App
 
 on:
   push:
     branches:
-      - staging
+      - main  # or 'staging', depending on your branch
 
 env:
-  BRANCH_NAME: "staging"
   APP_NAME: "Digibiz"
+  CORDOVA_PLATFORM: "ios"
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  build_ios:
+    runs-on: macos-latest
 
     steps:
-      - name: Deploy to server via SSH
-        uses: appleboy/ssh-action@v1.1.0
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: 22
-          script: |
-            cd /var/www/html/Apps/Business/${{ env.APP_NAME }}
-            git pull origin ${{ env.BRANCH_NAME }}
-            
-            # Load nvm
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          
-            # Use Node version
-            nvm use 16
-            
-            # Clean install
-            rm -rf node_modules package-lock.json
-          
-            # Now run npm
-            npm install
+          node-version: 16
+
+      - name: Install Cordova CLI
+        run: npm install -g cordova@11
+
+      - name: Install project dependencies
+        run: npm ci
+
+      - name: Add iOS platform
+        run: |
+          cordova platform remove ios || true
+          cordova platform add ios@6.2.0  # match your existing iOS target
+
+      - name: Prepare certificates
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" > ~/Library/MobileDevice/Provisioning\ Profiles/app.mobileprovision
+        shell: bash
+
+      - name: Decrypt certificate
+        run: |
+          echo "${{ secrets.IOS_CERTIFICATE_P12 }}" | base64 --decode > ios_cert.p12
+        shell: bash
+
+      - name: Build iOS app
+        run: |
+          cordova build ios --release --device --buildConfig build.json
+        shell: bash
+
+      - name: Export IPA
+        run: |
+          mkdir -p output
+          xcodebuild -exportArchive \
+            -archivePath platforms/ios/build/device/${{ env.APP_NAME }}.xcarchive \
+            -exportOptionsPlist exportOptions.plist \
+            -exportPath output/
+        shell: bash
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ios-ipa
+          path: output/*.ipa
