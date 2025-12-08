@@ -1,1 +1,0 @@
-cordova.define("cordova-plugin-background-download.BackgroundDownloader",(function(o,n,r){var a=o("./DownloadOperation"),d=function(){};d.prototype.createDownload=function(o,n){return new a(o,n)},r.exports=d}));

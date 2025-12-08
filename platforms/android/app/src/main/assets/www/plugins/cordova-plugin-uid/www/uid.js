@@ -1,1 +1,0 @@
-cordova.define("cordova-plugin-uid.UID",(function(o,d,c){let i=o("cordova")}));

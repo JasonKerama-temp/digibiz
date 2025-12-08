@@ -1,1 +1,0 @@
-cordova.define("cordova-plugin-file.androidFileSystem",(function(e,n,t){t.exports={__format__:function(e,n){let t;const o=/^content:\/\//.exec(n);if(o)t=n.substring(o[0].length-1);else{t=FileSystem.encodeURIPath(e),/^\//.test(t)||(t="/"+t);const o=/\?.*/.exec(n);o&&(t+=o[0])}return window.location.origin+"/__cdvfile_"+this.name+"__"+t}}}));

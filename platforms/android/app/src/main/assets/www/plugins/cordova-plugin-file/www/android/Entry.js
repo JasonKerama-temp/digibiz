@@ -1,1 +1,0 @@
-cordova.define("cordova-plugin-file.androidEntry",(function(n,i,o){o.exports={toURL:function(){return window.location.origin.includes("file://")?this.nativeURL:this.toInternalURL()}}}));

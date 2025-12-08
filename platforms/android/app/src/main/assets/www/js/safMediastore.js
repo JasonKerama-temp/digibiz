@@ -1,1 +1,0 @@
-module.exports=function(){let e={};return["selectFolder","selectFile","openFolder","openFile","readFile","writeFile","overwriteFile","saveFile","deleteFile","getFileName","getUri"].forEach((i=>e[i]=function(...e){return new Promise(((i,r)=>cordova.exec(i,r,"SafMediastore",this.name,e)))}.bind({name:i}))),e}();

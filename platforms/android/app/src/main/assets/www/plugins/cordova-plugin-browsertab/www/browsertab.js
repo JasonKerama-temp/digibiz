@@ -1,1 +1,0 @@
-cordova.define("cordova-plugin-browsertab.BrowserTab",(function(o,r,n){var a=o("cordova/exec");r.isAvailable=function(o,r){a(o,r,"BrowserTab","isAvailable",[])},r.openUrl=function(o,r){var n=function(){};a(n,r||n,"BrowserTab","openUrl",[o])},r.close=function(o){var r=function(){};a(r,o||r,"BrowserTab","close",[])}}));

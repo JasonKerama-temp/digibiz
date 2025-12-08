@@ -1,6 +1,0 @@
-configurations.all {        
-    resolutionStrategy {
-        
-        force 'com.google.android.gms:play-services-auth:17.0.0', 'com.google.android.gms:play-services-tagmanager:17.0.0'        
-    }        
-}
