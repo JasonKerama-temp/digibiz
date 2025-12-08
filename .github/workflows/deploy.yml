@@ -37,13 +37,13 @@ jobs:
         run: |
           echo "🔄 Removing old iOS platform..."
           rm -rf platforms/ios || true
-          rm -rf www || true
-          
-          echo "🏗️  Building www directory..."
-          npm run build || true
+          rm -rf plugins || true
           
           echo "📱 Adding iOS platform..."
           cordova platform add ios@6.2.0
+          
+          echo "📦 Installing Cordova plugins..."
+          cordova prepare ios
           
           echo "✅ Setting execute permissions on cordova tools..."
           chmod -R +x platforms/ios/cordova
