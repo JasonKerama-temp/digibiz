@@ -51,57 +51,81 @@ jobs:
       # 🔑 Import Certificate (P12)
       - name: 🔑 Import iOS Certificate
         run: |
-          echo "📦 Decoding and importing certificate..."
-          echo "${{ secrets.IOS_CERTIFICATE_P12 }}" | base64 --decode > ios_cert.p12
+          echo "📦 Preparing certificate for import..."
           
-          echo "🔐 Creating keychain..."
-          security create-keychain -p "" build.keychain
-          security list-keychains -s ~/Library/Keychains/build.keychain
-          security unlock-keychain -p "" ~/Library/Keychains/build.keychain
-          security set-keychain-settings -t 3600 -l ~/Library/Keychains/build.keychain
-          
-          echo "✅ Importing certificate to keychain..."
-          security import ios_cert.p12 -k ~/Library/Keychains/build.keychain -P "${{ secrets.IOS_CERTIFICATE_PASSWORD }}" -T /usr/bin/codesign
-          
-          # Make the keychain the default
-          security default-keychain -s ~/Library/Keychains/build.keychain
-          
-          # List the imported identities
-          echo ""
-          echo "📋 Imported identities:"
-          security find-identity -v ~/Library/Keychains/build.keychain
-          
-          echo "✅ Certificate imported successfully"
+          # Check if the secret is provided
+          if [ -z "${{ secrets.IOS_CERTIFICATE_P12 }}" ]; then
+            echo "⚠️  WARNING: IOS_CERTIFICATE_P12 secret is empty!"
+            echo "     Proceeding without developer certificate (manual signing only)"
+          else
+            echo "📥 Decoding certificate from secret..."
+            if ! echo "${{ secrets.IOS_CERTIFICATE_P12 }}" | base64 -d > ios_cert.p12 2>/dev/null; then
+              echo "❌ Failed to decode certificate"
+              exit 1
+            fi
+            
+            if [ ! -f ios_cert.p12 ] || [ ! -s ios_cert.p12 ]; then
+              echo "❌ Certificate file is empty or missing"
+              exit 1
+            fi
+            
+            echo "🔐 Creating keychain..."
+            security create-keychain -p "" build.keychain || true
+            security list-keychains -s ~/Library/Keychains/build.keychain
+            security unlock-keychain -p "" ~/Library/Keychains/build.keychain
+            security set-keychain-settings -t 3600 -l ~/Library/Keychains/build.keychain
+            
+            echo "✅ Importing certificate to keychain..."
+            if security import ios_cert.p12 -k ~/Library/Keychains/build.keychain -P "${{ secrets.IOS_CERTIFICATE_PASSWORD }}" -T /usr/bin/codesign; then
+              echo "✅ Certificate imported successfully"
+              
+              # Make the keychain the default
+              security default-keychain -s ~/Library/Keychains/build.keychain
+              
+              # List the imported identities
+              echo ""
+              echo "📋 Imported identities:"
+              security find-identity -v ~/Library/Keychains/build.keychain || true
+            else
+              echo "⚠️  Warning: Certificate import had issues but continuing..."
+            fi
+          fi
 
       # 📄 Install Provisioning Profile
       - name: 📄 Install Provisioning Profile
         run: |
-          echo "📝 Creating provisioning profiles directory..."
+          echo "📝 Setting up provisioning profiles directory..."
           mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
           
-          PROFILE_PATH="$HOME/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision"
+          PROFILE_SOURCE="library/MobileDevice/Provisioning Profiles/Digibiz_iOS copy.mobileprovision"
+          PROFILE_DEST="$HOME/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision"
           
-          echo "📥 Decoding provisioning profile..."
-          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 -d > "$PROFILE_PATH"
+          if [ ! -f "$PROFILE_SOURCE" ]; then
+            echo "❌ Source profile not found at: $PROFILE_SOURCE"
+            exit 1
+          fi
           
-          # Verify the profile was decoded correctly
-          if [ ! -f "$PROFILE_PATH" ] || [ ! -s "$PROFILE_PATH" ]; then
-            echo "❌ Failed to decode provisioning profile"
+          echo "📋 Copying provisioning profile from repository..."
+          cp "$PROFILE_SOURCE" "$PROFILE_DEST"
+          
+          # Verify the profile was copied correctly
+          if [ ! -f "$PROFILE_DEST" ] || [ ! -s "$PROFILE_DEST" ]; then
+            echo "❌ Failed to copy provisioning profile"
             exit 1
           fi
           
           # Check if it's a valid plist file
-          if file "$PROFILE_PATH" | grep -q "bplist"; then
+          if file "$PROFILE_DEST" | grep -q "bplist"; then
             echo "✅ Valid binary plist provisioning profile detected"
-          elif file "$PROFILE_PATH" | grep -q "XML"; then
+          elif file "$PROFILE_DEST" | grep -q "XML"; then
             echo "✅ Valid XML provisioning profile detected"
           else
             echo "⚠️  Warning: Profile format may be unexpected"
-            file "$PROFILE_PATH"
+            file "$PROFILE_DEST"
           fi
           
-          echo "✅ Provisioning profile installed at: $PROFILE_PATH"
-          ls -lah "$PROFILE_PATH"
+          echo "✅ Provisioning profile installed at: $PROFILE_DEST"
+          ls -lah "$PROFILE_DEST"
 
       # 🔍 Verify Provisioning Profiles
       - name: 🔍 Verify Provisioning Profiles
