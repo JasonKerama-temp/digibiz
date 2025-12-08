@@ -4,13 +4,13 @@
       "codeSignIdentity": "iPhone Developer",
       "developmentTeam": "Z6XW557ZX2",
       "packageType": "development",
-      "provisioningProfile": "Digibiz_iOS"
+      "provisioningProfile": "Digibiz_iOS.mobileprovision"
     },
     "release": {
       "codeSignIdentity": "iPhone Distribution",
       "developmentTeam": "Z6XW557ZX2",
       "packageType": "app-store",
-      "provisioningProfile": "Digibiz_iOS"
+      "provisioningProfile": "Digibiz_iOS.mobileprovision"
     }
   }
 }
