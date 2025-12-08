@@ -29,12 +29,10 @@ jobs:
 
       - name: 📦 Install npm dependencies (Force fresh resolution)
         run: |
-          # 🛑 CRITICAL FIX: Ensures a clean install without relying on npm ci or external cache
           npm cache clean --force
           rm -rf node_modules
           npm install
 
-      # Force Install Cordova CLI 12 and verify
       - name: 🔑 Install Cordova CLI 12
         run: |
           echo "Installing Cordova 12 globally..."
@@ -45,25 +43,42 @@ jobs:
             exit 1 
           fi
 
-      # --- 2. PLATFORM & PLUGIN PREP (This must succeed!) ---
-
+      # --- 2. PLATFORM & PLUGIN PREP ---
       - name: 🧹 Clean and Remove iOS Platform
-        # This step ensures we start fresh every time, cleaning up previous failures.
         run: |
           cordova platform remove ios || true
           
       - name: 📱 Add iOS platform v${{ env.IOS_PLATFORM_VERSION }}
-        # This step CREATES the platforms/ios/App.xcodeproj file!
         run: |
           cordova platform add ios@${{ env.IOS_PLATFORM_VERSION }}
           
       - name: 📦 Install Plugins and Run Pod Install (Prepare)
-        # This step copies the native code for plugins (like Bizcontacts) and creates App.xcworkspace.
         run: |
           cordova prepare ios
 
+      - name: 🛠️ Fix Pods Code Signing Conflict
+        # CRITICAL FIX: Firebase pods do not support provisioning profiles. 
+        # This script explicitly removes the provisioning profile and signing identity 
+        # from the Pods project settings to prevent conflicts with the main xcodebuild command.
+        run: |
+          cd platforms/ios
+          PODS_PROJECT_FILE="./Pods/Pods.xcodeproj/project.pbxproj"
+          
+          echo "Unsetting CODE_SIGN_IDENTITY, PROVISIONING_PROFILE_SPECIFIER, and DEVELOPMENT_TEAM in Pods project file..."
+          
+          # Set CODE_SIGN_IDENTITY to an empty string for all Pod targets
+          /usr/bin/sed -i '' 's/CODE_SIGN_IDENTITY = \"[^\"]*\";/CODE_SIGN_IDENTITY = \"\";/g' "$PODS_PROJECT_FILE"
+
+          # Remove PROVISIONING_PROFILE_SPECIFIER entries completely
+          /usr/bin/sed -i '' '/PROVISIONING_PROFILE_SPECIFIER/d' "$PODS_PROJECT_FILE"
+          
+          # Remove DEVELOPMENT_TEAM entries
+          /usr/bin/sed -i '' '/DEVELOPMENT_TEAM/d' "$PODS_PROJECT_FILE"
+          
+          echo "✅ Pods project code signing settings cleaned."
+          cd ../..
+
       # --- 3. SIGNING ASSET INSTALLATION ---
-      # 🔑 Import Certificate (P12)
       - name: 🔑 Import iOS Certificate
         run: |
           echo "📦 Importing certificate..."
@@ -76,7 +91,6 @@ jobs:
           security default-keychain -s ~/Library/Keychains/build.keychain
           echo "✅ Certificate imported."
 
-      # 📄 Install Provisioning Profile
       - name: 📄 Install Provisioning Profile
         run: |
           echo "📝 Installing provisioning profile..."
@@ -101,18 +115,16 @@ jobs:
           ls -lah "$PROFILE_DEST"
 
       # --- 4. BUILD & EXPORT ---
-      # 🏗️ Build Archive with Manual Signing
       - name: 🏗️ Build Xcode Archive
         run: | 
           echo "🔨 Building archive with manual signing..."
           mkdir -p output
           export KEYCHAIN_PATH="$HOME/Library/Keychains/build.keychain"
           
-          # List available Xcode projects to verify path
           echo "📋 Available Xcode projects:"
           ls -la platforms/ios/*.xcodeproj 2>/dev/null || echo "No .xcodeproj found"
           
-          # 🛑 CRITICAL FIX: Switch from -project to -workspace to include CocoaPods dependencies
+          # Using the .xcworkspace (fixed previously)
           xcodebuild archive \
             -workspace "platforms/ios/${{ env.APP_NAME }}.xcworkspace" \
             -scheme "${{ env.APP_NAME }}" \
@@ -129,7 +141,6 @@ jobs:
           
           echo "✅ Archive created."
 
-      # 📤 Export IPA
       - name: 📤 Export IPA
         run: |
           echo "📦 Exporting IPA..."
@@ -142,7 +153,6 @@ jobs:
           echo "✅ IPA exported."
 
       # --- 5. CLEANUP & ARTIFACTS ---
-      # 🧹 Cleanup Sensitive Files (Always run)
       - name: 🧹 Cleanup Sensitive Files
         if: always()
         run: |
@@ -151,7 +161,6 @@ jobs:
           rm -f ios_cert.p12 || true
           rm -rf "$HOME/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision" || true
       
-      # 📤 Upload IPA Artifact
       - name: 📤 Upload IPA Artifact
         if: success()
         uses: actions/upload-artifact@v4
