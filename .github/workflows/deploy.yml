@@ -10,10 +10,11 @@ env:
   PROJECT_VERSION: 3080 
   TEAM_ID: Z6XW557ZX2 
   PROFILE_NAME: "Digibiz iOS"
-  # Set Node 20 required for modern npm packages.
+  # FIX: Set Node 20 required for modern npm packages.
   NODE_VERSION: 20
-  # Use iOS platform v7.x to automatically raise the deployment target.
+  # FIX: Use iOS platform v7.x to automatically raise the deployment target.
   IOS_PLATFORM_VERSION: 7.0.0 
+  # CRITICAL NOTE: The Xcode workspace file is named 'App.xcworkspace' due to project settings.
 
 jobs:
   build_ios:
@@ -23,7 +24,7 @@ jobs:
       - name: 🔍 Checkout repository
         uses: actions/checkout@v4
 
-      # 🛠️ Setup Node.js v20
+      # --- 1. SETUP ---
       - name: 🛠️ Setup Node.js (v${{ env.NODE_VERSION }})
         uses: actions/setup-node@v4
         with:
@@ -33,31 +34,37 @@ jobs:
       - name: 📦 Install npm dependencies
         run: npm ci
 
-      # 🔑 Install Cordova CLI 12 (Forced and verified)
+      # FIX: Force Install Cordova CLI 12 and verify
       - name: 🔑 Install Cordova CLI 12
         run: |
+          echo "Installing Cordova 12 globally..."
           npm install -g cordova@12 --force
           cordova -v
-          if ! cordova -v | grep -q "12"; then exit 1; fi
+          if ! cordova -v | grep -q "12"; then 
+            echo "❌ Cordova 12 failed to install. Exiting."
+            exit 1 
+          fi
 
-      # 🟢 FIX 1: Clean and Prepare iOS platform (Using newer version)
+      # --- 2. PLATFORM & PLUGIN PREP ---
       - name: 📱 Clean & Add iOS platform v${{ env.IOS_PLATFORM_VERSION }}
         run: |
+          echo "🔄 Cleaning and adding platform..."
           rm -rf platforms/ios || true
           rm -rf plugins || true
           
-          # Add the newer platform
           cordova platform add ios@${{ env.IOS_PLATFORM_VERSION }}
           
-          # This should run 'pod install' via a Cordova hook
+          # This runs 'pod install' and other plugin hooks
           cordova prepare ios
           
+          echo "✅ Setting permissions..."
           chmod -R +x platforms/ios/cordova
 
-      # 🔑 Import Certificate (P12) - Unchanged signing logic
+      # --- 3. SIGNING ASSET INSTALLATION ---
+      # 🔑 Import Certificate (P12)
       - name: 🔑 Import iOS Certificate
         run: |
-          # ... (Unchanged steps for importing certificate to keychain) ...
+          echo "📦 Importing certificate..."
           if [ -z "${{ secrets.IOS_CERTIFICATE_P12 }}" ]; then exit 1; fi
           if ! echo "${{ secrets.IOS_CERTIFICATE_P12 }}" | base64 -d > ios_cert.p12 2>/dev/null; then exit 1; fi
           security create-keychain -p "" build.keychain || true
@@ -65,15 +72,21 @@ jobs:
           security unlock-keychain -p "" ~/Library/Keychains/build.keychain
           security import ios_cert.p12 -k ~/Library/Keychains/build.keychain -P "${{ secrets.IOS_CERTIFICATE_PASSWORD }}" -T /usr/bin/codesign
           security default-keychain -s ~/Library/Keychains/build.keychain
-          security find-identity -v ~/Library/Keychains/build.keychain || true
+          echo "✅ Certificate imported."
 
-      # 📄 Install Provisioning Profile - Unchanged signing logic
+      # 📄 Install Provisioning Profile
       - name: 📄 Install Provisioning Profile
         run: |
+          echo "📝 Installing provisioning profile..."
           mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
           PROFILE_DEST="$HOME/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision"
-          if ! echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > "$PROFILE_DEST" 2>/dev/null; then exit 1; fi
+          if ! echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > "$PROFILE_DEST" 2>/dev/null; then 
+            echo "❌ Failed to decode profile."
+            exit 1
+          fi
+          echo "✅ Profile installed."
 
+      # --- 4. BUILD & EXPORT ---
       # 🏗️ Build Archive with Manual Signing
       - name: 🏗️  Build Xcode Archive
         run: |
@@ -81,8 +94,7 @@ jobs:
           mkdir -p output
           export KEYCHAIN_PATH="$HOME/Library/Keychains/build.keychain"
           
-          # 🟢 CRITICAL FIX 2: CHANGE WORKSPACE NAME TO 'App.xcworkspace'
-          # Based on your error, the project name is 'App' not 'Digibiz' inside platforms/ios.
+          # CRITICAL FIX: TARGET 'App.xcworkspace'
           xcodebuild archive \
             -workspace "platforms/ios/App.xcworkspace" \
             -scheme "${{ env.APP_NAME }}" \
@@ -97,26 +109,31 @@ jobs:
             DEVELOPMENT_TEAM="${{ env.TEAM_ID }}" \
             CURRENT_PROJECT_VERSION="${{ env.PROJECT_VERSION }}"
           
-          echo "✅ Archive created successfully"
+          echo "✅ Archive created."
 
-      # 📤 Export IPA - Unchanged
+      # 📤 Export IPA
       - name: 📤 Export IPA
         run: |
+          echo "📦 Exporting IPA..."
           mkdir -p output/ipa
           xcodebuild -exportArchive \
             -archivePath "output/${{ env.APP_NAME }}.xcarchive" \
             -exportOptionsPlist exportOptions.plist \
             -exportPath "output/ipa/" \
             -allowProvisioningUpdates
-          echo "✅ IPA exported successfully"
+          echo "✅ IPA exported."
 
-      # 🧹 Cleanup & Upload Artifacts - Unchanged
+      # --- 5. CLEANUP & ARTIFACTS ---
+      # 🧹 Cleanup Sensitive Files (Always run)
       - name: 🧹 Cleanup Sensitive Files
         if: always()
         run: |
+          echo "🗑️ Cleaning up sensitive files..."
           security delete-keychain build.keychain || true
           rm -f ios_cert.p12 || true
           rm -rf "$HOME/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision" || true
+      
+      # 📤 Upload IPA Artifact
       - name: 📤 Upload IPA Artifact
         if: success()
         uses: actions/upload-artifact@v4
