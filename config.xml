@@ -62,8 +62,7 @@
         <hook src="hooks/after_prepare/minify.js" type="after_build"/>
         
         <preference name="deployment-target" value="13.0" /> 
-        
-        <preference name="FIREBASE_CORE_VERSION" value="~> 10.15.0" /> 
+        <preference name="FIREBASE_CORE_VERSION" value="~> 10.20.0" /> 
         
         <edit-config target="XCBuildConfiguration[name=Release]/CODE_SIGNING_STYLE" file="*-project.pbxproj" mode="overwrite">
             <string>Manual</string>
