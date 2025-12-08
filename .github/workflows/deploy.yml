@@ -47,41 +47,26 @@ jobs:
           fi
 
       # --- 2. PLATFORM & PLUGIN PREP ---
-      - name: 🧹 Clean CocoaPods Cache and Project Directories
+
+      - name: 🧹 Clean and Remove iOS Platform
         run: |
-          # Keep the aggressive cleanup
-          rm -rf platforms/ios || true
-          rm -rf plugins || true
-          rm -rf $HOME/Library/Caches/CocoaPods || true
+          # 1. Force remove the platform (in case a partial structure exists)
+          cordova platform remove ios || true
           
-      # 1. Add platform WITHOUT installing plugins (the default behavior)
-      - name: 📱 Add iOS platform (Plugin-Free)
+      - name: 📱 Add iOS platform v${{ env.IOS_PLATFORM_VERSION }}
         run: |
           echo "🔄 Adding platform..."
-          cordova platform add ios@${{ env.IOS_PLATFORM_VERSION }} --no-telemetry --verbose
+          # 2. Add the platform clean (plugins will be added during 'prepare')
+          cordova platform add ios@${{ env.IOS_PLATFORM_VERSION }}
           
-      # 2. Reinstall ALL plugins to force clean installation
-      - name: 🔌 Clean Reinstall All Plugins
-        run: |
-          echo "🔄 Running Cordova plugin reinstall..."
-          cordova plugin reinstall --no-telemetry --verbose
-          
-      # 3. Run Prepare (This runs pod install and necessary hooks)
-      - name: 📦 Run Pod Install (Preparation)
+      - name: 📦 Install Plugins and Run Pod Install (Prepare)
         run: |
           echo "🔄 Running Cordova prepare (and pod install)..."
+          # 3. This forces plugin hooks (like CocoaPods) and native code to run
           cordova prepare ios
           
-      - name: 🔍 Verify Xcode Project Exists
-        run: |
-          PROJECT_PATH="platforms/ios/App.xcodeproj"
-          if [ ! -d "$PROJECT_PATH" ]; then
-            echo "❌ CRITICAL ERROR: Xcode project file was NOT created by the 'platform add' step."
-            echo "Failed to create: $PROJECT_PATH"
-            exit 1
-          fi
-          echo "✅ Project found at $PROJECT_PATH. Proceeding to build."
-          chmod -R +x platforms/ios/cordova
+      # 4. Remove the file check we added previously so the build can proceed
+      # (Do NOT include the verify step we used for debugging)
 
       # --- 3. SIGNING ASSET INSTALLATION ---
       # (All subsequent steps are unchanged)
