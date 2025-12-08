@@ -10,8 +10,8 @@ env:
   # Cordova iOS versions often use the same version number for the project version
   PROJECT_VERSION: 3080 
   TEAM_ID: Z6XW557ZX2 
-  PROFILE_NAME: "Digibiz iOS"
-  
+  PROFILE_NAME: "Digibiz iOS" # This variable contains a space
+
 jobs:
   build_ios:
     runs-on: macos-latest
@@ -47,25 +47,23 @@ jobs:
           security set-keychain-settings -t 3600 -l ~/Library/Keychains/build.keychain
           security import ios_cert.p12 -k ~/Library/Keychains/build.keychain -P "${{ secrets.IOS_CERTIFICATE_PASSWORD }}" -T /usr/bin/codesign
 
-      # 3. 📄 Manual Signing: Install Provisioning Profile
+      # 3. 📄 Manual Signing: Install Provisioning Profile (FIXED)
       - name: 📄 Install Provisioning Profile
         run: |
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          # The filename MUST match the name used in your exportOptions.plist 'string' value
-          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/${{ env.PROFILE_NAME }}.mobileprovision
+          # Use double quotes for the target directory to handle the space in "Provisioning Profiles"
+          mkdir -p "~/Library/MobileDevice/Provisioning Profiles"
+          # 🟢 FIX APPLIED: Enclosing the entire path in double quotes to handle spaces correctly.
+          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > "~/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision"
 
       # 4. 📦 Direct Xcode Archive (Build Step)
-      # This replaces the 'cordova build' wrapper and uses explicit paths/arguments
       - name: 📦 Direct Xcode Archive
         run: |
-          # The -archivePath sets the location where the archive will be saved for export
           xcodebuild archive \
             -workspace platforms/ios/${{ env.APP_NAME }}.xcworkspace \
             -scheme ${{ env.APP_NAME }} \
             -configuration Release \
             -destination generic/platform=iOS \
             -archivePath output/${{ env.APP_NAME }}.xcarchive \
-            # Explicitly pass signing arguments to ensure Xcode uses the installed assets
             CODE_SIGN_IDENTITY="iPhone Developer" \
             PROVISIONING_PROFILE_SPECIFIER="${{ env.PROFILE_NAME }}" \
             DEVELOPMENT_TEAM="${{ env.TEAM_ID }}" \
@@ -80,13 +78,14 @@ jobs:
             -exportOptionsPlist exportOptions.plist \
             -exportPath output/ipa/
 
-      # 6. 🧹 Cleanup Keychain and Files
+      # 6. 🧹 Cleanup Keychain and Files (FIXED)
       - name: 🧹 Cleanup Keychain and Files
         if: always()
         run: |
           security delete-keychain build.keychain || true
           rm ios_cert.p12 || true
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/${{ env.PROFILE_NAME }}.mobileprovision || true
+          # 🟢 FIX APPLIED: Enclosing the full path in double quotes for cleanup.
+          rm "~/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision" || true
 
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
