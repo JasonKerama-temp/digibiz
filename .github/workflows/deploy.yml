@@ -40,6 +40,7 @@ jobs:
           
           chmod -R +x platforms/ios/cordova
 
+      ---
       
       - name: Generate build.json for Manual Signing 📄
         id: generate_build_config
@@ -59,6 +60,8 @@ jobs:
           ' > build.json
           echo "Created build.json:"
           cat build.json
+          
+      ---
 
       # 1. 🔑 Manual Signing: Import Certificate (P12)
       - name: 🔑 Import iOS Certificate (P12)
@@ -76,6 +79,7 @@ jobs:
           mkdir -p "~/Library/MobileDevice/Provisioning Profiles"
           echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > "~/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision"
           
+      ---
       
       # 3. 📦 Cordova Build & Archive (Uses build.json)
       - name: 📦 Cordova Build iOS (Archive)
@@ -108,7 +112,7 @@ jobs:
             -exportOptionsPlist exportOptions.plist \
             -exportPath output/ipa/
 
-      
+      ---
 
       # 5. 🧹 Cleanup Keychain and Files
       - name: 🧹 Cleanup Keychain and Files
