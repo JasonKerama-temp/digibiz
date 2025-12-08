@@ -48,6 +48,18 @@ jobs:
             echo "❌ ERROR: Cordova 12 installation failed or wrong version is in PATH."
             exit 1
           fi
+      - name: 🧹 Clean and Update Pods
+        run: |
+          # Go to the iOS platform directory
+          cd platforms/ios
+          
+          echo "Removing Pods lock file and cache..."
+          rm -f Podfile.lock || true
+          rm -rf Pods || true
+          
+          # Install pods. Use --repo-update to refresh the pod repository index.
+          echo "Installing/Updating CocoaPods dependencies..."
+          pod install --repo-update
 
       # 🟢 FIX 3: Prepare iOS platform (Use newer version)
       - name: Prepare iOS platform (Clean rebuild)
