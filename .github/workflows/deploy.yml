@@ -26,7 +26,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          # Removed 'cache: npm' to prevent lock file dependency issues
 
       - name: 📦 Install npm dependencies (Force fresh resolution)
         run: |
@@ -62,8 +61,8 @@ jobs:
         # This step copies the native code for plugins (like Bizcontacts) and creates App.xcworkspace.
         run: |
           cordova prepare ios
+
       # --- 3. SIGNING ASSET INSTALLATION ---
-      # (All subsequent steps are unchanged)
       # 🔑 Import Certificate (P12)
       - name: 🔑 Import iOS Certificate
         run: |
@@ -103,8 +102,8 @@ jobs:
 
       # --- 4. BUILD & EXPORT ---
       # 🏗️ Build Archive with Manual Signing
-      - name: 🏗️  Build Xcode Archive
-        run: |  
+      - name: 🏗️  Build Xcode Archive
+        run: |  
           echo "🔨 Building archive with manual signing..."
           mkdir -p output
           export KEYCHAIN_PATH="$HOME/Library/Keychains/build.keychain"
@@ -113,9 +112,9 @@ jobs:
           echo "📋 Available Xcode projects:"
           ls -la platforms/ios/*.xcodeproj 2>/dev/null || echo "No .xcodeproj found"
           
-          # Use the app name for the project path
+          # 🛑 CRITICAL FIX: Switch from -project to -workspace to include CocoaPods dependencies
           xcodebuild archive \
-            -project "platforms/ios/${{ env.APP_NAME }}.xcodeproj" \
+            -workspace "platforms/ios/${{ env.APP_NAME }}.xcworkspace" \
             -scheme "${{ env.APP_NAME }}" \
             -configuration Release \
             -destination "generic/platform=iOS" \
@@ -129,6 +128,7 @@ jobs:
             CURRENT_PROJECT_VERSION="${{ env.PROJECT_VERSION }}"
           
           echo "✅ Archive created."
+
       # 📤 Export IPA
       - name: 📤 Export IPA
         run: |
