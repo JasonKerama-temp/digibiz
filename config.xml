@@ -59,15 +59,16 @@
         
         <preference name="deployment-target" value="12.0" />
 
-        <edit-config target="XCBuildConfiguration[name=Release]/ProvisioningStyle" file="*-Info.plist" mode="overwrite">
-            <string>Manual</string>
-        </edit-config>
-        <edit-config target="XCBuildConfiguration[name=Release]/DevelopmentTeam" file="*-Info.plist" mode="overwrite">
-            <string>Z6XW557ZX2</string>
-        </edit-config>
-        <edit-config target="TargetAttributes/DevelopmentTeam" file="*-Info.plist" mode="overwrite">
-            <string>Z6XW557ZX2</string>
-        </edit-config>
+<edit-config target="XCBuildConfiguration[name=Release]/ProvisioningStyle" file="*-project.pbxproj" mode="overwrite">
+        <string>Manual</string>
+    </edit-config>
+    <edit-config target="XCBuildConfiguration[name=Release]/DevelopmentTeam" file="*-project.pbxproj" mode="overwrite">
+        <string>Z6XW557ZX2</string>
+    </edit-config>
+    
+    <edit-config target="TargetAttributes/DevelopmentTeam" file="*-project.pbxproj" mode="overwrite">
+        <string>Z6XW557ZX2</string>
+    </edit-config>
         
         <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription"><string>Need camera access to take pictures.</string></edit-config>
         <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription"><string>Need photo library access to get pictures from there</string></edit-config>
