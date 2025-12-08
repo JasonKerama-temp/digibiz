@@ -1,4 +1,4 @@
-name: Build iOS Cordova App (Direct Xcode)
+name: Build iOS Cordova App (Using build.json)
 
 on:
   push:
@@ -10,7 +10,7 @@ env:
   # Cordova iOS versions often use the same version number for the project version
   PROJECT_VERSION: 3080 
   TEAM_ID: Z6XW557ZX2 
-  PROFILE_NAME: "Digibiz iOS" # Used as the PROVISIONING_PROFILE_SPECIFIER
+  PROFILE_NAME: "Digibiz iOS" # Used as the provisioningProfile in build.json
 
 jobs:
   build_ios:
@@ -20,7 +20,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Environment
+      - name: Setup Environment ⚙️
         uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -30,18 +30,37 @@ jobs:
           npm install -g cordova@11
           npm ci
 
-      # 1. Prepare Cordova Project Structure (CRITICAL CLEANUP INCLUDED)
       - name: Add and Prepare iOS platform
         run: |
-          # 🟢 FIX for "conflicting provisioning settings": Ensures a clean project rebuild
+          # 🧹 Ensures a clean project rebuild before adding platform
           rm -rf platforms/ios || true
           
-          # Adds the platform, applying the manual signing config from config.xml
+          # Adds the platform
           cordova platform add ios@6.2.0
           
           chmod -R +x platforms/ios/cordova
 
-      # 2. 🔑 Manual Signing: Import Certificate (P12)
+      
+      - name: Generate build.json for Manual Signing 📄
+        id: generate_build_config
+        run: |
+          # Create build.json file for Cordova to handle manual signing flags automatically
+          echo '
+          {
+            "ios": {
+              "release": {
+                "developmentTeam": "${{ env.TEAM_ID }}",
+                "codeSignIdentity": "iPhone Developer",
+                "packageType": "development",
+                "provisioningProfile": "${{ env.PROFILE_NAME }}"
+              }
+            }
+          }
+          ' > build.json
+          echo "Created build.json:"
+          cat build.json
+
+      # 1. 🔑 Manual Signing: Import Certificate (P12)
       - name: 🔑 Import iOS Certificate (P12)
         run: |
           echo "${{ secrets.IOS_CERTIFICATE_P12 }}" | base64 --decode > ios_cert.p12
@@ -51,45 +70,53 @@ jobs:
           security set-keychain-settings -t 3600 -l ~/Library/Keychains/build.keychain
           security import ios_cert.p12 -k ~/Library/Keychains/build.keychain -P "${{ secrets.IOS_CERTIFICATE_PASSWORD }}" -T /usr/bin/codesign
 
-      # 3. 📄 Manual Signing: Install Provisioning Profile (SYNTAX FIXED)
+      # 2. 📄 Manual Signing: Install Provisioning Profile
       - name: 📄 Install Provisioning Profile
         run: |
-          # Use double quotes for the target directory to handle the space in "Provisioning Profiles"
           mkdir -p "~/Library/MobileDevice/Provisioning Profiles"
-          # FIX: Enclose the full path in double quotes to resolve the 'base64: invalid argument' error
           echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > "~/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision"
-
-      # 4. 📦 Direct Xcode Archive (Build Step)
-      - name: 📦 Direct Xcode Archive
+          
+      
+      # 3. 📦 Cordova Build & Archive (Uses build.json)
+      - name: 📦 Cordova Build iOS (Archive)
         run: |
-          # Explicit arguments override any lingering project settings
-          xcodebuild archive \
-            -workspace platforms/ios/${{ env.APP_NAME }}.xcworkspace \
-            -scheme ${{ env.APP_NAME }} \
-            -configuration Release \
-            -destination generic/platform=iOS \
-            -archivePath output/${{ env.APP_NAME }}.xcarchive \
-            CODE_SIGN_IDENTITY="iPhone Developer" \
-            PROVISIONING_PROFILE_SPECIFIER="${{ env.PROFILE_NAME }}" \
-            DEVELOPMENT_TEAM="${{ env.TEAM_ID }}" \
-            CURRENT_PROJECT_VERSION=${{ env.PROJECT_VERSION }}
+          # Cordova builds the app using the 'release' configuration defined in build.json.
+          # The PROJECT_VERSION is still passed as a build flag.
+          cordova build ios \
+            --device \
+            --release \
+            --buildConfig=build.json \
+            --buildFlag="CURRENT_PROJECT_VERSION=${{ env.PROJECT_VERSION }}"
 
-      # 5. 📤 Export IPA (Final Step)
+      # 4. 📤 Export IPA (Finds and exports the archive)
       - name: 📤 Export IPA (Final Sign)
+        id: export_ipa
         run: |
           mkdir -p output/ipa
+          # Find the latest generated .xcarchive in the standard DerivedData location
+          ARCHIVE_PATH=$(find ~/Library/Developer/Xcode/DerivedData/ -name "*.xcarchive" -depth 2 -type d -print -quit)
+          
+          if [ -z "$ARCHIVE_PATH" ]; then
+            echo "Error: Could not find .xcarchive file after cordova build."
+            exit 1
+          fi
+          
+          echo "Found Archive Path: $ARCHIVE_PATH"
+          
           xcodebuild -exportArchive \
-            -archivePath output/${{ env.APP_NAME }}.xcarchive \
+            -archivePath "$ARCHIVE_PATH" \
             -exportOptionsPlist exportOptions.plist \
             -exportPath output/ipa/
 
-      # 6. 🧹 Cleanup Keychain and Files (SYNTAX FIXED)
+      
+
+      # 5. 🧹 Cleanup Keychain and Files
       - name: 🧹 Cleanup Keychain and Files
         if: always()
         run: |
           security delete-keychain build.keychain || true
           rm ios_cert.p12 || true
-          # FIX: Enclosing the full path in double quotes for cleanup.
+          rm build.json || true
           rm "~/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision" || true
 
       - name: Upload IPA artifact
