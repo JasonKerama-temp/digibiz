@@ -46,26 +46,34 @@ jobs:
             exit 1 
           fi
 
-      # --- 2. PLATFORM & PLUGIN PREP (Includes Aggressive Cleanup) ---
+      # --- 2. PLATFORM & PLUGIN PREP ---
       - name: 🧹 Clean CocoaPods Cache and Project Directories
         run: |
-          # Aggressively delete the project-specific iOS folders
+          # Keep the aggressive cleanup
           rm -rf platforms/ios || true
           rm -rf plugins || true
-          # Delete the global CocoaPods cache to prevent stale dependency conflicts
           rm -rf $HOME/Library/Caches/CocoaPods || true
           
-      - name: 📱 Add iOS platform v${{ env.IOS_PLATFORM_VERSION }} & Prepare
+      - name: 📱 Add iOS platform v${{ env.IOS_PLATFORM_VERSION }}
         run: |
           echo "🔄 Adding platform..."
-          # The config.xml fixes (iOS 13.0 and Firebase versions) are now critical here
+          # 🛑 We must stop execution if the platform add fails
           cordova platform add ios@${{ env.IOS_PLATFORM_VERSION }}
           
-          # This runs 'pod install' and other plugin hooks
+      - name: 📦 Install Plugins and Run Pod Install (Prepare)
+        run: |
           echo "🔄 Running Cordova prepare (and pod install)..."
           cordova prepare ios
           
-          echo "✅ Setting permissions..."
+      - name: 🔍 Verify Xcode Project Exists
+        run: |
+          PROJECT_PATH="platforms/ios/App.xcodeproj"
+          if [ ! -d "$PROJECT_PATH" ]; then
+            echo "❌ CRITICAL ERROR: Xcode project file was NOT created by the 'platform add' step."
+            echo "Failed to create: $PROJECT_PATH"
+            exit 1
+          fi
+          echo "✅ Project found at $PROJECT_PATH. Proceeding to build."
           chmod -R +x platforms/ios/cordova
 
       # --- 3. SIGNING ASSET INSTALLATION ---
