@@ -99,7 +99,7 @@ jobs:
           
           PROFILE_SOURCE="library/MobileDevice/Provisioning Profiles/Digibiz_iOS copy.mobileprovision"
           PROFILE_DEST="$HOME/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision"
-          
+      
           if [ ! -f "$PROFILE_SOURCE" ]; then
             echo "❌ Source profile not found at: $PROFILE_SOURCE"
             exit 1
