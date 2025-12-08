@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "341123861707",
+    "project_id": "dj-business-86b2d",
+    "storage_bucket": "dj-business-86b2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341123861707:android:191b5a2401589429bc1f4e",
+        "android_client_info": {
+          "package_name": "com.digitaljeevi.staging.business"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "341123861707-hqbkbdnq2gbo52ctj9jtot2kigro7dc5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADe855KNggApGU54dgMxlRhUIU0YDkCn0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "341123861707-hqbkbdnq2gbo52ctj9jtot2kigro7dc5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

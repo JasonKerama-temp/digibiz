@@ -1,0 +1,19 @@
+<script id="scroll-customer-identifiers-data-list-template" type="text/x-handlebars-template">
+        {{#if customer_identifiers_list_data}}
+        {{#each customer_identifiers_list_data}}
+            <div class="customer-identifier-wrapper common-listing-wrapper" data-id="{{this.id}}" data-status="{{this.status.status}}">                    
+            <div class="profile-pic-info-wrapper">                            
+              <div class="customer-identifier-data-wrapper ellipsify">
+                <div class="customer-identifier-name wrapper-primary-heading"><span class="truncate">{{this.identifier}}</span></div>
+              </div>              
+            </div>             
+            <div class="btn-wrap">              
+             <div class="more-menu-wrapper show-action-customer-identifier-data" id="show-action-customer-identifier-data"><i class="material-icons">more_vert</i></div>
+            </div>
+          </div>                                  
+        {{/each}}
+        {{else}}
+        <div class="end_data">End of listing</div>
+        {{/if}}
+     
+</script>

@@ -1,0 +1,25 @@
+<script id="alumini-employee-creation-data-list-template" type="text/x-handlebars-template">
+    <div class="employee-creation-list-contentbox">
+        {{#if employee_creation_employee_list_data}}
+        {{#each employee_creation_employee_list_data}}
+            <div class="employee-wrapper" data-employee-id="{{this.dj_unique_employee_id}}" data-status="{{this.status.status}}" data-socket-status="{{this.socket_enable_status}}">                    
+            <div class="profile-pic-info-wrapper ">
+                <div class="employee-identity-pic profile-pic-container p-{{imageLetter}} view-employee-profile-pic cursor-pointer">
+                  <span class="persona">{{imageLetter}}</span>  
+                  <img class="profile-pic" src="{{this.identity_picture.avtarUrl}}" data-id="{{this.identity_picture.thumbnail}}" data-employee-id="{{this.dj_unique_employee_id}}"/>
+                </div>            
+              <div class="employee-data-wrapper employee-get-profile-information ellipsify">
+                <div class="employee-name wrapper-primary-heading"><span class="truncate">{{#if this.display_name}}{{this.display_name}}{{else}}{{this.name.first}}&nbsp;{{this.name.last}}{{/if}}</span></div>
+                {{#ifcond this.employee_role '==' 'super_admin'}}
+                <div class="employee-data-type wrapper-secondary-heading">Super-Admin</div>
+                {{/ifcond}}                
+                <div class="employee-status wrapper-quaternary-heading status--{{this.status.status}}">{{this.status.status}}</div>
+            </div>              
+            </div>            
+          </div>                                  
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}        
+      </div>
+</script>

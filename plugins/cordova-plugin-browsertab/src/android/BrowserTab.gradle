@@ -1,0 +1,3 @@
+def minSdkVersion = 22
+
+ext.cdvMinSdkVersion = minSdkVersion;

@@ -1,0 +1,65 @@
+<script id="group-member-search-template" type="text/x-handlebars-template">
+    {{#if data}}{{#each data}}
+    {{#ifcond this.type '==' 'employee'}}
+    <div class="group-member-search-wrapper" data-id="{{this.id}}" data-type="{{this.type}}">
+        <div class="file-select">                                               
+            <div class="contact-profile-container profile-pic-container p-{{#firstletter this.member_data.name.first}}{{/firstletter}}">
+                {{#if this.member_data.identity_picture.thumbnail}}
+                <img src="{{#digibiz_api_url}}{{/digibiz_api_url}}/api/employee/getEmployeeIdentityPicture?id={{this.id}}&device_id={{@root.device_id}}&image_id={{this.member_data.identity_picture.thumbnail}}" class="chat-avatar-image">
+                {{else}}
+                <span class="persona">{{#firstletter this.member_data.name.first}}{{/firstletter}}</span>
+                {{/if}}
+            </div>
+        </div>
+        <!-- <div class= "filemanager-file-wrapper"> -->
+        <div class= "group-member-search-data-container">
+            <span class="member-name wrapper-primary-heading">{{#if this.member_data.display_name}}{{this.member_data.display_name}}{{else}}{{this.member_data.name.first}}&nbsp;{{this.member_data.name.last}}{{/if}}</span>
+            <span class="member-second-data wrapper-secondary-heading">Employee&nbsp;|&nbsp;{{this.member_data.designation_name}}</span>
+        </div>        
+    </div>
+    {{/ifcond}}
+    {{#ifcond this.type '==' 'customer'}}
+    <div class="group-member-search-wrapper" data-id="{{this.id}}" data-type="{{this.type}}" data-identifier-id="{{this.identifier_id}}">
+        <div class="file-select">                                               
+            <div class="contact-profile-container profile-pic-container p-{{#firstletter this.member_data.name.first}}{{/firstletter}}">
+                {{#if this.member_data.identity_picture.thumbnail}}
+                <img src="{{#digibiz_api_url}}{{/digibiz_api_url}}/api/customers/getCustomerIdentityPicture?id={{this.id}}&device_id={{@root.device_id}}&image_id={{this.member_data.identity_picture.thumbnail}}" class="chat-avatar-image">
+                {{else}}
+                <span class="persona">{{#firstletter this.member_data.name.first}}{{/firstletter}}</span>
+                {{/if}}
+            </div>
+        </div>
+        <!-- <div class= "filemanager-file-wrapper"> -->
+        <div class= "group-member-search-data-container">
+            <span class="member-name">{{#if this.member_data.display_name}}{{this.member_data.display_name}}{{else}}{{this.member_data.name.first}}&nbsp;{{this.member_data.name.last}}{{/if}}</span>
+            <span class="member-second-data wrapper-secondary-heading">{{#if this.member_data.identifier_name}}{{this.member_data.identifier_name}}{{/if}}{{#if this.member_data.label}}&nbsp;|&nbsp;{{this.member_data.label}}{{/if}}
+                {{#if member_data.role_business_name}}&nbsp;|&nbsp;{{member_data.role_business_name}}{{/if}}
+            </span>
+        </div>        
+    </div>
+    {{/ifcond}}
+    {{#ifcond this.type '==' 'associate_customer'}}
+    <div class="group-member-search-wrapper" data-id="{{this.id}}" data-type="{{this.type}}" data-identifier-id="{{this.identifier_id}}">
+        <div class="file-select">                                               
+            <div class="contact-profile-container profile-pic-container p-{{#firstletter this.member_data.name.first}}{{/firstletter}}">
+                {{#if this.member_data.identity_picture.thumbnail}}
+                <img src="{{#digibiz_api_url}}{{/digibiz_api_url}}/api/associate_customers/getAssociateCustomerIdentityPicture?id={{this.id}}&device_id={{@root.device_id}}&image_id={{this.member_data.identity_picture.thumbnail}}" class="chat-avatar-image">
+                {{else}}
+                <span class="persona">{{#firstletter this.member_data.name.first}} {{/firstletter}}</span>
+                {{/if}}
+            </div>
+        </div>
+        <!-- <div class= "filemanager-file-wrapper"> -->
+        <div class= "group-member-search-data-container">
+            <span class="member-name">{{#if this.member_data.display_name}}{{this.member_data.display_name}}{{else}}{{this.member_data.name.first}}&nbsp;{{this.member_data.name.last}}{{/if}}</span>
+            <span class="member-second-data wrapper-secondary-heading">{{#if this.member_data.IdentifierName}}{{this.member_data.IdentifierName}}{{/if}}{{#if this.member_data.identifierName}}{{this.member_data.identifierName}}{{/if}}{{#if this.member_data.primaryCustomerData}}&nbsp;|&nbsp;{{this.member_data.primaryCustomerData.identifier_name}}&nbsp;|&nbsp;{{#if this.member_data.primaryCustomerData.display_name}}{{this.member_data.primaryCustomerData.display_name}}{{else}}{{this.member_data.primaryCustomerData.name.first}}{{/if}}{{/if}}
+                {{#if member_data.role_business_name}}&nbsp;|&nbsp;{{member_data.role_business_name}}{{/if}}
+            </span>
+        </div>        
+    </div>
+    {{/ifcond}}
+    {{/each}}
+    {{else}}
+    <div class="no-data">No information to show here</div>
+    {{/if}}
+</script>

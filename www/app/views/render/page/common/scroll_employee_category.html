@@ -1,0 +1,16 @@
+<script id="scroll-employee-category-template" type="text/x-handlebars-template">
+    {{#if employee_category}}
+    {{#each employee_category}}
+    <div class="employee-category-wrapper common-listing-wrapper" data-employee-category-id="{{this.id}}">
+        <div class="employee-category-container">
+            <div class="employee_category_name wrapper-primary-heading">{{this.category}}</div>
+        </div>
+        <div class="more-menu-wrapper cursor-pointer show-action-employee-category-data"><i class="material-icons">more_vert</i></div>
+    </div>
+    {{/each}}
+    {{else}}
+    <div class="end_data">End of listing</div>
+    {{/if}}
+
+
+</script>

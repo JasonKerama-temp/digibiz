@@ -1,0 +1,52 @@
+<script id="select-transaction-signature-list-template" type="text/x-handlebars-template">
+    <div class="select-signature-wrapper" id="select-signature-wrapper">
+                    {{#if this}}
+    {{#if transaction_pictures}}
+<div class="transactional-pictures-wrapper {{#if this.selected}}selected-row{{/if}}">
+    <div class="title">Transactional Pictures</div>
+    <div class="transactional-signature-pictures-content-box">
+        {{#each transaction_pictures}}
+        <div class="transactional-pic-content transaction_signature_select cursor-pointer">
+            <div class="picture_wrapper" data-type="transactional_picture" data-id="{{this.picture_details.picture_id}}" data-record-id="{{this.id}}">
+                <div class="transactional-signature-pic-container">
+                    <input type="checkbox" {{#if this.selected}}checked{{/if}} />
+                    <img class="profile-pic" src="{{this.image_url}}" />
+                    <i class="material-icons">done</i>
+                    <span class="persona">{{imageLetter}}</span>
+                    {{#ifcond this.picture_used '==' 'yes'}}
+                    <span class="picture-used material-icons">lock</span>
+                    {{/ifcond}}
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+{{/if}}
+{{#if signature_pictures}}
+<div class="signature-pictures-wrapper {{#if this.selected}}selected-row{{/if}}">
+    <div class="title">Signature Pictures</div>
+    <div class="transactional-signature-pictures-content-box">
+        {{#each signature_pictures}}
+        <div class="signature-pic-content transaction_signature_select cursor-pointer">
+            <div class="picture_wrapper" data-type="signature_picture" data-id="{{this.picture_details.picture_id}}" data-record-id="{{this.id}}">
+                <div class="transactional-signature-pic-container">
+                    <input type="checkbox" {{#if this.selected}}checked{{/if}} />
+                    <img class="profile-pic" src="{{this.image_url}}" />
+                    <i class="material-icons">done</i>
+                    <span class="persona">{{imageLetter}}</span>
+                    {{#ifcond this.picture_used '==' 'yes'}}
+                    <span class="picture-used material-icons">lock</span>
+                    {{/ifcond}}
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+{{/if}}
+{{else}}
+<div>We did'nt find any information to show here</div>
+{{/if}}
+</div>
+</script>

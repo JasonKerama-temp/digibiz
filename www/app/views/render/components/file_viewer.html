@@ -1,0 +1,22 @@
+<script id="file-viewer-template" type="text/x-handlebars-template">
+    <div class="asset-viewer-container" id="{{viewer_id}}">
+        <div class="viewer-wrapper">
+            <div class="viewer-header">
+                <div class="header-text-wrapper ellipsify">
+                    <a class="cursor-pointer file-viewer-back-btn">
+                        <i class="material-icons">arrow_back</i>
+                    </a>
+                   <div class="header ellipsify">View file</div> 
+                </div>
+                <div class="preview-loader"></div>
+            </div>
+            <div class="viewer-body">
+                <div class="container viewer-wrap">
+                    <div class="assets-container" data-mimetype="{{viewer_mime_type}}">
+                        {{{asset_content}}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

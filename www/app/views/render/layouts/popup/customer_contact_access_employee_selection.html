@@ -1,0 +1,35 @@
+<script id="customer-contact-access-employee-selection-template" type="text/x-handlebars-template ">
+    <div class="customer-contact-access-employee-selection-contentbox">        
+        {{#if employee_Data}}
+        {{#each employee_Data}}
+            <div class="customer-contact-access-employee-wrapper customer-contact-access-employee-selected-checkbox-click-wrapper" data-id="{{this.member_id}}">
+                <div class="profile-pic-info-wrapper">   
+                    <div class="profile-pic-container p-{{#if this.display_name}}{{#firstletter this.display_name}}{{/firstletter}}{{else}}{{this.name.first}}{{#firstletter this.name.firs}}{{/firstletter}}{{/if}}">
+                        {{#if this.identity_picture}}
+                        <img src="{{#digibiz_api_url}}{{/digibiz_api_url}}/api/employee/getEmployeeIdentityPicture?id={{this.id}}&device_id={{@root.device_id}}&image_id={{this.identity_picture.thumbnail}}"
+                        class="avatar-image"  alt="avatar"> 
+                        {{else}}
+                        <span class="persona">{{#if this.display_name}}{{#firstletter this.display_name}}{{/firstletter}}{{else}}{{this.name.first}}{{#firstletter this.name.firs}}{{/firstletter}}{{/if}}</span>
+                        {{/if}}
+                        <div class="checkbox-conatiner">                        
+                            <label for="filled-in-box-{{this.member_id}}">
+                                <input type="checkbox" class="filled-in cursor-pointer customer-contact-access-employee-selected" id="filled-in-box-{{this.member_id}}"/>
+                                <i class="material-icons">done</i>
+                            </label>
+                        </div>
+                    </div>                                   
+                    <div class="contact-items-data-wrapper ellipsify">
+                        <div class="contact-item-name wrapper-primary-heading"><span class="truncate">{{#if this.employee_details.display_name}}{{this.employee_details.display_name}}{{else}}{{this.employee_details.name.first}}&nbsp;{{this.employee_details.name.last}}{{/if}}</span></div>
+                    </div>
+                </div>
+                <!-- <div class="checkbox-conatiner">
+                    <input type="checkbox" class="filled-in customer-contact-access-employee-selected" id="filled-in-box-{{this.member_id}}" />
+                    <label for="filled-in-box-{{this.member_id}}"></label>
+                </div> -->
+            </div>
+        {{/each}}
+        {{else}}
+            <div class="no_data_modal">No data found</div>
+        {{/if}}              
+    </div>
+</script>

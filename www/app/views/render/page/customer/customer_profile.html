@@ -1,0 +1,155 @@
+<script id="customer-profile-template" type="text/x-handlebars-template">
+    <div class="customer-create-main-container">        
+        <div class="customer-create-main-wrapper">
+            <div class="customer-create-content-box-profile">  
+
+                <div class="customer-profile-data-section customer-profile-section-one">
+
+                    <div class="customer-profile-section-one-subsection">
+                        <div class="customer-display-picture-wrapper">
+                            <div class="multimedia-container">        
+                                <div class="multimedia_wrapper">
+                                <div class="identity-picture-wrapper profile-pic-container p-{{#firstletter customerData.name.first}}{{/firstletter}} view-customer-profile-pic cursor-pointer">
+                                    {{#if customerData.identity_picture.avtarUrl}}
+                                    <img class="attached-img" id="customer_identity_picture" src="{{customerData.identity_picture.avtarUrl}}" data-id="{{customerData.identity_picture.thumbnail}}" data-customer-id="{{customerData.id}}" data-customer-type="{{customerData.customer_type}}"/> 
+                                    {{else}}
+                                    <span class="persona">{{#firstletter customerData.name.first}}{{/firstletter}}</span>
+                                    {{/if}}                           
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="customer-profile-data-info-box {{#if customerData.display_name}}customer-display-name-present{{/if}}">                            
+                            <div class="customer-add-name-container">
+                                <div class="customer-name-content-box">
+                                    <div id="customer_name_profile">{{customerData.name.first}}&nbsp;{{customerData.name.last}}</div>
+                                    <span class="material-icons {{#ifcond customer_type '==' 'customer'}}edit-customer-profile{{/ifcond}} {{#ifcond customer_type '==' 'associate_customer'}}edit-associate-customer-profile{{/ifcond}}">
+                                        edit
+                                    </span>
+                                </div>                                    
+                            </div>  
+                            {{#if customerData.display_name}}
+                            <div class="customer-add-display-name-container">
+                                <div class="customer-display-name-content-box">
+                                    <div id="customer_display_name_profile">{{customerData.display_name}}</div>
+                                </div>                                    
+                            </div>
+                            {{/if}}
+                            {{#ifcond customerData.role.type '==' 'employee'}}
+                            <div class="customer-add-role-type-container">
+                                <div class="customer-role-type-content-box">
+                                    <div id="customer_role_type_profile">{{customerData.role_business_name}}</div>
+                                </div>                                    
+                            </div>
+                            {{/ifcond}}
+                            {{#if customerData.mobile_number}}
+                            <div class="customer-add-phone-number-container">
+                                <div id="customer_phone_number_profile" class="customer-profile-data-value">
+                                    <i class="material-icons">contact_phone</i>
+                                    {{customerData.mobile_number}}
+                                </div>
+                            </div>
+                            {{/if}}
+                            
+                            
+                            <!-- <div class="customer-add-designation-container">
+                                <div id="customer_designation_profile" class="customer-profile-data-value">
+                                    <i class="material-icons">branding_watermark</i>
+                                    {{#ifcond customer_type '==' 'customer'}}{{#if customerData.global_customer_label}}{{customerData.global_customer_label.identifier}}{{/if}}&nbsp;|&nbsp;{{customerData.identifier_name}}{{#if customerData.label}}&nbsp;|&nbsp;{{customerData.label}}{{/if}}{{/ifcond}}
+                                    {{#ifcond customer_type '==' 'associate_customer'}}{{customerData.identifierName}}{{#if customerData.global_customer_label}}&nbsp;|&nbsp;{{customerData.global_customer_label.identifier}}{{/if}}&nbsp;|&nbsp;{{customerData.primaryCustomerData.identifier_name}}{{#if customerData.primaryCustomerData.label}}&nbsp;|&nbsp;{{customerData.primaryCustomerData.label}}{{/if}}{{/ifcond}}
+                                </div>
+                            </div>
+                            
+                            {{#if customerData.display_phone_number}}
+                            <div class="customer-add-display-phone-number-container">
+                                <div id="customer_display_phone_number_profile" class="customer-profile-data-value">
+                                    <i class="material-icons">phone_android</i>
+                                    {{customerData.display_phone_number}}
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{#if customerData.email}}
+                            <div class="customer-add-email-container">
+                                <div id="customer_email_profile" class="customer-profile-data-value">
+                                    <i class="material-icons">mail</i>
+                                    {{customerData.email}}
+                                </div>
+                            </div>
+                            {{/if}} 
+                            {{#if customerData.alternate_email}}
+                            <div class="customer-add-alternate-email-container">
+                                <div id="customer_alternate_email_profile" class="customer-profile-data-value">
+                                    <i class="material-icons">alternate_email</i>
+                                    {{customerData.alternate_email}}
+                                </div>
+                            </div>
+                            {{/if}}-->
+                        </div>
+                    </div>
+
+                    <div class="customer-profile-section-one-subsection-two">
+                        {{#if customerData.identity_video.avtarUrl}}
+                        <div class="customer-display-video-wrapper">
+                            <div class="identity-video-wrapper-box">
+                                <div class="image-container preview-clicked-multimedia">
+                                    <div class="image-wrapper">
+                                        <video controls controlsList="nodownload" src="{{customerData.identity_video.avtarUrl}}" ></video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}} 
+                    </div>                                  
+
+                </div>   
+                
+                <div class="customer-profile-data-section customer-profile-section-two">
+                    <div class="customer-add-designation-container customer-profile-data-container">
+                        <!-- <div id="customer_designation_profile_label" class="customer-profile-data-label">Designation</div> -->
+                        {{#ifcond customerData.customer_type '==' 'associate_customer'}}
+                        <div id="customer_designation_profile_value" class="customer-profile-data-value">
+                            {{#if customerData.primaryCustomerData}}{{#if customerData.primaryCustomerData.display_name}}Associate of {{customerData.primaryCustomerData.display_name}}{{else}}Associate of {{customerData.primaryCustomerData.name.first}}&nbsp;{{customerData.primaryCustomerData.name.last}}{{/if}}{{/if}}
+                        </div>
+                        {{/ifcond}}
+                        <div id="customer_designation_profile_value" class="customer-profile-data-value">
+                            {{#ifcond customerData.customer_type '==' 'customer'}}{{#if customerData.global_customer_label}}{{customerData.global_customer_label.identifier}}{{/if}}&nbsp;|&nbsp;{{customerData.identifier_name}}{{#if customerData.label}}&nbsp;|&nbsp;{{customerData.label}}{{/if}}{{/ifcond}}
+                            {{#ifcond customerData.customer_type '==' 'associate_customer'}}{{customerData.identifierName}}{{#if customerData.global_customer_label}}&nbsp;|&nbsp;{{customerData.global_customer_label.identifier}}{{/if}}&nbsp;|&nbsp;{{customerData.primaryCustomerData.identifier_name}}{{#if customerData.primaryCustomerData.label}}&nbsp;|&nbsp;{{customerData.primaryCustomerData.label}}{{/if}}{{/ifcond}}
+                        </div>
+                    </div>                                     
+                    {{#if customerData.display_phone_number}}
+                    <div class="customer-add-display-phone-number-container customer-profile-data-container">
+                        <div id="customer_display_phone_number_profile_label" class="customer-profile-data-label">Alternate Phone Number</div>
+                        <div id="customer_display_phone_number_profile_value" class="customer-profile-data-value">{{customerData.display_phone_number}}</div>
+                    </div>
+                    {{/if}}
+                    {{#if customerData.email}}
+                    <div class="customer-add-email-container customer-profile-data-container">
+                        <div id="customer_email_profile_label" class="customer-profile-data-label">Email</div>
+                        <div id="customer_email_profile_value" class="customer-profile-data-value">{{customerData.email}}</div>
+                    </div>
+                    {{/if}} 
+                    {{#if customerData.alternate_email}}
+                    <div class="customer-add-alternate-email-container customer-profile-data-container">
+                        <div id="customer_alternate_email_profile_label" class="customer-profile-data-label">Alternate Email</div>
+                        <div id="customer_alternate_email_profile_value" class="customer-profile-data-value">{{customerData.alternate_email}}</div>
+                    </div>
+                    {{/if}}  
+                    {{#if customerData.date_of_birth}}
+                    <div class="customer-add-DOB-container customer-profile-data-container">
+                        <div id="customer_DOB_profile_label" class="customer-profile-data-label">Date of Birth</div>
+                        <div id="customer_DOB_profile_value" class="customer-profile-data-value">{{customerData.date_of_birth}}</div>
+                    </div>
+                    {{/if}} 
+                    {{#if customerData.wedding_anniversary}}
+                    <div class="customer-add-wedding-anniversary-container customer-profile-data-container">
+                        <div id="customer_wedding_anniversary_profile_label" class="customer-profile-data-label">Wedding Anniversary</div>
+                        <div id="customer_wedding_anniversary_profile_value" class="customer-profile-data-value">{{customerData.wedding_anniversary}}</div>
+                    </div>
+                    {{/if}}                          
+                </div>
+                    
+            </div>
+        </div>
+    </div>
+</script>

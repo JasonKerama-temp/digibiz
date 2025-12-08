@@ -1,0 +1,61 @@
+<script id="file-manager-wrapper-template" type="text/x-handlebars-template ">
+{{#if assets}}
+{{#each assets}} {{#ifcond type '===' 'folder'}}
+<div class="filemanager-row filemanager-row-hover folder-doubletap">
+    <div class="file-select disabled">
+        <label for="folder_{{id}}">
+            <input class="filled-in select-msg" name="fileselection[]" id="folder_{{id}}" type="checkbox" data-real="{{file_attributes.name.real}}" {{#if this.maxuploadsize}}data-uploadmaxsize="{{this.maxuploadsize}}"{{/if}} data-type="folder" data-size="{{file_attributes.name.size}}" data-access="{{access_type}}" {{#if this.selected}} checked {{/if}}>
+         </label>
+    </div>
+    <div class="filemanager-file-wrapper ellipsify">
+        <div class="filemanager-file-container no-select">
+            <div class="folder-icon-wrapper">
+                <div class="filemanage-icon-container">
+                    <div class="filemanager-icn folder-icn" data-parent="{{file_attributes.name.real}}">
+                        <i class="assets_type_{{type}} icomoon-"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="filemanage-file-name ellipsify">{{file_attributes.name.relative}}</div>
+    </div>
+    <div class="file-info cursor-pointer info-toggle" data-id="{{id}}" data-real="{{file_attributes.name.real}}">
+        <i class="material-icons">info</i>
+    </div>
+</div>
+{{else}}
+<div class="clearfix"></div>
+<div class="filemanager-row filemanager-row-hover">
+    <div class="file-select">       
+        <label for="file_{{id}}">
+            <input class="filled-in select-file" name="fileselection[]" id="file_{{id}}" type="checkbox" data-real_name="{{file_attributes.name.real}}" data-asset_id ="{{id}}" data-file_size={{file_attributes.size.filesize}} data-type="file" data-access="{{access_type}}" {{#if this.selected}} checked {{/if}}>
+            <i class="material-icons">done</i>
+        </label>      
+    </div>
+    <div class="filemanager-file-wrapper ellipsify">
+        <div class="filemanager-file-container no-select">
+            <div class="folder-icon-wrapper">
+                <div class="filemanage-icon-container">
+                    <div class="filemanager-icn folder-icn icomoon-">
+                        <i class="assets_type_{{file_attributes.file_type}}"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="filemanage-file-name ellipsify">{{file_attributes.name.relative}}</div>
+    </div>
+    {{#if this.is_shared}}
+    <div class="file-share cursor-pointer">
+        <i class="material-icons">folder_shared</i>
+    </div>
+    {{/if}}
+    
+    <div class="file-info cursor-pointer info-toggle" data-id="{{id}}" data-real="{{file_attributes.name.real}}">
+        <i class="material-icons"> info</i>
+    </div>
+</div>
+{{/ifcond}} {{/each}}
+{{else}}
+<div class="folder-doubletap no_data"> We Didn't find any asset to show here </div>
+{{/if}}
+</script>

@@ -1,0 +1,18 @@
+<script id="associate-customer-show-access-data-list-template" type="text/x-handlebars-template">
+    <div class="customer-show-access-list-contentbox">
+        {{#if customer_show_access_list}}
+        {{#each customer_show_access_list}}
+        <div class="customer-access-customer-wrapper" data-id="{{this.id}}">
+            <div class="profile-pic-info-wrapper">
+                <div class="customer-access-data-wrapper ellipsify">
+                    <div class="customer-access-name wrapper-primary-heading"><span class="truncate"></span>{{#ifcond this.access_for '==' 'employee_contact'}}{{#if this.employeesData.display_name}}{{this.employeesData.display_name}}{{else}}{{this.employeesData.name.first}}&nbsp;{{this.employeesData.name.last}}{{/if}}{{/ifcond}}{{#ifcond this.access_for '==' 'customer_contact'}}{{this.access_item_name}}{{/ifcond}}{{#ifcond access_data_type '==' 'group'}}{{this.name}}{{/ifcond}}</div>
+                    <div class="customer-access-type-name wrapper-secondary-heading"><span class="truncate">{{this.access_data_type}}</span></div>
+                </div>
+            </div>            
+        </div>
+        {{/each}}
+        {{else}}
+        <div class="end_data">End of listing</div>
+        {{/if}}
+      </div>
+</script>

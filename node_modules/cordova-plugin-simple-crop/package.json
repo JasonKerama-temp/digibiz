@@ -1,0 +1,26 @@
+{
+  "name": "cordova-plugin-simple-crop",
+  "version": "0.0.1",
+  "description": "Crop an image in a Cordova app with ratio",
+  "cordova": {
+    "id": "cordova-plugin-simple-crop",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/htqbuu/cordova-plugin-simple-crop"
+  },
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "image",
+    "image manipulation",
+    "crop"
+  ],
+  "license": "MIT"
+}

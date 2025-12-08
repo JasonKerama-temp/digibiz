@@ -1,0 +1,25 @@
+<script id="alumini-collaborator-groups-list-data-template" type="text/x-handlebars-template">
+    <div class="alumini-collaborator-groups-list-contentbox scrollinit">
+        {{#if collaborator_groups_list}}
+        {{#each collaborator_groups_list}}
+            <div class="collaborator-groups-list-wrapperr" data-business-id="{{this.owner.business_id}}" data-group-id="{{this.id}}" data-socket_enable_status = "{{this.socket_enable_status}}" data-status="{{this.status.status}}">
+                <div class="profile-pic-info-wrapper">
+                    <div class="profile-pic-container p-{{imageLetter}}">
+                    <img class="group_img profile-pic" src="{{this.group_image.avtarUrl}}" data-group-id="{{this.id}}"/>
+                    <span class="persona">{{imageLetter}}</span>
+                    </div>
+                    <div class="collaborator-groups-list-data-wrapper ellipsify">
+                        <div class="collaborator-group-name wrapper-primary-heading"><span class="truncate">{{this.name}}</span></div>
+                        <div class="collaborator-group-status wrapper-secondary-heading status--{{this.status.status}}"><span>{{this.status.status}}</span></div>                                               
+                    </div>
+                </div>                                 
+            </div>
+        {{/each}}
+        {{else}}
+            <div class="no_data">No data found</div>
+        {{/if}}
+    </div>
+    <!-- <div class="fixed-action-btn create-survey-btn-wrapper">
+        <a class="btn-floating btn-save btn-large" id="create-collaborator-group" title="Create Group"><i class="material-icons">add</i></a>
+    </div> -->
+</script>

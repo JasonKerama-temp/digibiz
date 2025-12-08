@@ -1,0 +1,41 @@
+<script id="collaborator-tabs-template" type="text/x-handlebars-template">
+    <div class="content-wrapper">
+        <div class="survey-list-container">
+            <div class="surveylist-container">
+                <div class="listing-tabs-wrapper">
+                  <div class="main-tab-wrapper">
+                    <ul class="maintab list-tabs">
+                        <li class="tab active" data-id="active_collaborator"><a class="collaborator-active-tab"><span>Active Collaborators</span><span class="collaborator-active-count"></span></a><span class="active-collaborator-count"></span><span class="slider"></li>
+                        <li class="tab" data-id="pending_collaborator"><a class="collaborator-pending-tab"><span>Pending Collaborators</span><span class="pending-collaborator-count"></span></a><span class="slider"></li>
+                          <li class="tab" data-id="alumini_collaborator"><a class="collaborator-alumini-tab"><span>Alumini</span><span class="alumini-collaborator-count"></span></a><span class="slider"></li>
+                        <!-- <li class="slider"></li> -->
+                    </ul>
+                    <div class="voiceit_private_page_search_container">
+                      <span class="searchbtn waves-effect"><i class="material-icons">search</i></span>
+                      <div class="expand-search-wrap">
+                        <input class="expand-search-input" type="search" placeholder="Search" autocomplete="off"/>
+                        <span class="searchclosebtn"><i class="material-icons hide">close</i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-content-container">
+                    <div class="tab-content active swiper-slide" id="active_collaborator">                             
+                          <div class="active-collaborator-list-container">
+                              <div id="active-collaborator-list-data-container"></div>
+                          </div>                            
+                    </div>
+                    <div class="tab-content swiper-slide" id="pending_collaborator">                           
+                        <div class="pending-collaborator-list-container">
+                            <div id="pending-collaborator-list-data-container"></div>
+                        </div>                           
+                    </div>  
+                    <div class="tab-content swiper-slide" id="alumini_collaborator">                           
+                      <div class="alumini-collaborator-list-container">
+                          <div id="alumini-collaborator-list-data-container"></div>
+                      </div>                           
+                  </div>                    
+                </div>
+        </div>
+    </div>
+</script>

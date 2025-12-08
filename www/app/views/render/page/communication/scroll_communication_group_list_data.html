@@ -1,0 +1,28 @@
+<script id="scroll-communication-group-list-data-template" type="text/x-handlebars-template">   
+        {{#if communication_group_list_data}}
+        {{#each communication_group_list_data}}
+            <div class="communication-group-wrapper common-list-wrapper" data-id="{{this.id}}" data-socket_enable_status = "{{this.socket_enable_status}}">
+                <div class="profile-pic-info-wrapper view-communication-group">  
+                    <div class="communication-group-display-pic profile-pic-container p-{{this.imageLetter}}">
+                        <img class="group_img profile-pic" src="{{this.group_image.avtarUrl}}" data-group-id="{{this.id}}"/>
+                        <span class="persona">{{this.imageLetter}}</span>
+                    </div>                  
+                    <div class="communication-group-data-wrapper ellipsify">
+                        <div class="communication-group-name wrapper-primary-heading"><span class="truncate">{{this.name}}</span></div>
+                        <div class="communication-group-status wrapper-secondary-heading status--{{this.status.status}}"><span>{{this.status.status}}</span></div>
+                    </div>
+                </div> 
+                {{#ifcond this.group_type '==' 'contact_list'}}
+                <div class="btn-wrap">    
+                    {{#ifcond this.status.status '==' 'draft'}}          
+                    <div class="more-menu-wrapper" id="activate-communication-group-btn">Activate</div>
+                    {{/ifcond}}                    
+                </div>
+                {{/ifcond}}            
+            </div>
+        {{/each}}
+        {{else}}
+        <div class="end_data">End of listing</div>
+        {{/if}}    
+   
+</script>

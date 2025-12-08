@@ -1,0 +1,18 @@
+<script id="business-type-choose-template" type="text/x-handlebars-template">
+    {{#if businessTypes}}
+    <div class="business-type-choose-wrapper">        
+        <select id="business-type-choose-select-dropdown" class="browser-default">            
+            <option value="">--Select--</option>
+            {{#each businessTypes}}
+            <option value="{{this.type}}" data-id="{{this.id}}">{{this.type}}</option>
+            {{/each}}                                   
+         </select>
+    </div>
+    {{else}}
+    <div class="business-type-choose-wrapper">        
+        <select id="business-type-choose-select-dropdown" class="browser-default">
+            <option value="">--Select--</option>                                                     
+         </select>
+    </div>
+    {{/if}}
+</script>

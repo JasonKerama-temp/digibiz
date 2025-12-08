@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="3018" id="com.digitaljeevi.staging.business" ios-CFBundleVersion="3043" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Digibiz</name>
+    <description />
+    <author email="simran.hr@digitaljeevi.com" href="https://www.digitaljeevi.com">Simran H R</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="djbusiness:*" />
+    <hook src="hooks/before_prepare/increment_build_number.js" type="before_build" />
+    <hook src="hooks/after_prepare/minify.js" type="after_build" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#b5f9e4" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="AllowUntrustedCerts" value="true" />
+    <preference name="InterceptRemoteRequests" value="all" />
+    <preference name="allowFileAccessFromFileURLs" value="true" />
+    <preference name="allowUniversalAccessFromFileURLs" value="true" />
+    <preference name="AndroidPersistentFileLocation" value="Internal" />
+    <preference name="AndroidInsecureFileModeEnabled" value="true" />
+    <preference name="ShowSplashScreen" value="false" />
+</widget>

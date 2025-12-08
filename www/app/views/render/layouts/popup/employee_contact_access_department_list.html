@@ -1,0 +1,37 @@
+<script id="employee-contact-access-department-list-template" type="text/x-handlebars-template">
+    <div class="employee-department-assignment-main-container"> 
+        {{#if departmentList}}  
+        {{#each departmentList}}
+        <!-- <div class="sub-departments-content-box sub-department-box" data-id="{{this.id}}">
+            <div class="sub-department-box-name-symbol-content-box">
+                <i class="material-icons arrow-right" id="employee_department_assignment_arrow_button">keyboard_arrow_right</i>                                
+                <div id="added_sub_department" type="text" data-length="60" contenteditable="false" class="validate" autocomplete="off" disabled>{{this.name}}</div>
+                <input type="checkbox" class="filled-in department-selected" data-id="{{this.id}}" id="filled-in-box-{{this.id}}" />
+                <label for="filled-in-box-{{this.id}}"></label>
+            </div>
+            <div class="sub_sub_department_conatiner_box hide" data-id="{{this.id}}"></div>
+        </div> -->
+        <div class="department-wrapper employee-contact-access-department-list-data" data-id="{{this.id}}" data-status="{{this.status.status}}">                    
+            <div class="profile-pic-info-wrapper">
+                <div class="profile-pic-container p-{{#firstletter this.name}} {{/firstletter}}">
+                    <span class="persona">{{#firstletter this.name}} {{/firstletter}}</span>
+                    <div class="checkbox-conatiner">                        
+                        <label for="filled-in-box-{{this.id}}">
+                            <input type="checkbox" class="filled-in selected-department cursor-pointer" id="filled-in-box-{{this.id}}" data-id="{{this.id}}" />
+                            <i class="material-icons">done</i>
+                        </label>
+                    </div>
+                </div>
+                <div class="department-data-wrapper ellipsify">
+                    <div class="department-name wrapper-primary-heading"><span class="truncate">{{#if this.name}}{{this.name}}{{/if}}</span></div>
+                </div>              
+            </div>
+            <!-- <div class="checkbox-conatiner">
+                <input type="checkbox" class="filled-in selected-department cursor-pointer" id="filled-in-box-{{this.id}}" data-id="{{this.id}}" />
+                <label for="filled-in-box-{{this.id}}"></label>
+            </div> -->
+        </div>
+        {{/each}}
+        {{/if}}                            
+    </div>
+    </script>

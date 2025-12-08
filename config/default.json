@@ -1,0 +1,8 @@
+{
+    "App": {
+        "host": "localhost",
+        "port": 3011,
+        "path": "/platforms/browser/www/",
+        "index": "index.html"
+    }
+}
