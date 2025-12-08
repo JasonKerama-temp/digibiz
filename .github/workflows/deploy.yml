@@ -67,7 +67,7 @@ jobs:
           cordova plugin reinstall --no-telemetry --verbose
           
       # 3. Run Prepare (This runs pod install and necessary hooks)
-      - name: 📦 Run Pod Install (Prepare)
+      - name: 📦 Run Pod Install (Preparation)
         run: |
           echo "🔄 Running Cordova prepare (and pod install)..."
           cordova prepare ios
