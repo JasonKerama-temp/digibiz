@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js 18 (Cordova compatible)
+      - name: Set up Node.js 18
         uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -37,14 +37,19 @@ jobs:
           chmod -R +x platforms/android/cordova || true
           chmod -R +x platforms/ios/cordova || true
 
-      - name: Install provisioning profile
+      - name: Decode and install provisioning profile
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" > ~/Library/MobileDevice/Provisioning\ Profiles/Digibiz_iOS.mobileprovision
+          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/Digibiz_iOS.mobileprovision
 
-      - name: Decode iOS certificate
+      - name: Decode and import iOS certificate
         run: |
           echo "${{ secrets.IOS_CERTIFICATE_P12 }}" | base64 --decode > ios_cert.p12
+          security create-keychain -p "" build.keychain
+          security import ios_cert.p12 -k ~/Library/Keychains/build.keychain -P "${{ secrets.IOS_CERTIFICATE_PASSWORD }}" -T /usr/bin/codesign
+          security list-keychains -s ~/Library/Keychains/build.keychain
+          security unlock-keychain -p "" ~/Library/Keychains/build.keychain
+          security set-keychain-settings -t 3600 -l ~/Library/Keychains/build.keychain
 
       - name: Build iOS app
         run: cordova build ios --release --device --buildConfig build.json
