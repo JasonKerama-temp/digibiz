@@ -10,7 +10,7 @@ env:
   # Cordova iOS versions often use the same version number for the project version
   PROJECT_VERSION: 3080 
   TEAM_ID: Z6XW557ZX2 
-  PROFILE_NAME: "Digibiz iOS" # This variable contains a space
+  PROFILE_NAME: "Digibiz iOS" # Used as the PROVISIONING_PROFILE_SPECIFIER
 
 jobs:
   build_ios:
@@ -30,11 +30,15 @@ jobs:
           npm install -g cordova@11
           npm ci
 
-      # 1. Prepare Cordova Project Structure
+      # 1. Prepare Cordova Project Structure (CRITICAL CLEANUP INCLUDED)
       - name: Add and Prepare iOS platform
         run: |
-          cordova platform remove ios || true
+          # 🟢 FIX for "conflicting provisioning settings": Ensures a clean project rebuild
+          rm -rf platforms/ios || true
+          
+          # Adds the platform, applying the manual signing config from config.xml
           cordova platform add ios@6.2.0
+          
           chmod -R +x platforms/ios/cordova
 
       # 2. 🔑 Manual Signing: Import Certificate (P12)
@@ -47,17 +51,18 @@ jobs:
           security set-keychain-settings -t 3600 -l ~/Library/Keychains/build.keychain
           security import ios_cert.p12 -k ~/Library/Keychains/build.keychain -P "${{ secrets.IOS_CERTIFICATE_PASSWORD }}" -T /usr/bin/codesign
 
-      # 3. 📄 Manual Signing: Install Provisioning Profile (FIXED)
+      # 3. 📄 Manual Signing: Install Provisioning Profile (SYNTAX FIXED)
       - name: 📄 Install Provisioning Profile
         run: |
           # Use double quotes for the target directory to handle the space in "Provisioning Profiles"
           mkdir -p "~/Library/MobileDevice/Provisioning Profiles"
-          # 🟢 FIX APPLIED: Enclosing the entire path in double quotes to handle spaces correctly.
+          # FIX: Enclose the full path in double quotes to resolve the 'base64: invalid argument' error
           echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > "~/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision"
 
       # 4. 📦 Direct Xcode Archive (Build Step)
       - name: 📦 Direct Xcode Archive
         run: |
+          # Explicit arguments override any lingering project settings
           xcodebuild archive \
             -workspace platforms/ios/${{ env.APP_NAME }}.xcworkspace \
             -scheme ${{ env.APP_NAME }} \
@@ -78,13 +83,13 @@ jobs:
             -exportOptionsPlist exportOptions.plist \
             -exportPath output/ipa/
 
-      # 6. 🧹 Cleanup Keychain and Files (FIXED)
+      # 6. 🧹 Cleanup Keychain and Files (SYNTAX FIXED)
       - name: 🧹 Cleanup Keychain and Files
         if: always()
         run: |
           security delete-keychain build.keychain || true
           rm ios_cert.p12 || true
-          # 🟢 FIX APPLIED: Enclosing the full path in double quotes for cleanup.
+          # FIX: Enclosing the full path in double quotes for cleanup.
           rm "~/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision" || true
 
       - name: Upload IPA artifact
