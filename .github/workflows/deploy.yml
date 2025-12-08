@@ -1,4 +1,4 @@
-name: Build iOS Cordova App (Direct Xcode)
+name: Build iOS Cordova App (Manual Signing)
 
 on:
   push:
@@ -7,10 +7,10 @@ on:
 
 env:
   APP_NAME: "Digibiz"
-  # Cordova iOS versions often use the same version number for the project version
   PROJECT_VERSION: 3080 
   TEAM_ID: Z6XW557ZX2 
-  PROFILE_NAME: "Digibiz iOS" # Used as the PROVISIONING_PROFILE_SPECIFIER
+  PROFILE_NAME: "Digibiz iOS"
+  NODE_VERSION: 18
 
 jobs:
   build_ios:
@@ -18,82 +18,141 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup Environment
-        uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
 
-      - name: Install Cordova CLI and dependencies
-        run: |
-          npm install -g cordova@11
-          npm ci
+      - name: Install dependencies
+        run: npm ci
 
-      # 1. Prepare Cordova Project Structure (CRITICAL CLEANUP INCLUDED)
-      - name: Add and Prepare iOS platform
+      - name: Install Cordova CLI
+        run: npm install -g cordova@11
+
+      # Clean rebuild for manual signing
+      - name: Prepare iOS platform (Clean rebuild)
         run: |
-          # 🟢 FIX for "conflicting provisioning settings": Ensures a clean project rebuild
+          echo "🔄 Removing old iOS platform..."
           rm -rf platforms/ios || true
+          rm -rf www || true
           
-          # Adds the platform, applying the manual signing config from config.xml
+          echo "🏗️  Building www directory..."
+          npm run build || true
+          
+          echo "📱 Adding iOS platform..."
           cordova platform add ios@6.2.0
           
+          echo "✅ Setting execute permissions on cordova tools..."
           chmod -R +x platforms/ios/cordova
 
-      # 2. 🔑 Manual Signing: Import Certificate (P12)
-      - name: 🔑 Import iOS Certificate (P12)
+      # 🔑 Import Certificate (P12)
+      - name: 🔑 Import iOS Certificate
         run: |
+          echo "📦 Decoding and importing certificate..."
           echo "${{ secrets.IOS_CERTIFICATE_P12 }}" | base64 --decode > ios_cert.p12
+          
+          echo "🔐 Creating keychain..."
           security create-keychain -p "" build.keychain
           security list-keychains -s ~/Library/Keychains/build.keychain
           security unlock-keychain -p "" ~/Library/Keychains/build.keychain
           security set-keychain-settings -t 3600 -l ~/Library/Keychains/build.keychain
+          
+          echo "✅ Importing certificate to keychain..."
           security import ios_cert.p12 -k ~/Library/Keychains/build.keychain -P "${{ secrets.IOS_CERTIFICATE_PASSWORD }}" -T /usr/bin/codesign
+          
+          echo "✅ Certificate imported successfully"
 
-      # 3. 📄 Manual Signing: Install Provisioning Profile (SYNTAX FIXED)
+      # 📄 Install Provisioning Profile
       - name: 📄 Install Provisioning Profile
         run: |
-          # Use double quotes for the target directory to handle the space in "Provisioning Profiles"
+          echo "📝 Creating provisioning profiles directory..."
           mkdir -p "~/Library/MobileDevice/Provisioning Profiles"
-          # FIX: Enclose the full path in double quotes to resolve the 'base64: invalid argument' error
+          
+          echo "📥 Installing provisioning profile..."
           echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > "~/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision"
+          
+          echo "✅ Provisioning profile installed"
+          ls -la "~/Library/MobileDevice/Provisioning Profiles/"
 
-      # 4. 📦 Direct Xcode Archive (Build Step)
-      - name: 📦 Direct Xcode Archive
+      # 🏗️ Build Archive with Manual Signing
+      - name: 🏗️  Build Xcode Archive
         run: |
-          # Explicit arguments override any lingering project settings
+          echo "🔨 Building archive with manual signing..."
+          mkdir -p output
+          
           xcodebuild archive \
-            -workspace platforms/ios/${{ env.APP_NAME }}.xcworkspace \
-            -scheme ${{ env.APP_NAME }} \
+            -workspace "platforms/ios/${{ env.APP_NAME }}.xcworkspace" \
+            -scheme "${{ env.APP_NAME }}" \
             -configuration Release \
-            -destination generic/platform=iOS \
-            -archivePath output/${{ env.APP_NAME }}.xcarchive \
+            -destination "generic/platform=iOS" \
+            -archivePath "output/${{ env.APP_NAME }}.xcarchive" \
+            -derivedDataPath "output/derived" \
+            CODE_SIGN_STYLE="Manual" \
+            CODE_SIGNING_REQUIRED="YES" \
             CODE_SIGN_IDENTITY="iPhone Developer" \
             PROVISIONING_PROFILE_SPECIFIER="${{ env.PROFILE_NAME }}" \
             DEVELOPMENT_TEAM="${{ env.TEAM_ID }}" \
-            CURRENT_PROJECT_VERSION=${{ env.PROJECT_VERSION }}
+            CURRENT_PROJECT_VERSION="${{ env.PROJECT_VERSION }}" \
+            OTHER_CODE_SIGN_FLAGS="--keychain ~/Library/Keychains/build.keychain"
+          
+          echo "✅ Archive created successfully"
 
-      # 5. 📤 Export IPA (Final Step)
-      - name: 📤 Export IPA (Final Sign)
+      # 📤 Export IPA
+      - name: 📤 Export IPA
         run: |
+          echo "📦 Exporting IPA..."
           mkdir -p output/ipa
+          
           xcodebuild -exportArchive \
-            -archivePath output/${{ env.APP_NAME }}.xcarchive \
+            -archivePath "output/${{ env.APP_NAME }}.xcarchive" \
             -exportOptionsPlist exportOptions.plist \
-            -exportPath output/ipa/
+            -exportPath "output/ipa/" \
+            -allowProvisioningUpdates
+          
+          echo "✅ IPA exported successfully"
+          ls -lah output/ipa/
 
-      # 6. 🧹 Cleanup Keychain and Files (SYNTAX FIXED)
-      - name: 🧹 Cleanup Keychain and Files
+      # 📊 Verify build artifacts
+      - name: 📊 Verify Build Artifacts
+        run: |
+          echo "🔍 Checking for IPA file..."
+          if [ -f "output/ipa/"*.ipa ]; then
+              echo "✅ IPA file found:"
+              ls -lah "output/ipa/"*.ipa
+          else
+              echo "❌ No IPA file found!"
+              exit 1
+          fi
+
+      # 🧹 Cleanup (Always run)
+      - name: 🧹 Cleanup Sensitive Files
         if: always()
         run: |
+          echo "🗑️  Cleaning up sensitive files..."
           security delete-keychain build.keychain || true
-          rm ios_cert.p12 || true
-          # FIX: Enclosing the full path in double quotes for cleanup.
-          rm "~/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision" || true
+          rm -f ios_cert.p12 || true
+          rm -rf "~/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision" || true
+          echo "✅ Cleanup complete"
 
-      - name: Upload IPA artifact
+      # 📤 Upload Artifacts
+      - name: 📤 Upload IPA Artifact
+        if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: ios-ipa
+          name: ios-ipa-${{ github.run_number }}
           path: output/ipa/*.ipa
+          retention-days: 30
+
+      # 📝 Upload Build Logs
+      - name: 📝 Upload Build Logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs-${{ github.run_number }}
+          path: |
+            output/derived/Logs/Build/*.log
+            output/derived/Logs/*.log
+          retention-days: 7

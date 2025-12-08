@@ -52,23 +52,32 @@
         <allow-intent href="itms:*"/>
         <allow-intent href="itms-apps:*"/>
         
+        <!-- Manual Signing Enforcement Hook -->
         <hook src="hooks/after_prepare/enforce_manual_signing.js" type="after_prepare" />
         
+        <!-- Build Automation Hooks -->
         <hook src="hooks/before_prepare/increment_build_number.js" type="before_build"/>
         <hook src="hooks/after_prepare/minify.js" type="after_build"/>
         
+        <!-- Deployment Target -->
         <preference name="deployment-target" value="12.0" />
-
-<edit-config target="XCBuildConfiguration[name=Release]/ProvisioningStyle" file="*-project.pbxproj" mode="overwrite">
-        <string>Manual</string>
-    </edit-config>
-    <edit-config target="XCBuildConfiguration[name=Release]/DevelopmentTeam" file="*-project.pbxproj" mode="overwrite">
-        <string>Z6XW557ZX2</string>
-    </edit-config>
-    
-    <edit-config target="TargetAttributes/DevelopmentTeam" file="*-project.pbxproj" mode="overwrite">
-        <string>Z6XW557ZX2</string>
-    </edit-config>
+        
+        <!-- Manual Code Signing Configuration for Both Debug and Release -->
+        <edit-config target="XCBuildConfiguration[name=Release]/CODE_SIGNING_STYLE" file="*-project.pbxproj" mode="overwrite">
+            <string>Manual</string>
+        </edit-config>
+        <edit-config target="XCBuildConfiguration[name=Debug]/CODE_SIGNING_STYLE" file="*-project.pbxproj" mode="overwrite">
+            <string>Manual</string>
+        </edit-config>
+        <edit-config target="XCBuildConfiguration[name=Release]/DEVELOPMENT_TEAM" file="*-project.pbxproj" mode="overwrite">
+            <string>Z6XW557ZX2</string>
+        </edit-config>
+        <edit-config target="XCBuildConfiguration[name=Debug]/DEVELOPMENT_TEAM" file="*-project.pbxproj" mode="overwrite">
+            <string>Z6XW557ZX2</string>
+        </edit-config>
+        <edit-config target="TargetAttributes/DevelopmentTeam" file="*-project.pbxproj" mode="overwrite">
+            <string>Z6XW557ZX2</string>
+        </edit-config>
         
         <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription"><string>Need camera access to take pictures.</string></edit-config>
         <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription"><string>Need photo library access to get pictures from there</string></edit-config>

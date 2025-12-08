@@ -1,14 +1,17 @@
 {
   "ios": {
     "debug": {
+      "codeSigningStyle": "Manual",
       "codeSignIdentity": "iPhone Developer",
       "developmentTeam": "Z6XW557ZX2",
-      "packageType": "development",
-      "provisioningProfile": "0e51704a-98bb-4484-8edd-a6742231e4a4"
+      "signingCertificateFileName": "ios_cert.p12"
     },
     "release": {
-      "codeSignIdentity": "iPhone Developer",     "developmentTeam": "Z6XW557ZX2",
-      "packageType": "development",              "provisioningProfile": "0e51704a-98bb-4484-8edd-a6742231e4a4"
+      "codeSigningStyle": "Manual",
+      "codeSignIdentity": "iPhone Developer",
+      "developmentTeam": "Z6XW557ZX2",
+      "provisioningProfileName": "Digibiz iOS",
+      "signingCertificateFileName": "ios_cert.p12"
     }
   }
 }
