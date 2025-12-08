@@ -6,8 +6,8 @@ const xcode = require('xcode');
 
 console.log('Running hook: Enforcing Manual Code Signing...');
 
-// The name of the project file (e.g., Digibiz)
 const projectName = 'Digibiz'; 
+const teamID = 'Z6XW557ZX2'; // Use your Development Team ID
 const projectPath = path.join(
     __dirname,
     '../../platforms/ios',
@@ -24,28 +24,34 @@ try {
     const project = xcode.project(projectPath);
     project.parseSync();
 
-    // 1. Get the main app target (The target whose name matches the project name)
-    let mainTargetId;
-    let mainTargetName;
-
-    // Iterate through PBXNativeTarget section to find the main app target
+    let mainTargetId = null;
+    let mainTargetName = null;
+    
+    // Find the main application target based on product type (com.apple.product-type.application)
     const targets = project.pbxNativeTargetSection();
-    for (let targetId in targets) {
-        if (targets[targetId].name === projectName) {
-            mainTargetId = targetId;
-            mainTargetName = targets[targetId].name;
-            break;
+    
+    for (const targetId in targets) {
+        if (targets[targetId].isa === 'PBXNativeTarget') {
+            const target = targets[targetId];
+            
+            // The main app target has productType "com.apple.product-type.application"
+            if (target.productType === '"com.apple.product-type.application"') {
+                mainTargetId = targetId;
+                // Clean up the name from the quotes Xcode uses, e.g., "Digibiz" becomes Digibiz
+                mainTargetName = target.productName ? target.productName.replace(/"/g, '') : projectName;
+                break;
+            }
         }
     }
 
     if (!mainTargetId) {
-        console.error(`Could not find main target "${projectName}".`);
+        console.error(`Could not find main application target for "${projectName}".`);
         process.exit(1);
     }
     
-    console.log(`Found main target: ${mainTargetName} (ID: ${mainTargetId})`);
+    console.log(`Found main application target: ${mainTargetName} (ID: ${mainTargetId})`);
 
-    // 2. Iterate through all build configurations (Release, Debug)
+    // Iterate through all build configurations (Release, Debug)
     const configurations = project.pbxXCBuildConfigurationSection();
     
     for (const configUuid in configurations) {
@@ -54,14 +60,13 @@ try {
         // Ensure we are only modifying configurations that belong to our main target
         if (config.target === mainTargetId) {
              if (typeof config === 'object' && config.buildSettings) {
-                // Force Manual Signing
+                
+                // Force Manual Signing settings
                 config.buildSettings['CODE_SIGNING_STYLE'] = 'Manual';
-                
-                // Ensure necessary manual signing variables are set
+                config.buildSettings['DEVELOPMENT_TEAM'] = teamID;
                 config.buildSettings['CODE_SIGN_IDENTITY[sdk=iphoneos*]'] = '"iPhone Developer"'; 
-                config.buildSettings['DEVELOPMENT_TEAM'] = 'Z6XW557ZX2';
                 
-                // Fix the IPHONEOS_DEPLOYMENT_TARGET warning on the main target (though config.xml should handle this)
+                // Ensure deployment target is set correctly for the main target
                 config.buildSettings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'; 
                 
                 console.log(`Updated configuration: ${config.buildSettings.name} to Manual for target ${mainTargetName}.`);
@@ -69,9 +74,9 @@ try {
         }
     }
 
-    // 3. Write the changes back to the project file
+    // Write the changes back to the project file
     fs.writeFileSync(projectPath, project.writeSync());
-    console.log('Successfully enforced Manual Signing in project.pbxproj.');
+    console.log('Successfully enforced Manual Signing in project.pbxproj. ✅');
 
 } catch (err) {
     console.error('Error modifying project file:', err);
