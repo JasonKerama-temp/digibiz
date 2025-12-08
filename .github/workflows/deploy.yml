@@ -30,8 +30,8 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
-      - name: 📦 Install npm dependencies
-        run: npm ci
+      - name: 📦 Install npm dependencies (Creating new lock file)
+        run: npm install
 
       # Force Install Cordova CLI 12 and verify
       - name: 🔑 Install Cordova CLI 12
