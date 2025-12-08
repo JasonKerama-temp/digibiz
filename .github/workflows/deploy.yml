@@ -63,6 +63,14 @@ jobs:
           echo "✅ Importing certificate to keychain..."
           security import ios_cert.p12 -k ~/Library/Keychains/build.keychain -P "${{ secrets.IOS_CERTIFICATE_PASSWORD }}" -T /usr/bin/codesign
           
+          # Make the keychain the default
+          security default-keychain -s ~/Library/Keychains/build.keychain
+          
+          # List the imported identities
+          echo ""
+          echo "📋 Imported identities:"
+          security find-identity -v ~/Library/Keychains/build.keychain
+          
           echo "✅ Certificate imported successfully"
 
       # 📄 Install Provisioning Profile
@@ -71,17 +79,61 @@ jobs:
           echo "📝 Creating provisioning profiles directory..."
           mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
           
-          echo "📥 Installing provisioning profile..."
-          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > "$HOME/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision"
+          PROFILE_PATH="$HOME/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision"
           
-          echo "✅ Provisioning profile installed"
-          ls -lah "$HOME/Library/MobileDevice/Provisioning Profiles/"
+          echo "📥 Decoding provisioning profile..."
+          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 -d > "$PROFILE_PATH"
+          
+          # Verify the profile was decoded correctly
+          if [ ! -f "$PROFILE_PATH" ] || [ ! -s "$PROFILE_PATH" ]; then
+            echo "❌ Failed to decode provisioning profile"
+            exit 1
+          fi
+          
+          # Check if it's a valid plist file
+          if file "$PROFILE_PATH" | grep -q "bplist"; then
+            echo "✅ Valid binary plist provisioning profile detected"
+          elif file "$PROFILE_PATH" | grep -q "XML"; then
+            echo "✅ Valid XML provisioning profile detected"
+          else
+            echo "⚠️  Warning: Profile format may be unexpected"
+            file "$PROFILE_PATH"
+          fi
+          
+          echo "✅ Provisioning profile installed at: $PROFILE_PATH"
+          ls -lah "$PROFILE_PATH"
+
+      # 🔍 Verify Provisioning Profiles
+      - name: 🔍 Verify Provisioning Profiles
+        run: |
+          echo "📋 Listing all provisioning profiles..."
+          PROFILES_DIR="$HOME/Library/MobileDevice/Provisioning Profiles"
+          
+          if [ -d "$PROFILES_DIR" ]; then
+            ls -lah "$PROFILES_DIR"
+            echo ""
+            echo "📊 Profile details:"
+            for profile in "$PROFILES_DIR"/*.mobileprovision; do
+              if [ -f "$profile" ]; then
+                echo "  Profile: $(basename "$profile")"
+                # Extract UUID if possible
+                if command -v security &> /dev/null; then
+                  security cms -D -i "$profile" 2>/dev/null | grep -A 1 "UUID" | head -2 || echo "  (Could not extract UUID)"
+                fi
+              fi
+            done
+          else
+            echo "⚠️  Profiles directory not found"
+          fi
 
       # 🏗️ Build Archive with Manual Signing
       - name: 🏗️  Build Xcode Archive
         run: |
           echo "🔨 Building archive with manual signing..."
           mkdir -p output
+          
+          # Export the keychain path for codesign to find the certificate
+          export KEYCHAIN_PATH="$HOME/Library/Keychains/build.keychain"
           
           xcodebuild archive \
             -workspace "platforms/ios/${{ env.APP_NAME }}.xcworkspace" \
@@ -90,13 +142,13 @@ jobs:
             -destination "generic/platform=iOS" \
             -archivePath "output/${{ env.APP_NAME }}.xcarchive" \
             -derivedDataPath "output/derived" \
+            -verbose \
             CODE_SIGN_STYLE="Manual" \
             CODE_SIGNING_REQUIRED="YES" \
             CODE_SIGN_IDENTITY="iPhone Developer" \
             PROVISIONING_PROFILE_SPECIFIER="${{ env.PROFILE_NAME }}" \
             DEVELOPMENT_TEAM="${{ env.TEAM_ID }}" \
-            CURRENT_PROJECT_VERSION="${{ env.PROJECT_VERSION }}" \
-            OTHER_CODE_SIGN_FLAGS="--keychain $HOME/Library/Keychains/build.keychain"
+            CURRENT_PROJECT_VERSION="${{ env.PROJECT_VERSION }}"
           
           echo "✅ Archive created successfully"
 
