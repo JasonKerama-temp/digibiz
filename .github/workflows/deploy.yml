@@ -69,13 +69,13 @@ jobs:
       - name: 📄 Install Provisioning Profile
         run: |
           echo "📝 Creating provisioning profiles directory..."
-          mkdir -p "~/Library/MobileDevice/Provisioning Profiles"
+          mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
           
           echo "📥 Installing provisioning profile..."
-          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > "~/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision"
+          echo "${{ secrets.IOS_PROVISIONING_PROFILE }}" | base64 --decode > "$HOME/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision"
           
           echo "✅ Provisioning profile installed"
-          ls -la "~/Library/MobileDevice/Provisioning Profiles/"
+          ls -lah "$HOME/Library/MobileDevice/Provisioning Profiles/"
 
       # 🏗️ Build Archive with Manual Signing
       - name: 🏗️  Build Xcode Archive
@@ -96,7 +96,7 @@ jobs:
             PROVISIONING_PROFILE_SPECIFIER="${{ env.PROFILE_NAME }}" \
             DEVELOPMENT_TEAM="${{ env.TEAM_ID }}" \
             CURRENT_PROJECT_VERSION="${{ env.PROJECT_VERSION }}" \
-            OTHER_CODE_SIGN_FLAGS="--keychain ~/Library/Keychains/build.keychain"
+            OTHER_CODE_SIGN_FLAGS="--keychain $HOME/Library/Keychains/build.keychain"
           
           echo "✅ Archive created successfully"
 
@@ -134,7 +134,7 @@ jobs:
           echo "🗑️  Cleaning up sensitive files..."
           security delete-keychain build.keychain || true
           rm -f ios_cert.p12 || true
-          rm -rf "~/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision" || true
+          rm -rf "$HOME/Library/MobileDevice/Provisioning Profiles/${{ env.PROFILE_NAME }}.mobileprovision" || true
           echo "✅ Cleanup complete"
 
       # 📤 Upload Artifacts
